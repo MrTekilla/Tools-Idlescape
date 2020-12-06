@@ -8,8 +8,9 @@
   <script src="lib/jquery-1.12.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="tools/Exp.js"></script>
-  <script src="tools/scrolls.js"></script>
-  <script src="tools/seeds.js"></script>
+  <script src="tools/Scrolls.js"></script>
+  <script src="tools/Seeds.js"></script>
+  <script src="tools/Tools.js"></script>
  
   <style>
     .clickable{
@@ -45,21 +46,31 @@
   </style>
 
 </head>
-<body  onload="callFetchExp(); callFetchScrolls(); callFetchSeeds();">
+<body  onload="callFetchExp(); callFetchScrolls(); callFetchSeeds(); startAutoRefresh();">
 
 <div class="container">
   <h2>Idlescape tools</h2>
+  <h5>
+    <i>
+      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchExp(); callFetchScrolls(); callFetchSeeds();"><span class="glyphicon glyphicon-refresh "></span></button>
+    </i>
+  </h5>
 
   <ul class="nav nav-pills">
     <li class="active"><a data-toggle="pill" href="#Exp">Experience</a></li>
     <li><a data-toggle="pill" href="#Scrolls">Scrolls</a></li>
     <li><a data-toggle="pill" href="#Seeds">Seeds</a></li>
-    <li><button class="btn btn-primary" onclick="callFetchExp(); callFetchScrolls(); callFetchSeeds();"><span class="glyphicon glyphicon-refresh "></span></button></li>
+    <li></li>
   </ul>
 
   <div class="tab-content">
     <div id="Exp" class="tab-pane fade in active">
       <h3>Experience</h3>
+      <h5>
+        <i>
+          Calculate which recipe is the best to level up Craft at a lower cost.
+        </i>
+      </h5>
       <div class="content">
         <table class="table">
           <thead>
@@ -79,6 +90,11 @@
     </div>
     <div id="Scrolls" class="tab-pane fade">
       <h3>Scrolls</h3>
+      <h5>
+        <i>
+          Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.
+        </i>
+      </h5>
       <div class="content">
         <table class="table">
           <thead>
@@ -98,6 +114,7 @@
     </div>
     <div id="Seeds" class="tab-pane fade">
       <h3>Seeds</h3>
+      <h5>Calculate which seed is the best to level up Farming at a lower cost. (You can sort by "Price per xp" and "Xp per bloc per minute by clicking" on them).</h5>
       <div class="content">
         <table class="table">
           <thead>

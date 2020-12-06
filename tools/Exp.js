@@ -6,13 +6,6 @@ function callFetchExp(){
 }
 
 //-------------------------------------------
-//Tools
-function millionFormate(value){
-  var nf = new Intl.NumberFormat('en-DE', { minimumFractionDigits: 2  });
-  return nf.format(value);
-}
-
-//-------------------------------------------
 //Calculs
 var finalResultsExp = [];
 

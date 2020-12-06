@@ -7,13 +7,6 @@ function callFetchSeeds(){
 
 
 //-------------------------------------------
-//Tools
-function millionFormate(value){
-  var nf = new Intl.NumberFormat('en-DE', { minimumFractionDigits: 2  });
-  return nf.format(value);
-}
-
-//-------------------------------------------
 //Calculs
 var finalResultsSeeds = [];
 function traitementDataSeeds(json){
@@ -42,20 +35,17 @@ function sortByXpMinute(){
 	finalResultsSeeds.sort(function(a, b) {
 	    return parseFloat(b.xpMinute) - parseFloat(a.xpMinute);
 	});
-	var i = 1;
-	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
-	finalResultsSeeds.forEach(e => {
-        document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML += "<tr><th scope=\"row\">"+i+"</th><td>" + e.name + "</td><td>" + e.prix +  "</td><td>" + e.exp +"</td><td>" + e.width + "x" + e.height +"</td><td>" + e.xpMinute + "</td><td>" + e.prix_1xp + "</td></tr>"
-		//console.log(e.name + " -> Prix market: " + e.prix + " | exp total : " + e.exp + " | " + e.width + "x" + e.height + " | prix 1xp : " + e.prix_1xp + " | xp/bloc/min : " + e.xpMinute);
-		i++;
-	});
+	populate();
 }
 
 function sortByPriceXP(){
 	finalResultsSeeds.sort(function(a, b) {
 	    return parseFloat(a.prix_1xp) - parseFloat(b.prix_1xp);
 	});
+	populate();
+}
 
+function populate(){
 	var i = 1;
 	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsSeeds.forEach(e => {
