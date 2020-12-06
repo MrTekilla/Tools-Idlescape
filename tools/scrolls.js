@@ -21,8 +21,11 @@ function traitementDataScrolls(json){
 
 		var tmpResult = {
 			"name" : e.name,
-			"prix" : millionFormate(totalPrice),
+			"level" : e.level,
+			"CraftingPrice" : millionFormate(totalPrice),
+			"MarketPrice" : millionFormate(e.price),
 			"exp" : millionFormate(e.exp),
+			"Benefits" : e.price - totalPrice,
 			"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
 			"compos"  : compos
 		}
@@ -43,7 +46,10 @@ function traitementDataScrolls(json){
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseScrolls"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
-		"</td><td>" + e.prix +
+		"</td><td>" + e.level +
+		"</td><td>" + e.CraftingPrice +
+		"</td><td>" + e.MarketPrice +
+		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
 		"</td><td>" + e.exp +
 		"</td><td>" + e.prix_1xp +
 		"</td></tr>";

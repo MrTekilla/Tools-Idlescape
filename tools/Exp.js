@@ -24,7 +24,9 @@ function traitementDataExp(json){
 			}
 			var tmpResult = {
 				"name" : e.name + (e.resources.length > 1 ? " (Recipe : " + nameCompos + ")" : ""),
-				"prix" : millionFormate(totalPrice),
+				"CraftingPrice" : millionFormate(totalPrice),
+				"MarketPrice" : millionFormate(e.price),
+				"Benefits" : e.price - totalPrice,
 				"exp" : millionFormate(e.exp),
 				"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
 				"compos" : compos
@@ -49,7 +51,9 @@ function traitementDataExp(json){
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
-		"</td><td>" + e.prix +
+		"</td><td>" + e.CraftingPrice +
+		"</td><td>" + e.MarketPrice +
+		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
 		"</td><td>" + e.exp +
 		"</td><td>" + e.prix_1xp +
 		"</td></tr>";

@@ -11,14 +11,6 @@
 	<script src="tools/scrolls.js"></script>
 	<script src="tools/seeds.js"></script>
 	<script src="tools/Tools.js"></script>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-SSCX3DC7CR');
-	</script>
   <style>
     .clickable{
       cursor: pointer;
@@ -50,6 +42,14 @@
     .tooltip:hover .tooltiptext {
       visibility: visible;
     }
+
+    .positive {
+      color : #3aba23;
+    }
+    .negative {
+      color : #ff5733;
+    }
+
   </style>
 
 </head>
@@ -84,7 +84,9 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Price</th>
+              <th scope="col">Crating Price</th>
+              <th scope="col">Market Price</th>
+              <th scope="col">Benefits</th>
               <th scope="col">Exp</th>
               <th scope="col">Price per xp</th>
             </tr>
@@ -108,7 +110,10 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
+              <th scope="col">Level</th>
               <th scope="col">Crafting Price</th>
+              <th scope="col">Market Price</th>
+              <th scope="col">Benefits</th>
               <th scope="col">Exp</th>
               <th scope="col">Price per xp</th>
             </tr>
