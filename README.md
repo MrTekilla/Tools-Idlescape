@@ -1,6 +1,6 @@
 # MrTekilla.github.io Tools for Idlescape
 <br/>
-MrTekilla.github.io
+https://MrTekilla.github.io
 <br/>
 * Calculate which recipe is the best to level up Craft at a lower cost.<br/>
 * Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.<br/>
