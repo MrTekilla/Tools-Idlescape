@@ -19,13 +19,15 @@ function generateComposHtml(compos){
 		"</th><td>" + compos[i].name +
 		"</td><td>" + compos[i].quantity +
 		"</td><td>" + compos[i].price +
+		"</td><td>" + millionFormate(compos[i].price * compos[i].quantity) +
 		"</td></tr>";
 	}
 	newHtml += "<table class=\"table\"><thead><tr>"+
 		"<th scope=\"col\">#</th>"+
 		"<th scope=\"col\">Name</th>"+
 		"<th scope=\"col\">Quantity</th>"+
-		"<th scope=\"col\">Price</th></tr></thead>"+
+		"<th scope=\"col\">Price</th>"+
+		"<th scope=\"col\">Total price</th></tr></thead>"+
 		"<tbody>"+
 		composHtml+
 		"</tbody>"+
