@@ -11,7 +11,14 @@
   <script src="tools/Scrolls.js"></script>
   <script src="tools/Seeds.js"></script>
   <script src="tools/Tools.js"></script>
- 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C2J1NT63QV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-C2J1NT63QV');
+</script>
   <style>
     .clickable{
       cursor: pointer;
@@ -123,6 +130,7 @@
               <th scope="col">Name</th>
               <th scope="col">Market Price</th>
               <th scope="col">Exp</th>
+              <th scope="col">Duration (minutes)</th>
               <th scope="col">Width x Height</th>
               <th class ="clickable" scope="col" onclick="sortByXpMinute()">Xp per bloc per minute</th>
               <th class ="clickable" scope="col" onclick="sortByPriceXP()">Price per xp</th>
