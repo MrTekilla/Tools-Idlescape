@@ -13,8 +13,12 @@ function traitementDataScrolls(json){
 	json.scrolls.forEach(e => {
 		var totalPrice = 0;
 		var compos = [];
+		var mindRune = false;
 		e.resources[0].forEach(c => {
 			totalPrice += c.price * c.quantity;
+			if(c.name == "Mind Rune"){
+				mindRune = true;
+			}
 			compos.push({"name":c.name,"price" : c.price, "quantity":c.quantity});
 			//console.log({"name":c.name,"price" : c.price, "quantity":c.quantity});
 		});
@@ -27,6 +31,7 @@ function traitementDataScrolls(json){
 			"exp" : millionFormate(e.exp),
 			"Benefits" : e.price - totalPrice,
 			"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
+			"mindRune" : mindRune ? "Yes" : "No",
 			"compos"  : compos
 		}
 
@@ -47,6 +52,7 @@ function traitementDataScrolls(json){
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseScrolls"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
 		"</td><td>" + e.level +
+		"</td><td>" + e.mindRune +
 		"</td><td>" + e.CraftingPrice +
 		"</td><td>" + e.MarketPrice +
 		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
