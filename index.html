@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Idlescape tools</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="lib/jquery-1.12.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="tools/Exp.js"></script>
+  <script src="tools/scrolls.js"></script>
+  <script src="tools/seeds.js"></script>
+ 
+  <style>
+    .clickable{
+      cursor: pointer;
+      margin: 15px 0;
+    }
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: 100%;
+      left: 50%;
+      margin-left: -60px;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }
+  </style>
+
+</head>
+<body  onload="callFetchExp(); callFetchScrolls(); callFetchSeeds();">
+
+<div class="container">
+  <h2>Idlescape tools</h2>
+
+  <ul class="nav nav-pills">
+    <li class="active"><a data-toggle="pill" href="#Exp">Experience</a></li>
+    <li><a data-toggle="pill" href="#Scrolls">Scrolls</a></li>
+    <li><a data-toggle="pill" href="#Seeds">Seeds</a></li>
+    <li><button class="btn btn-primary" onclick="callFetchExp(); callFetchScrolls(); callFetchSeeds();"><span class="glyphicon glyphicon-refresh "></span></button></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="Exp" class="tab-pane fade in active">
+      <h3>Experience</h3>
+      <div class="content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Exp</th>
+              <th scope="col">Price per xp</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="Scrolls" class="tab-pane fade">
+      <h3>Scrolls</h3>
+      <div class="content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Crafting Price</th>
+              <th scope="col">Exp</th>
+              <th scope="col">Price per xp</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="Seeds" class="tab-pane fade">
+      <h3>Seeds</h3>
+      <div class="content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Market Price</th>
+              <th scope="col">Exp</th>
+              <th scope="col">Width x Height</th>
+              <th class ="clickable" scope="col" onclick="sortByXpMinute()">Xp per bloc per minute</th>
+              <th class ="clickable" scope="col" onclick="sortByPriceXP()">Price per xp</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
