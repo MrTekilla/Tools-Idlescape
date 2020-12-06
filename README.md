@@ -1,4 +1,4 @@
-# MrTekilla.github.io Tools for Idlescape
+# Tools for Idlescape
 
 https://MrTekilla.github.io 
 
