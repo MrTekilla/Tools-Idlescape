@@ -14,7 +14,6 @@ var sortingScrollName = null;
 var customScrollLevel = 0;
 
 function traitementDataScrolls(json){
-	console.log(json);
 	finalResultsScrolls = [];
 	json.scrolls.forEach(e => {
 		var totalPrice = 0;
