@@ -8,6 +8,8 @@ function callFetchScrolls(){
 //-------------------------------------------
 //Calculs
 var finalResultsScrolls = [];
+var actualSortScrolls = "";
+var sortOrderScrolls = false;
 function traitementDataScrolls(json){
 	finalResultsScrolls = [];
 	json.scrolls.forEach(e => {
@@ -26,12 +28,13 @@ function traitementDataScrolls(json){
 		var tmpResult = {
 			"name" : e.name,
 			"level" : e.level,
-			"CraftingPrice" : millionFormate(totalPrice),
-			"MarketPrice" : millionFormate(e.price),
-			"exp" : millionFormate(e.exp),
+			"CraftingPrice" : totalPrice,
+			"MarketPrice" : e.price,
+			"exp" : e.exp,
 			"Benefits" : e.price - totalPrice,
 			"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
 			"mindRune" : mindRune ? "Yes" : "No",
+			"ppxBenef" : ((e.price-totalPrice)/e.exp).toFixed(2),
 			"compos"  : compos
 		}
 
@@ -40,10 +43,29 @@ function traitementDataScrolls(json){
 
 	});
 
+	sortByValueScrolls('ppxBenef');
+	actualSortScrolls = "ppxBenef";
+}
+
+
+function sortByValueScrolls(value){
+	if(actualSortScrolls == value){
+		sortOrderScrolls = !sortOrderScrolls;
+	}else{
+		sortOrderScrolls = false;
+	}
+
 	finalResultsScrolls.sort(function(a, b) {
-		return parseFloat(a.prix_1xp) - parseFloat(b.prix_1xp);
+		return parseFloat(sortOrderScrolls ? a[value] : b[value]) - parseFloat(sortOrderScrolls ? b[value] : a[value]);
 	});
 
+	actualSortScrolls = value
+	populateScrolls();
+
+}
+
+
+function populateScrolls(){
 	var i = 1;
 	document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsScrolls.forEach(e => {
@@ -53,17 +75,14 @@ function traitementDataScrolls(json){
 		"<div class=\"collapse\" id=\"collapseScrolls"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
 		"</td><td>" + e.level +
 		"</td><td>" + e.mindRune +
-		"</td><td>" + e.CraftingPrice +
-		"</td><td>" + e.MarketPrice +
+		"</td><td>" + millionFormate(e.CraftingPrice) +
+		"</td><td>" + millionFormate(e.MarketPrice) +
 		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
-		"</td><td>" + e.exp +
-		"</td><td>" + e.prix_1xp +
+		"</td><td>" + millionFormate(e.exp) +
+		"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.ppxBenef) + "</b>" +
+		//"</td><td>" + e.prix_1xp +
 		"</td></tr>";
 		//console.log(e.name + " -> Prix craft: " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});
-
 }
-
-
-

@@ -93,11 +93,13 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Crating Price</th>
-              <th scope="col">Market Price</th>
-              <th scope="col">Benefits</th>
-              <th scope="col">Exp</th>
-              <th scope="col">Price per xp</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('level')">Level</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('CraftingPrice')">Crating Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('MarketPrice')">Market Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('Benefits')">Benefits</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('exp')">Exp</th>
+              <th class ="clickable" scope="col" onclick="sortByValueExp('ppxBenef')">Benefits per XP</th>
+              <!-- <th scope="col">Price Per XP</th> -->
             </tr>
           </thead>
           <tbody>
@@ -119,13 +121,14 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th scope="col">Level</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('level')">Level</th>
               <th scope="col">Mind Rune</th>
-              <th scope="col">Crafting Price</th>
-              <th scope="col">Market Price</th>
-              <th scope="col">Benefits</th>
-              <th scope="col">Exp</th>
-              <th scope="col">Price per xp</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice')">Crafting Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice')">Market Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('Benefits')">Benefits</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('exp')">Exp</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef')">Benefits per XP</th>
+              <!-- <th scope="col">Price Per XP</th> -->
             </tr>
           </thead>
           <tbody>
@@ -147,8 +150,8 @@
               <th scope="col">Exp</th>
               <th scope="col">Duration (minutes)</th>
               <th scope="col">Width x Height</th>
-              <th class ="clickable" scope="col" onclick="sortByXpMinute()">Xp per bloc per minute</th>
-              <th class ="clickable" scope="col" onclick="sortByPriceXP()">Price per xp</th>
+              <th class ="clickable" scope="col" onclick="sortByXpMinuteSeeds()">Xp per bloc per minute</th>
+              <th class ="clickable" scope="col" onclick="sortByPriceXPSeeds()">Price per xp</th>
             </tr>
           </thead>
           <tbody>

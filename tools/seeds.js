@@ -27,26 +27,26 @@ function traitementDataSeeds(json){
 	});
 
 	//sortByXpMinute();
-	sortByPriceXP();
+	sortByPriceXPSeeds();
 
 }
 
 
-function sortByXpMinute(){
+function sortByXpMinuteSeeds(){
 	finalResultsSeeds.sort(function(a, b) {
 		return parseFloat(b.xpMinute) - parseFloat(a.xpMinute);
 	});
-	populate();
+	populateSeeds();
 }
 
-function sortByPriceXP(){
+function sortByPriceXPSeeds(){
 	finalResultsSeeds.sort(function(a, b) {
 		return parseFloat(a.prix_1xp) - parseFloat(b.prix_1xp);
 	});
-	populate();
+	populateSeeds();
 }
 
-function populate(){
+function populateSeeds(){
 	var i = 1;
 	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsSeeds.forEach(e => {

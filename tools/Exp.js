@@ -8,7 +8,8 @@ function callFetchExp(){
 //-------------------------------------------
 //Calculs
 var finalResultsExp = [];
-
+var actualSortExp = "";
+var sortOrderExp = false;
 function traitementDataExp(json){
 	finalResultsExp = [];
 	json.crafts.forEach(e => {
@@ -24,11 +25,13 @@ function traitementDataExp(json){
 			}
 			var tmpResult = {
 				"name" : e.name + (e.resources.length > 1 ? " (Recipe : " + nameCompos + ")" : ""),
-				"CraftingPrice" : millionFormate(totalPrice),
-				"MarketPrice" : millionFormate(e.price),
+				"level" : e.level,
+				"CraftingPrice" : totalPrice,
+				"MarketPrice" : e.price,
 				"Benefits" : e.price - totalPrice,
-				"exp" : millionFormate(e.exp),
+				"exp" : e.exp,
 				"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
+				"ppxBenef" : ((e.price-totalPrice)/e.exp).toFixed(2),
 				"compos" : compos
 			}
 
@@ -37,28 +40,44 @@ function traitementDataExp(json){
 		}
 	});
 
+	sortByValueExp("ppxBenef");
+	actualSortExp = "ppxBenef";
+
+}
+
+function sortByValueExp(value){
+	if(actualSortExp == value){
+		sortOrderExp = !sortOrderExp;
+	}else{
+		sortOrderExp = false;
+	}
+	
 	finalResultsExp.sort(function(a, b) {
-		return parseFloat(a.prix_1xp) - parseFloat(b.prix_1xp);
+		return parseFloat(sortOrderExp ? a[value] : b[value]) - parseFloat(sortOrderExp ? b[value] : a[value]);
 	});
 
-	//console.log(finalResultsExp);
+	actualSortExp = value
+	populateExp();
 
+}
+
+function populateExp(){
 	var i = 1;
 	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsExp.forEach(e => {
-		//document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML += "<tr><th scope=\"row\">"+i+"</th><td><i class=\"glyphicon glyphicon-triangle-right\"></i>\t" + e.name + "</td><td>" + e.prix + "</td><td>" + e.exp + "</td><td>" + e.prix_1xp + "</td></tr>"
 		document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
-		"</td><td>" + e.CraftingPrice +
-		"</td><td>" + e.MarketPrice +
+		"</td><td>" + e.level +
+		"</td><td>" + millionFormate(e.CraftingPrice) +
+		"</td><td>" + millionFormate(e.MarketPrice) +
 		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
-		"</td><td>" + e.exp +
-		"</td><td>" + e.prix_1xp +
+		"</td><td>" + millionFormate(e.exp) +
+		"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.ppxBenef) + "</b>" +
+		//"</td><td>" + e.prix_1xp +
 		"</td></tr>";
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});
 }
-
