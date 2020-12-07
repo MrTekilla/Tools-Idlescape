@@ -1,8 +1,8 @@
-function callFetchExp(){
+function callFetchCrafting(){
 	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/crafting')
 		.then(response => response.json())
-		.then(json => traitementDataExp(json));
+		.then(json => traitementDataCrafting(json));
 }
 
 //-------------------------------------------
@@ -10,9 +10,9 @@ function callFetchExp(){
 var finalResultsExp = [];
 var actualSortExp = "";
 var sortOrderExp = false;
-var sortingName = null;
-var customLevel = 0;
-function traitementDataExp(json){
+var sortingCraftingName = null;
+var customCraftingLevel = 0;
+function traitementDataCrafting(json){
 	finalResultsExp = [];
 	json.crafts.forEach(e => {
 		var totalPrice = 0;
@@ -42,12 +42,12 @@ function traitementDataExp(json){
 		}
 	});
 
-	sortByValueExp("ppxBenef");
+	sortByValueCrafting("ppxBenef");
 	actualSortExp = "ppxBenef";
 
 }
 
-function sortByValueExp(value){
+function sortByValueCrafting(value){
 	if(actualSortExp == value){
 		sortOrderExp = !sortOrderExp;
 	}else{
@@ -59,10 +59,10 @@ function sortByValueExp(value){
 	});
 
 	actualSortExp = value
-	populateExp(sortingName,customLevel);
+	populateCrafting(sortingCraftingName,customCraftingLevel);
 }
 
-function populateExp(craftName, sortingLevel){
+function populateCrafting(craftName, sortingLevel){
 	var i = 1;
 	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsExp.forEach(e => {
@@ -91,10 +91,10 @@ function populateExp(craftName, sortingLevel){
 
 function findCraftName(value){
 	if(value == ""){
-		sortingName = null;
+		sortingCraftingName = null;
 	}
-	populateExp(value,customLevel);
-	sortingName = value;
+	populateCrafting(value,customCraftingLevel);
+	sortingCraftingName = value;
 }
 
 function findCraftByLevel(value){
@@ -103,6 +103,6 @@ function findCraftByLevel(value){
 	}else if(parseInt(value) < 0){
 		value = 0;
 	}
-	customLevel = value;
-	populateExp(sortingName,customLevel);
+	customCraftingLevel = value;
+	populateCrafting(sortingCraftingName,customCraftingLevel);
 }

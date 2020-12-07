@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="css/main.css">
 	<script src="lib/jquery-1.12.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="tools/Exp.js"></script>
-	<script src="tools/scrolls.js"></script>
-	<script src="tools/seeds.js"></script>
+	<script src="tools/Crafting.js"></script>
+	<script src="tools/Scrollcrafting.js"></script>
+	<script src="tools/Farming.js"></script>
 	<script src="tools/Tools.js"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
@@ -23,20 +23,20 @@
 	</script>
 
 </head>
-<body  onload="callFetchExp(); callFetchScrolls(); callFetchSeeds(); startAutoRefresh();">
+<body  onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); startAutoRefresh();">
 
 <div class="container">
   <h2>Idlescape tools</h2>
   <h5>
     <i>
-      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchExp(); callFetchScrolls(); callFetchSeeds();"><span class="glyphicon glyphicon-refresh "></span></button>
+      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(); callFetchScrolls(); callFetchFarming();"><span class="glyphicon glyphicon-refresh "></span></button>
     </i>
   </h5>
 
   <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#Exp">Experience</a></li>
-    <li><a data-toggle="pill" href="#Scrolls">Scrolls</a></li>
-    <li><a data-toggle="pill" href="#Seeds">Seeds</a></li>
+    <li class="active"><a data-toggle="pill" href="#Exp">Crafting</a></li>
+    <li><a data-toggle="pill" href="#Scrolls">Scrollcrafting</a></li>
+    <li><a data-toggle="pill" href="#Seeds">Farming</a></li>
     <li></li>
   </ul>
 
@@ -49,12 +49,12 @@
         </i>
 	  </h5>
 	  
-	<a class="btn btn-primary" data-toggle="collapse" href="#collapseExpOpions" role="button" aria-expanded="false" aria-controls="collapseExpOpions">
+	<a class="btn btn-primary" data-toggle="collapse" href="#collapseCraftingOpions" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i>
 		Options
 	</a>
 	
-	<div class="collapse" id="collapseExpOpions">
+	<div class="collapse" id="collapseCraftingOpions">
 		<div class="container">
 			<div class="row">
 			  <div class="col-md-4">
@@ -88,12 +88,12 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('level')">Level</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('CraftingPrice')">Crating Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('MarketPrice')">Market Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('Benefits')">Benefits</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('exp')">Exp</th>
-              <th class ="clickable" scope="col" onclick="sortByValueExp('ppxBenef')">Benefits per XP</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('level')">Level</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('CraftingPrice')">Crating Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('MarketPrice')">Market Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('Benefits')">Benefits</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('exp')">Exp</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('ppxBenef')">Benefits per XP</th>
               <!-- <th scope="col">Price Per XP</th> -->
             </tr>
           </thead>
@@ -109,7 +109,41 @@
         <i>
           Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.
         </i>
-      </h5>
+	  </h5>
+	  
+	  <a class="btn btn-primary" data-toggle="collapse" href="#collapseScrollingOpions" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions">
+		<i class="glyphicon glyphicon-plus">&nbsp;</i>
+		Options
+	</a>
+	
+	<div class="collapse" id="collapseScrollingOpions">
+		<div class="container">
+			<div class="row">
+			  <div class="col-md-4">
+				<div class="form-group">
+					<label for="ScrollcraftingLevel">Your level</label>
+					<small class="form-text text-muted">(Enter your crafting level. 0 to show everything)</small>
+					<input type="number" min=0 max=99 class="form-control" id="ScrollcraftingLevel" placeholder="0" oninput="findScrollByLevel(this.value);" onpaste="findScrollByLevel(this.value);">
+				  </div>
+
+				  <div class="form-group">
+					<label for="ScrollcraftingName">Craft name</label>
+					<small  class="form-text text-muted">(Find a craft by name)</small>
+					<input type="search" class="form-control" id="ScrollcraftingName" placeholder="Name" oninput="findScrollName(this.value);" onpaste="findScrollName(this.value);">
+				  </div>
+			  </div>
+
+			  <div class="col-md-4">
+				<div class="form-group">
+					<label style="display : block; text-align : center;">Calculate the price to level up</label>
+					<p style="text-align:center"><i>Coming soon !</i></p>
+				</div>
+			  </div>
+
+			</div>
+		</div>
+	</div>
+
       <div class="content">
         <table class="table">
           <thead>

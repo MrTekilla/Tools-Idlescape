@@ -7,7 +7,7 @@ function millionFormate(value){
 
 
 function startAutoRefresh(){
-	setInterval(function(){ callFetchExp(); callFetchScrolls(); callFetchSeeds(); }, 300000);
+	setInterval(function(){ callFetchCrafting(); callFetchScrolls(); callFetchFarming(); }, 300000);
 }
 
 function generateComposHtml(compos){

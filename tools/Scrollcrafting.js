@@ -10,7 +10,11 @@ function callFetchScrolls(){
 var finalResultsScrolls = [];
 var actualSortScrolls = "";
 var sortOrderScrolls = false;
+var sortingScrollName = null;
+var customScrollLevel = 0;
+
 function traitementDataScrolls(json){
+	console.log(json);
 	finalResultsScrolls = [];
 	json.scrolls.forEach(e => {
 		var totalPrice = 0;
@@ -60,15 +64,22 @@ function sortByValueScrolls(value){
 	});
 
 	actualSortScrolls = value
-	populateScrolls();
+	populateScrolls(sortingScrollName,customScrollLevel);
+
 
 }
 
 
-function populateScrolls(){
+function populateScrolls(craftName, sortingLevel){
 	var i = 1;
 	document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsScrolls.forEach(e => {
+		if(craftName != null && !e.name.toLowerCase().match(craftName)){
+			return;
+		}
+		if(sortingLevel != 0 && parseInt(e.level) > sortingLevel){
+			return;
+		}
 		document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
@@ -85,4 +96,22 @@ function populateScrolls(){
 		//console.log(e.name + " -> Prix craft: " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});
+}
+
+function findScrollName(value){
+	if(value == ""){
+		sortingScrollName = null;
+	}
+	populateScrolls(value,customCraftingLevel);
+	sortingScrollName = value;
+}
+
+function findScrollByLevel(value){
+	if(parseInt(value) > 99){
+		value = 99;
+	}else if(parseInt(value) < 0){
+		value = 0;
+	}
+	customScrollLevel = value;
+	populateScrolls(sortingScrollName,customScrollLevel);
 }
