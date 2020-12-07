@@ -4,7 +4,8 @@
 	<title>Idlescape tools</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
 	<script src="lib/jquery-1.12.2.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="tools/Exp.js"></script>
@@ -20,46 +21,6 @@
 
 	  gtag('config', 'G-SSCX3DC7CR');
 	</script>
-  <style>
-    .clickable{
-      cursor: pointer;
-      margin: 15px 0;
-    }
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      border-bottom: 1px dotted black;
-    }
-
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 120px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px 0;
-      
-      /* Position the tooltip */
-      position: absolute;
-      z-index: 1;
-      top: 100%;
-      left: 50%;
-      margin-left: -60px;
-    }
-
-    .tooltip:hover .tooltiptext {
-      visibility: visible;
-    }
-
-    .positive {
-      color : #3aba23;
-    }
-    .negative {
-      color : #ff5733;
-    }
-
-  </style>
 
 </head>
 <body  onload="callFetchExp(); callFetchScrolls(); callFetchSeeds(); startAutoRefresh();">
@@ -86,7 +47,41 @@
         <i>
           Calculate which recipe is the best to level up Craft at a lower cost.
         </i>
-      </h5>
+	  </h5>
+	  
+	<a class="btn btn-primary" data-toggle="collapse" href="#collapseExpOpions" role="button" aria-expanded="false" aria-controls="collapseExpOpions">
+		<i class="glyphicon glyphicon-plus">&nbsp;</i>
+		Options
+	</a>
+	
+	<div class="collapse" id="collapseExpOpions">
+		<div class="container">
+			<div class="row">
+			  <div class="col-md-4">
+				<div class="form-group">
+					<label for="craftingLevel">Your level</label>
+					<small class="form-text text-muted">(Enter your crafting level. 0 to show everything)</small>
+					<input type="number" min=0 max=99 class="form-control" id="craftingLevel" placeholder="0" oninput="findCraftByLevel(this.value);" onpaste="findCraftByLevel(this.value);">
+				  </div>
+
+				  <div class="form-group">
+					<label for="craftName">Craft name</label>
+					<small  class="form-text text-muted">(Find a craft by name)</small>
+					<input type="search" class="form-control" id="craftName" placeholder="Name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);">
+				  </div>
+			  </div>
+
+			  <div class="col-md-4">
+				<div class="form-group">
+					<label style="display : block; text-align : center;">Calculate the price to level up</label>
+					<p style="text-align:center"><i>Coming soon !</i></p>
+				</div>
+			  </div>
+
+			</div>
+		</div>
+	</div>
+
       <div class="content">
         <table class="table">
           <thead>
@@ -103,8 +98,8 @@
             </tr>
           </thead>
           <tbody>
-
-          </tbody>
+				
+		</tbody>
         </table>
       </div>
     </div>

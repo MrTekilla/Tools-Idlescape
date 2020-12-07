@@ -10,6 +10,8 @@ function callFetchExp(){
 var finalResultsExp = [];
 var actualSortExp = "";
 var sortOrderExp = false;
+var sortingName = null;
+var customLevel = 0;
 function traitementDataExp(json){
 	finalResultsExp = [];
 	json.crafts.forEach(e => {
@@ -57,14 +59,19 @@ function sortByValueExp(value){
 	});
 
 	actualSortExp = value
-	populateExp();
-
+	populateExp(sortingName,customLevel);
 }
 
-function populateExp(){
+function populateExp(craftName, sortingLevel){
 	var i = 1;
 	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsExp.forEach(e => {
+		if(craftName != null && !e.name.toLowerCase().match(craftName)){
+			return;
+		}
+		if(sortingLevel != 0 && parseInt(e.level) > sortingLevel){
+			return;
+		}
 		document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
@@ -80,4 +87,22 @@ function populateExp(){
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});
+}
+
+function findCraftName(value){
+	if(value == ""){
+		sortingName = null;
+	}
+	populateExp(value,customLevel);
+	sortingName = value;
+}
+
+function findCraftByLevel(value){
+	if(parseInt(value) > 99){
+		value = 99;
+	}else if(parseInt(value) < 0){
+		value = 0;
+	}
+	customLevel = value;
+	populateExp(sortingName,customLevel);
 }
