@@ -60,8 +60,9 @@
 			<div class="row">
 			  <div class="col-md-4">
 				<div class="form-group">
-					<label for="craftingLevel">Your Crafting level</label>
-					<small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes. 0 to show everything</small>
+          <label for="craftingLevel">Your Crafting level</label>
+					<small class="form-text text-muted">(0 to show everything)</small>
+					<small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes.</small>
 					<input type="number" min=0 max=99 class="form-control" id="craftingLevel" placeholder="0" oninput="findCraftByLevel(this.value);" onpaste="findCraftByLevel(this.value);">
 				  </div>
 
@@ -123,7 +124,8 @@
 			  <div class="col-md-4">
 				<div class="form-group">
 					<label for="ScrollcraftingLevel">Your Enchanting level</label>
-					<small class="form-text text-muted"><br/>Enter your Enchanting level to show your available Scrollcrafting recipes. 0 to show everything</small>
+					<small class="form-text text-muted">(0 to show everything)</small>
+					<small class="form-text text-muted"><br/>Enter your Enchanting level to show your available Scrollcrafting recipes.</small>
 					<input type="number" min=0 max=99 class="form-control" id="ScrollcraftingLevel" placeholder="0" oninput="findScrollByLevel(this.value);" onpaste="findScrollByLevel(this.value);">
 				  </div>
 
