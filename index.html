@@ -30,7 +30,7 @@
   
   <h5>
     <i>
-      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(); callFetchScrolls(); callFetchFarming();"><span class="glyphicon glyphicon-refresh "></span></button>
+      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming();"><span class="glyphicon glyphicon-refresh "></span></button>
     </i>
   </h5>
 
@@ -46,7 +46,9 @@
       <h3>Experience</h3>
       <h5>
         <i>
-          Calculate which recipe is the best to level up Craft at a lower cost.
+          Calculate which recipe is the best to level up Craft at a lower cost.<br/>
+          - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
+          - <b>Price per XP</b> : How much gold cost 1 xp.
         </i>
 	  </h5>
 	  
@@ -96,6 +98,7 @@
               <th class ="clickable" scope="col" onclick="sortByValueCrafting('Benefits')">Benefits</th>
               <th class ="clickable" scope="col" onclick="sortByValueCrafting('exp')">Exp</th>
               <th class ="clickable" scope="col" onclick="sortByValueCrafting('ppxBenef')">Benefits per XP</th>
+              <th class ="clickable" scope="col" onclick="sortByValueCrafting('prix_1xp')">Price per XP</th>
               <!-- <th scope="col">Price Per XP</th> -->
             </tr>
           </thead>
@@ -109,7 +112,9 @@
       <h3>Scrolls</h3>
       <h5>
         <i>
-          Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.
+          Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.<br/>
+          - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
+          - <b>Price per XP</b> : How much gold cost 1 xp.
         </i>
 	  </h5>
 	  
@@ -160,6 +165,7 @@
               <th class ="clickable" scope="col" onclick="sortByValueScrolls('Benefits')">Benefits</th>
               <th class ="clickable" scope="col" onclick="sortByValueScrolls('exp')">Exp</th>
               <th class ="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef')">Benefits per XP</th>
+              <th class ="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp')">Price per XP</th>
               <!-- <th scope="col">Price Per XP</th> -->
             </tr>
           </thead>
@@ -171,7 +177,10 @@
     </div>
     <div id="Seeds" class="tab-pane fade">
       <h3>Seeds</h3>
-      <h5>Calculate which seed is the best to level up Farming at a lower cost. (You can sort by "Price per xp" and "Xp per bloc per minute by clicking" on them).</h5>
+      <h5>
+        Calculate which seed is the best to level up Farming at a lower cost. (You can sort by "Price per xp" and "Xp per bloc per minute by clicking" on them).<br/>
+        - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
+      </h5>
       <div class="content">
         <table class="table">
           <thead>

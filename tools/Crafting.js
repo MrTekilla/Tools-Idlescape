@@ -1,18 +1,18 @@
-function callFetchCrafting(){
+function callFetchCrafting(refresh = false){
 	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/crafting')
 		.then(response => response.json())
-		.then(json => traitementDataCrafting(json));
+		.then(json => traitementDataCrafting(json,refresh));
 }
 
 //-------------------------------------------
 //Calculs
 var finalResultsExp = [];
-var actualSortExp = "";
+var actualSortExp = "prix_1xp";
 var sortOrderExp = false;
 var sortingCraftingName = null;
 var customCraftingLevel = 0;
-function traitementDataCrafting(json){
+function traitementDataCrafting(json,refresh){
 	finalResultsExp = [];
 	json.crafts.forEach(e => {
 		var totalPrice = 0;
@@ -42,25 +42,30 @@ function traitementDataCrafting(json){
 		}
 	});
 
-	sortByValueCrafting("ppxBenef");
-	actualSortExp = "ppxBenef";
-
+	sortByValueCrafting(actualSortExp,refresh);
 }
 
-function sortByValueCrafting(value){
-	if(actualSortExp == value){
-		sortOrderExp = !sortOrderExp;
-	}else{
-		sortOrderExp = false;
-	}
+function sortByValueCrafting(value,refresh){
 	
-	finalResultsExp.sort(function(a, b) {
-		return parseFloat(sortOrderExp ? a[value] : b[value]) - parseFloat(sortOrderExp ? b[value] : a[value]);
-	});
+	if(!refresh){
 
-	actualSortExp = value
+		if(actualSortExp == value){
+			sortOrderExp = !sortOrderExp;
+		}else{
+			sortOrderExp = false;
+		}
+
+		actualSortExp = value
+	}
+
+		finalResultsExp.sort(function(a, b) {
+			return parseFloat(sortOrderExp ? a[value] : b[value]) - parseFloat(sortOrderExp ? b[value] : a[value]);
+		});
+
 	populateCrafting(sortingCraftingName,customCraftingLevel);
 }
+
+
 
 function populateCrafting(craftName, sortingLevel){
 	var i = 1;
@@ -82,7 +87,7 @@ function populateCrafting(craftName, sortingLevel){
 		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
 		"</td><td>" + millionFormate(e.exp) +
 		"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.ppxBenef) + "</b>" +
-		//"</td><td>" + e.prix_1xp +
+		"</td><td>" + e.prix_1xp +
 		"</td></tr>";
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;

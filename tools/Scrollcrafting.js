@@ -1,19 +1,19 @@
-function callFetchScrolls(){
+function callFetchScrolls(refresh = false){
 	document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/scrolls')
 		.then(response => response.json())
-		.then(json => traitementDataScrolls(json));
+		.then(json => traitementDataScrolls(json,refresh));
 }
 
 //-------------------------------------------
 //Calculs
 var finalResultsScrolls = [];
-var actualSortScrolls = "";
+var actualSortScrolls = "prix_1xp";
 var sortOrderScrolls = false;
 var sortingScrollName = null;
 var customScrollLevel = 0;
 
-function traitementDataScrolls(json){
+function traitementDataScrolls(json,refresh){
 	finalResultsScrolls = [];
 	json.scrolls.forEach(e => {
 		var totalPrice = 0;
@@ -46,25 +46,26 @@ function traitementDataScrolls(json){
 
 	});
 
-	sortByValueScrolls('ppxBenef');
-	actualSortScrolls = "ppxBenef";
+	sortByValueScrolls(actualSortScrolls,refresh);
 }
 
 
-function sortByValueScrolls(value){
-	if(actualSortScrolls == value){
-		sortOrderScrolls = !sortOrderScrolls;
-	}else{
-		sortOrderScrolls = false;
+function sortByValueScrolls(value,refresh){
+	if(!refresh){
+		if(actualSortScrolls == value){
+			sortOrderScrolls = !sortOrderScrolls;
+		}else{
+			sortOrderScrolls = false;
+		}
+
+		actualSortScrolls = value
 	}
 
 	finalResultsScrolls.sort(function(a, b) {
 		return parseFloat(sortOrderScrolls ? a[value] : b[value]) - parseFloat(sortOrderScrolls ? b[value] : a[value]);
 	});
 
-	actualSortScrolls = value
 	populateScrolls(sortingScrollName,customScrollLevel);
-
 
 }
 
@@ -90,7 +91,7 @@ function populateScrolls(craftName, sortingLevel){
 		"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.Benefits) + "</b>" +
 		"</td><td>" + millionFormate(e.exp) +
 		"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\""+ "><b>" + millionFormate(e.ppxBenef) + "</b>" +
-		//"</td><td>" + e.prix_1xp +
+		"</td><td>" + e.prix_1xp +
 		"</td></tr>";
 		//console.log(e.name + " -> Prix craft: " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
