@@ -1,5 +1,5 @@
 function callFetchScrolls(refresh = false){
-	document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("scrollingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/scrolls')
 		.then(response => response.json())
 		.then(json => traitementDataScrolls(json,refresh));
@@ -7,7 +7,7 @@ function callFetchScrolls(refresh = false){
 
 //-------------------------------------------
 //Calculs
-var finalResultsScrolls = [];
+var finalResultsScrolls = [], selectScrollRecipe = [];
 var actualSortScrolls = "prix_1xp";
 var sortOrderScrolls = false;
 var sortingScrollName = null;
@@ -46,7 +46,10 @@ function traitementDataScrolls(json,refresh){
 
 	});
 
+	selectScrollRecipe = finalResultsScrolls;
 	sortByValueScrolls(actualSortScrolls,refresh);
+	sortByString(selectScrollRecipe);
+	populateSelectScroll(selectScrollRecipe);
 }
 
 
@@ -72,7 +75,7 @@ function sortByValueScrolls(value,refresh){
 
 function populateScrolls(craftName, sortingLevel){
 	var i = 1;
-	document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
+	document.getElementById("scrollingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsScrolls.forEach(e => {
 		if(craftName != null && !e.name.toLowerCase().match(craftName)){
 			return;
@@ -80,7 +83,7 @@ function populateScrolls(craftName, sortingLevel){
 		if(sortingLevel != 0 && parseInt(e.level) > sortingLevel){
 			return;
 		}
-		document.getElementById("Scrolls").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
+		document.getElementById("scrollingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseScrolls"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
@@ -114,4 +117,12 @@ function findScrollByLevel(value){
 	}
 	customScrollLevel = value;
 	populateScrolls(sortingScrollName,customScrollLevel);
+}
+
+function populateSelectScroll(list){
+	list.forEach(e => {
+		document.getElementById("selectedScrollRecipe").innerHTML +=
+		"<option>" + e.name + "</option>";
+	});
+
 }

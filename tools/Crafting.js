@@ -1,5 +1,5 @@
 function callFetchCrafting(refresh = false){
-	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/crafting')
 		.then(response => response.json())
 		.then(json => traitementDataCrafting(json,refresh));
@@ -7,7 +7,7 @@ function callFetchCrafting(refresh = false){
 
 //-------------------------------------------
 //Calculs
-var finalResultsExp = [];
+var finalResultsExp = [], selectCraftRecipe = [];
 var actualSortExp = "prix_1xp";
 var sortOrderExp = false;
 var sortingCraftingName = null;
@@ -26,6 +26,7 @@ function traitementDataCrafting(json,refresh){
 				compos.push({"name":e.resources[i][j].name,"price" : e.resources[i][j].price, "quantity":e.resources[i][j].quantity});
 			}
 			var tmpResult = {
+				"id" : finalResultsExp.length,
 				"name" : e.name + (e.resources.length > 1 ? " (Recipe : " + nameCompos + ")" : ""),
 				"level" : e.level,
 				"CraftingPrice" : totalPrice,
@@ -41,8 +42,10 @@ function traitementDataCrafting(json,refresh){
 			nameCompos = "";
 		}
 	});
-
+	selectCraftRecipe = finalResultsExp;
 	sortByValueCrafting(actualSortExp,refresh);
+	sortByString(selectCraftRecipe);
+	populateSelectCraft(selectCraftRecipe);
 }
 
 function sortByValueCrafting(value,refresh){
@@ -67,9 +70,11 @@ function sortByValueCrafting(value,refresh){
 
 
 
+
+
 function populateCrafting(craftName, sortingLevel){
 	var i = 1;
-	document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
+	document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsExp.forEach(e => {
 		if(craftName != null && !e.name.toLowerCase().match(craftName)){
 			return;
@@ -77,7 +82,7 @@ function populateCrafting(craftName, sortingLevel){
 		if(sortingLevel != 0 && parseInt(e.level) > sortingLevel){
 			return;
 		}
-		document.getElementById("Exp").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
+		document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
 		"<tr><th scope=\"row\">"+i+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
@@ -110,4 +115,12 @@ function findCraftByLevel(value){
 	}
 	customCraftingLevel = value;
 	populateCrafting(sortingCraftingName,customCraftingLevel);
+}
+
+function populateSelectCraft(list){
+	list.forEach(e => {
+		document.getElementById("selectedCraftRecipe").innerHTML +=
+		"<option>" + e.name + "</option>";
+	});
+
 }

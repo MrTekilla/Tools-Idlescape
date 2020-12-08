@@ -1,13 +1,13 @@
 //-------------------------------------------
 //Tools
 function millionFormate(value){
-  var nf = new Intl.NumberFormat('en-DE', { minimumFractionDigits: 2  });
+  var nf = new Intl.NumberFormat('en-DE', { minimumFractionDigits: 0  });
   return nf.format(value);
 }
 
 
 function startAutoRefresh(){
-	setInterval(function(){ callFetchCrafting(); callFetchScrolls(); callFetchFarming(); }, 300000);
+	setInterval(function(){ callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(); }, 300000);
 }
 
 function generateComposHtml(compos){
@@ -17,8 +17,8 @@ function generateComposHtml(compos){
 	for(i = 0 ; i < compos.length ; i++){
 		composHtml += "<tr><th scope=\"row\">"+(i+1)+
 		"</th><td>" + compos[i].name +
-		"</td><td>" + compos[i].quantity +
-		"</td><td>" + compos[i].price +
+		"</td><td>" + millionFormate(compos[i].quantity) +
+		"</td><td>" + millionFormate(compos[i].price) +
 		"</td><td>" + millionFormate(compos[i].price * compos[i].quantity) +
 		"</td></tr>";
 	}
@@ -33,4 +33,14 @@ function generateComposHtml(compos){
 		"</tbody>"+
 		"</table>";
 	return newHtml;
+}
+
+function sortByString(list){
+	list.sort(function (a, b) {
+		return ('' + a['name']).localeCompare(b['name']);
+	})
+}
+
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
 }

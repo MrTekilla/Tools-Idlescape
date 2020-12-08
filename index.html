@@ -12,6 +12,8 @@
 	<script src="tools/Scrollcrafting.js"></script>
 	<script src="tools/Farming.js"></script>
 	<script src="tools/Tools.js"></script>
+	<script src="tools/CalculateLevelUp.js"></script>
+	<script src="tools/ExperienceTable.js"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
 	<script>
@@ -38,6 +40,7 @@
     <li class="active"><a data-toggle="pill" href="#Exp">Crafting</a></li>
     <li><a data-toggle="pill" href="#Scrolls">Scrollcrafting</a></li>
     <li><a data-toggle="pill" href="#Seeds">Farming</a></li>
+    <li><a data-toggle="pill" href="#More">More</a></li>
     <li></li>
   </ul>
 
@@ -62,7 +65,8 @@
 			<div class="row">
 			  <div class="col-md-4">
 				<div class="form-group">
-          <label for="craftingLevel">Your Crafting level</label>
+          <label style="display : block; text-align : center;">Filter your search</label>
+          <label for="craftingLevel">Crafting level</label>
 					<small class="form-text text-muted">(0 to show everything)</small>
 					<small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes.</small>
 					<input type="number" min=0 max=99 class="form-control" id="craftingLevel" placeholder="0" oninput="findCraftByLevel(this.value);" onpaste="findCraftByLevel(this.value);">
@@ -76,17 +80,41 @@
 			  </div>
 
 			  <div class="col-md-4">
-				<div class="form-group">
-					<label style="display : block; text-align : center;">Calculate the price to level up</label>
-					<p style="text-align:center"><i>Coming soon !</i></p>
-				</div>
-			  </div>
+          <div class="form-group">
+            <label style="display : block; text-align : center;">Calculate the price to level up</label>
+            <label for="actualcraftingLevel">Crafting level</label>
+            <small class="form-text text-muted">(0 to show everything)</small>
+            <small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes.</small>
+            <input type="number" min=1 max=99 class="form-control" id="actualcraftingLevel" placeholder="1">
+        </div>
 
-			</div>
-		</div>
+        <div class="form-group">
+          <label for="desiredcraftingLevel">Desired crafting level</label>
+          <small class="form-text text-muted">(0 to show everything)</small>
+          <input type="number" min=1 max=99 class="form-control" id="desiredcraftingLevel" placeholder="2">
+        </div>
+
+        <div class="form-group">
+          <label for="selectedCraftRecipe">Craft recipe to level up</label>
+          <select class="form-control" id="selectedCraftRecipe">
+          </select>
+        </div>
+
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-primary" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);">Calculate</button>
+          <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsCraft');">Clean results</button>
+        </div>
+
+        <div id="resultatsCraft">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 	</div>
 
-      <div class="content">
+      <div id="craftingTable" class="content">
         <table class="table">
           <thead>
             <tr>
@@ -142,17 +170,41 @@
 			  </div>
 
 			  <div class="col-md-4">
-				<div class="form-group">
-					<label style="display : block; text-align : center;">Calculate the price to level up</label>
-					<p style="text-align:center"><i>Coming soon !</i></p>
-				</div>
-			  </div>
+          <div class="form-group">
+            <label style="display : block; text-align : center;">Calculate the price to level up</label>
+            <label for="actualScrollLevel">Crafting level</label>
+            <small class="form-text text-muted">(0 to show everything)</small>
+            <small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes.</small>
+            <input type="number" min=1 max=99 class="form-control" id="actualScrollLevel" placeholder="1">
+        </div>
+
+        <div class="form-group">
+          <label for="desiredScrollLevel">Desired crafting level</label>
+          <small class="form-text text-muted">(0 to show everything)</small>
+          <input type="number" min=1 max=99 class="form-control" id="desiredScrollLevel" placeholder="2">
+        </div>
+
+        <div class="form-group">
+          <label for="selectedScrollRecipe">Craft recipe to level up</label>
+          <select class="form-control" id="selectedScrollRecipe">
+          </select>
+        </div>
+
+        <div class="form-group text-center">
+          <button type="button" class="btn btn-primary" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);">Calculate</button>
+          <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsScroll');">Clean results</button>
+        </div>
+
+        <div id="resultatsScroll">
+
+        </div>
+      </div>
 
 			</div>
 		</div>
 	</div>
 
-      <div class="content">
+      <div  id="scrollingTable" class="content">
         <table class="table">
           <thead>
             <tr>
@@ -175,6 +227,8 @@
         </table>
       </div>
     </div>
+
+
     <div id="Seeds" class="tab-pane fade">
       <h3>Seeds</h3>
       <h5>
@@ -201,6 +255,13 @@
         </table>
       </div>
     </div>
+
+    <div id="More" class="tab-pane fade">
+      <h5>
+        <i>Coming soon !</i><br/>
+      </h5>
+    </div>
+
   </div>
 </div>
 
