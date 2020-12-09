@@ -29,6 +29,7 @@ function traitementDataScrolls(json,refresh){
 		});
 
 		var tmpResult = {
+			"id" : finalResultsScrolls.length,
 			"name" : e.name,
 			"level" : e.level,
 			"CraftingPrice" : totalPrice,

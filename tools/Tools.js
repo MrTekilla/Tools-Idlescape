@@ -10,16 +10,16 @@ function startAutoRefresh(){
 	setInterval(function(){ callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(); }, 300000);
 }
 
-function generateComposHtml(compos){
+function generateComposHtml(compos, quantt = 1){
 	var newHtml = "", composHtml ="";
 	var i;
 
 	for(i = 0 ; i < compos.length ; i++){
 		composHtml += "<tr><th scope=\"row\">"+(i+1)+
 		"</th><td>" + compos[i].name +
-		"</td><td>" + millionFormate(compos[i].quantity) +
-		"</td><td>" + millionFormate(compos[i].price) +
-		"</td><td>" + millionFormate(compos[i].price * compos[i].quantity) +
+		"</td><td>" + millionFormate(compos[i].quantity * quantt) +
+		"</td><td>" + millionFormate(compos[i].price * quantt) +
+		"</td><td>" + millionFormate(compos[i].price * compos[i].quantity * quantt) +
 		"</td></tr>";
 	}
 	newHtml += "<table class=\"table\"><thead><tr>"+

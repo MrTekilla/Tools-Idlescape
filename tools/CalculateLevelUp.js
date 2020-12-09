@@ -6,11 +6,17 @@ function getCraftXpFromXtoY(resultID,actualcraftingLevelID,desiredcraftingLevelI
     var craftRecipe = document.getElementById(selectedCraftRecipeID).value
     //console.log(actualLevel + " " + desiredLevel + " " + craftRecipe);
     if(desiredLevel == actualLevel){return 0};
-    if(desiredLevel < actualLevel){return 0};
-    if(desiredLevel < 1){desiredLevel = 1;}
-    if(desiredLevel > 99){desiredLevel = 99;}
-    if(actualLevel < 1){actualLevel = 1;}
-    if(actualLevel > 99){actualLevel = 99;}
+    if(desiredLevel < actualLevel){
+        tmp = desiredLevel;
+        document.getElementById(desiredcraftingLevelID).value = actualLevel;
+        document.getElementById(actualcraftingLevelID).value = desiredLevel;
+        desiredLevel = actualLevel;
+        actualLevel = tmp;
+    };
+    if(desiredLevel < 1){desiredLevel = 1;document.getElementById(desiredcraftingLevelID).value = desiredLevel;};
+    if(desiredLevel > 99){desiredLevel = 99; document.getElementById(desiredcraftingLevelID).value = desiredLevel;};
+    if(actualLevel < 1){actualLevel = 1; document.getElementById(actualcraftingLevelID).value = actualLevel;};
+    if(actualLevel > 99){actualLevel = 99; document.getElementById(actualcraftingLevelID).value = actualLevel;};
 
     var craftRecipeObjectID = selectCraftRecipeList.findIndex((e) => e.name.localeCompare(craftRecipe) == 0);
     var craftRecipeObject = selectCraftRecipeList[craftRecipeObjectID];
@@ -25,9 +31,9 @@ function getCraftXpFromXtoY(resultID,actualcraftingLevelID,desiredcraftingLevelI
     var tmpNumberCraft = totalXp/craftRecipeObject.exp;
     var numberCraft = (tmpNumberCraft % 1 != 0 ? parseInt(tmpNumberCraft) + 1 : tmpNumberCraft);
     //console.log(numberCraft % 1 != 0);
-    
-    composHtml += 
-    "<tr><td>" + craftRecipeObject.name +
+    composHtml +=
+    "<tr><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTotalCraft"+resultID+craftRecipeObject.id+totalXp+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTotalCraft"+resultID+craftRecipeObject.id+totalXp+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + craftRecipeObject.name + " | " + actualLevel +" -> " + desiredLevel + "</a>" +
+    "<div class=\"collapse\" id=\"collapseTotalCraft"+resultID+craftRecipeObject.id+totalXp+"\"><div class=\"card card-body\">" + generateComposHtml(craftRecipeObject.compos,numberCraft) + "</div></div>" +
     "</td><td>" + millionFormate(numberCraft) +
     "</td><td>" + millionFormate(totalXp) +
     "</td><td>" + millionFormate(craftRecipeObject.CraftingPrice * numberCraft) +
