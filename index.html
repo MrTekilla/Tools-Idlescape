@@ -14,6 +14,7 @@
 	<script src="tools/Tools.js"></script>
 	<script src="tools/CalculateLevelUp.js"></script>
 	<script src="tools/ExperienceTable.js"></script>
+	<script src="tools/HeatCalculator.js"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
 	<script>
@@ -25,14 +26,14 @@
 	</script>
 
 </head>
-<body  onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); startAutoRefresh();">
+<body  onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); callFetchHeatCalculator(); startAutoRefresh();">
 
 <div class="container">
 	<h1><a href="https://idlescape.com/" target="_blank">Idlescape</a> tools <a href="https://risibank.fr/stickers/211268-risitas-geode-idlescape-priere-saint" target="_blank"><img src="img/risitas.png" alt="stp" width="100" height="72"/></a></h1>
   
   <h5>
     <i>
-      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming();"><span class="glyphicon glyphicon-refresh "></span></button>
+      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(); callFetchHeatCalculator(true);"><span class="glyphicon glyphicon-refresh "></span></button>
     </i>
   </h5>
 
@@ -40,6 +41,7 @@
     <li class="active"><a data-toggle="pill" href="#Exp">Crafting</a></li>
     <li><a data-toggle="pill" href="#Scrolls">Scrollcrafting</a></li>
     <li><a data-toggle="pill" href="#Seeds">Farming</a></li>
+    <li><a data-toggle="pill" href="#HeatCalculator">Heat</a></li>
     <li><a data-toggle="pill" href="#More">More</a></li>
     <li></li>
   </ul>
@@ -242,6 +244,29 @@
               <th scope="col">Width x Height</th>
               <th class ="clickable" scope="col" onclick="sortByXpMinuteSeeds()">Xp per bloc per minute</th>
               <th class ="clickable" scope="col" onclick="sortByPriceXPSeeds()">Price per xp</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="HeatCalculator" class="tab-pane fade">
+      <h3>Heat</h3>
+      <h5>
+        Calculate which item is the best to give heat at a lower cost.<br/>
+      </h5>
+      <div class="content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('MarketPrice')">Market Price</th>
+              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('heat')">Heat</th>
+              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('prix_1heat')">Price per heat</th>
             </tr>
           </thead>
           <tbody>

@@ -40,6 +40,7 @@ function traitementDataCrafting(json,refresh){
 
 			finalResultsExp.push(tmpResult);
 			nameCompos = "";
+			totalPrice = 0;
 		}
 	});
 	selectCraftRecipe = finalResultsExp;

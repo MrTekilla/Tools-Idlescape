@@ -40,6 +40,8 @@ function getCraftXpFromXtoY(resultID,actualcraftingLevelID,desiredcraftingLevelI
     "</td><td class=\"" + (craftRecipeObject.Benefits * numberCraft > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(craftRecipeObject.Benefits * numberCraft) + "</b>"+
     "</td></tr>";
 
+    //console.log("Number craft : " + numberCraft + " | totalXp : " + totalXp + "| crafting price : " + craftRecipeObject.CraftingPrice + " | cout : " + craftRecipeObject.CraftingPrice * numberCraft)
+
     //console.log(craftRecipeObject.CraftingPrice * numberCraft);
 
     newHtml += "<table class=\"table\"><thead><tr>"+
