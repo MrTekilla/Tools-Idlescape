@@ -18,7 +18,7 @@ function generateComposHtml(compos, quantt = 1){
 		composHtml += "<tr><th scope=\"row\">"+(i+1)+
 		"</th><td>" + compos[i].name +
 		"</td><td>" + millionFormate(compos[i].quantity * quantt) +
-		"</td><td>" + millionFormate(compos[i].price * quantt) +
+		"</td><td>" + millionFormate(compos[i].price) +
 		"</td><td>" + millionFormate(compos[i].price * compos[i].quantity * quantt) +
 		"</td></tr>";
 	}
