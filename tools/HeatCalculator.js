@@ -14,6 +14,7 @@ function getHeatMaterials(json,refresh){
 		if(e.hasOwnProperty('heat')){
 			var tmpResult = {
 				"id" : finalResultsHeatMaterial.length,
+				"img" : e.image,
 				"name" : e.name,
 				"heat" : e.heat,
 				"MarketPrice" : e.price,
@@ -33,7 +34,7 @@ function populateHeatCalculator(){
 	document.getElementById("HeatCalculator").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsHeatMaterial.forEach(e => {
 		document.getElementById("HeatCalculator").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
-		"<tr><th scope=\"row\">"+i+
+		"<tr><th scope=\"row\"><img src=\""+(websiteURL + e.img)+"\" class=\"widthSet\">"+
 		"</th><td>" + e.name +
 		"</td><td>" + millionFormate(e.MarketPrice) +
 		"</td><td>" + millionFormate(e.heat) +

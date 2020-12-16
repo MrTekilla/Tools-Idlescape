@@ -13,6 +13,7 @@ function traitementDataSeeds(json){
 	finalResultsSeeds = [];
 	json.seeds.forEach(e => {
 		var tmpResult = {
+			"img" : e.image,
 			"name" : e.name,
 			"prix" : millionFormate(e.price),
 			"exp" : millionFormate(e.exp),
@@ -51,7 +52,7 @@ function populateSeeds(){
 	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsSeeds.forEach(e => {
 		document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
-		"<tr><th scope=\"row\">"+i+
+		"<tr><th scope=\"row\"><img src=\""+(websiteURL + e.img)+"\" class=\"widthSet\">"+
 		"</th><td>" + e.name +
 		"</td><td>" + e.prix + 
 		"</td><td>" + e.exp +

@@ -42,3 +42,11 @@
   background: rgb(250, 250, 250);
   border: 1px solid rgb(220, 220, 220);
 }
+
+.widthSet {
+    max-width: 32px;
+}
+
+.heightSet {
+    max-height: 50px;
+}

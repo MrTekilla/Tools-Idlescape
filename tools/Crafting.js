@@ -23,10 +23,11 @@ function traitementDataCrafting(json,refresh){
 			for(j = 0 ; j < e.resources[i].length ; j++){
 				totalPrice += e.resources[i][j].price * e.resources[i][j].quantity;
 				nameCompos += e.resources[i][j].name + (j == (e.resources[i].length - 1) ? "" : " + ");
-				compos.push({"name":e.resources[i][j].name,"price" : e.resources[i][j].price, "quantity":e.resources[i][j].quantity});
+				compos.push({"name":e.resources[i][j].name,"price" : e.resources[i][j].price, "quantity":e.resources[i][j].quantity, "img":e.resources[i][j].image});
 			}
 			var tmpResult = {
 				"id" : finalResultsExp.length,
+				"img" : e.image,
 				"name" : e.name + (e.resources.length > 1 ? " (Recipe : " + nameCompos + ")" : ""),
 				"level" : e.level,
 				"CraftingPrice" : totalPrice,
@@ -84,7 +85,7 @@ function populateCrafting(craftName, sortingLevel){
 			return;
 		}
 		document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
-		"<tr><th scope=\"row\">"+i+
+		"<tr><th scope=\"row\"><img src=\""+(websiteURL + e.img)+"\" class=\"widthSet\">"+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
 		"</td><td>" + e.level +

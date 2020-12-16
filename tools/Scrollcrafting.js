@@ -24,12 +24,13 @@ function traitementDataScrolls(json,refresh){
 			if(c.name == "Mind Rune"){
 				mindRune = true;
 			}
-			compos.push({"name":c.name,"price" : c.price, "quantity":c.quantity});
+			compos.push({"name":c.name,"price" : c.price, "quantity":c.quantity, "img":c.image});
 			//console.log({"name":c.name,"price" : c.price, "quantity":c.quantity});
 		});
 
 		var tmpResult = {
 			"id" : finalResultsScrolls.length,
+			"img" : e.image,
 			"name" : e.name,
 			"level" : e.level,
 			"CraftingPrice" : totalPrice,
@@ -85,7 +86,7 @@ function populateScrolls(craftName, sortingLevel){
 			return;
 		}
 		document.getElementById("scrollingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
-		"<tr><th scope=\"row\">"+i+
+		"<tr><th scope=\"row\"><img src=\""+(websiteURL + e.img)+"\" class=\"widthSet\">"+
 		"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls"+i+"\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls"+i+"\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 		"<div class=\"collapse\" id=\"collapseScrolls"+i+"\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
 		"</td><td>" + e.level +

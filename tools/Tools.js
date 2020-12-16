@@ -1,4 +1,7 @@
 //-------------------------------------------
+
+var websiteURL = "https://idlescape.com"
+
 //Tools
 function millionFormate(value){
   var nf = new Intl.NumberFormat('en-DE', { minimumFractionDigits: 0  });
@@ -15,7 +18,7 @@ function generateComposHtml(compos, quantt = 1){
 	var i;
 
 	for(i = 0 ; i < compos.length ; i++){
-		composHtml += "<tr><th scope=\"row\">"+(i+1)+
+		composHtml += "<tr><th scope=\"row\"><img src=\""+(websiteURL + compos[i].img)+"\" class=\"widthSet\">"+
 		"</th><td>" + compos[i].name +
 		"</td><td>" + millionFormate(compos[i].quantity * quantt) +
 		"</td><td>" + millionFormate(compos[i].price) +
