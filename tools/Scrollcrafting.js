@@ -29,7 +29,7 @@ function traitementDataScrolls(json,refresh){
 		});
 
 			var tmpBenef = e.price - totalPrice;
-			var benef = tmpBenef - Math.abs((tmpBenef * 0.05))
+			var benef = tmpBenef - Math.abs((e.price * 0.05))
 		var tmpResult = {
 			"id" : finalResultsScrolls.length,
 			"img" : e.image,

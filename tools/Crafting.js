@@ -26,7 +26,7 @@ function traitementDataCrafting(json,refresh){
 				compos.push({"name":e.resources[i][j].name,"price" : e.resources[i][j].price, "quantity":e.resources[i][j].quantity, "img":e.resources[i][j].image});
 			}
 			var tmpBenef = e.price - totalPrice;
-			var benef = tmpBenef - Math.abs((tmpBenef * 0.05))
+			var benef = tmpBenef - Math.abs((e.price * 0.05))
 			var tmpResult = {
 				"id" : finalResultsExp.length,
 				"img" : e.image,
