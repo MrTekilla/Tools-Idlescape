@@ -28,6 +28,8 @@ function traitementDataScrolls(json,refresh){
 			//console.log({"name":c.name,"price" : c.price, "quantity":c.quantity});
 		});
 
+			var tmpBenef = e.price - totalPrice;
+			var benef = tmpBenef - Math.abs((tmpBenef * 0.05))
 		var tmpResult = {
 			"id" : finalResultsScrolls.length,
 			"img" : e.image,
@@ -36,10 +38,10 @@ function traitementDataScrolls(json,refresh){
 			"CraftingPrice" : totalPrice,
 			"MarketPrice" : e.price,
 			"exp" : e.exp,
-			"Benefits" : e.price - totalPrice,
+			"Benefits" : benef,
 			"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
 			"mindRune" : mindRune ? "Yes" : "No",
-			"ppxBenef" : ((e.price-totalPrice)/e.exp).toFixed(2),
+			"ppxBenef" : (benef/e.exp).toFixed(2),
 			"compos"  : compos
 		}
 

@@ -53,14 +53,16 @@
         <i>
           Calculate which recipe is the best to level up Craft at a lower cost.<br/>
           - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
-          - <b>Price per XP</b> : How much gold cost 1 xp.
+          - <b>Price per XP</b> : How much gold cost 1 xp.<br/>
+          - <b><i>Benefits include the 5% fees</i></b>
         </i>
 	  </h5>
 	  
-	<a class="btn btn-primary" data-toggle="collapse" href="#collapseCraftingOpions" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions">
+	<a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseCraftingOpions" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i>
 		Options
 	</a>
+
 	
 	<div class="collapse" id="collapseCraftingOpions">
 		<div class="container">
@@ -84,17 +86,17 @@
 			  <div class="col-md-9">
           <div class="form-group">
             <label style="display : block; text-align : center;">Calculate the price to level up</label>
-            <label for="actualcraftingLevel">Your crafting level</label>
+            <label for="actualcraftingLevel">Your crafting level :</label>
             <input type="number" min=1 max=99 class="form-control" id="actualcraftingLevel" placeholder="1">
         </div>
 
         <div class="form-group">
-          <label for="desiredcraftingLevel">Desired crafting level</label>
+          <label for="desiredcraftingLevel">Desired crafting level :</label>
           <input type="number" min=1 max=99 class="form-control" id="desiredcraftingLevel" placeholder="2">
         </div>
 
         <div class="form-group">
-          <label for="selectedCraftRecipe">Craft recipe to level up</label>
+          <label for="selectedCraftRecipe">Craft recipe to level up :</label>
           <select class="form-control" id="selectedCraftRecipe">
           </select>
         </div>
@@ -112,6 +114,18 @@
     </div>
   </div>
 	</div>
+<!--
+	<div class="container" style="margin-bottom:5px;margin-top:5px;">
+  <div class="row">
+
+    <div class="col-md-4 form-inline">
+		    <label for="percentScholar">Scroll of Crafting (%) : </label>
+		    <input style="margin-bottom:5px;margin-top:5px;" class="form-control" id="percentCrafting" min=0 type="number" placeholder="% Crafting">    
+    </div>
+
+  </div>
+</div>
+-->
 
       <div id="craftingTable" class="content">
         <table class="table">
@@ -141,11 +155,12 @@
         <i>
           Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.<br/>
           - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
-          - <b>Price per XP</b> : How much gold cost 1 xp.
+          - <b>Price per XP</b> : How much gold cost 1 xp.<br/>
+          - <b><i>Benefits include the 5% fees</i></b>
         </i>
 	  </h5>
 	  
-	  <a class="btn btn-primary" data-toggle="collapse" href="#collapseScrollingOpions" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions">
+	  <a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseScrollingOpions" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions">
 		<i class="glyphicon glyphicon-plus">&nbsp;</i>
 		Options
 	</a>
@@ -201,7 +216,7 @@
 		</div>
 	</div>
 
-      <div  id="scrollingTable" class="content">
+      <div id="scrollingTable" class="content">
         <table class="table">
           <thead>
             <tr>
@@ -230,7 +245,6 @@
       <h3>Farming</h3>
       <h5>
         Calculate which seed is the best to level up Farming at a lower cost. (You can sort by "Price per xp" and "Xp per bloc per minute by clicking" on them).<br/>
-        - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
       </h5>
       <div class="content">
         <table class="table">

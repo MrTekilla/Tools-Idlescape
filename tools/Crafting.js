@@ -25,6 +25,8 @@ function traitementDataCrafting(json,refresh){
 				nameCompos += e.resources[i][j].name + (j == (e.resources[i].length - 1) ? "" : " + ");
 				compos.push({"name":e.resources[i][j].name,"price" : e.resources[i][j].price, "quantity":e.resources[i][j].quantity, "img":e.resources[i][j].image});
 			}
+			var tmpBenef = e.price - totalPrice;
+			var benef = tmpBenef - Math.abs((tmpBenef * 0.05))
 			var tmpResult = {
 				"id" : finalResultsExp.length,
 				"img" : e.image,
@@ -32,10 +34,10 @@ function traitementDataCrafting(json,refresh){
 				"level" : e.level,
 				"CraftingPrice" : totalPrice,
 				"MarketPrice" : e.price,
-				"Benefits" : e.price - totalPrice,
+				"Benefits" : benef,
 				"exp" : e.exp,
 				"prix_1xp" :  (totalPrice/e.exp).toFixed(2),
-				"ppxBenef" : ((e.price-totalPrice)/e.exp).toFixed(2),
+				"ppxBenef" : (benef/e.exp).toFixed(2),
 				"compos" : compos
 			}
 
