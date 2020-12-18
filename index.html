@@ -40,7 +40,7 @@
       <i>
         Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes
           every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary"
-          onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(true); callFetchHeatCalculator(true);"><span
+          onclick="manualRefresh();"><span
             class="glyphicon glyphicon-refresh "></span></button>
       </i>
     </h5>
@@ -268,7 +268,9 @@
       <div id="Seeds" class="tab-pane fade">
         <h3>Farming</h3>
         <h5>
-          Calculate which seed is the best to level up Farming at a lower cost.<br />
+					Calculate which seed is the best to level up Farming at a lower cost.<br />
+					- <b>Xp/plot/minute</b> : How much XP you are going to earn per plot per minute. <br />
+					- <b>Price per XP</b> : How much gold cost 1 xp.<br />
         </h5>
         <div class="content">
           <table class="table">
@@ -278,9 +280,11 @@
                 <th scope="col">Name</th>
                 <th class="clickable" scope="col" onclick="sortByValueSeeds('prix')">Market Price</th>
                 <th class="clickable" scope="col" onclick="sortByValueSeeds('exp')">Exp</th>
-                <th class="clickable" scope="col" onclick="sortByValueSeeds('minutes')">Duration (minutes)</th>
-                <th class="clickable" scope="col" onclick="sortByValueSeeds('width')">Width x Height</th>
-                <th class="clickable" scope="col" onclick="sortByValueSeeds('xpMinute')">Xp per bloc per minute</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('minutes')">Minutes</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('width')">Size</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('benefMin')">Benefits min</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('benefMax')">Benefits max</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('xpMinute')">Xp/plot/minute</th>
                 <th class="clickable" scope="col" onclick="sortByValueSeeds('prix_1xp')">Price per xp</th>
               </tr>
             </thead>

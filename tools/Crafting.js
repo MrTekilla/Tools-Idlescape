@@ -54,7 +54,7 @@ function traitementDataCrafting(json, refresh) {
 }
 
 function sortByValueCrafting(value, refresh) {
-	var t0 = performance.now();
+	//var t0 = performance.now();
 	if (!refresh) {
 
 		if (actualSortExp == value) {
@@ -69,15 +69,15 @@ function sortByValueCrafting(value, refresh) {
 	finalResultsExp.sort(function (a, b) {
 		return parseFloat(sortOrderExp ? a[value] : b[value]) - parseFloat(sortOrderExp ? b[value] : a[value]);
 	});
-	var t1 = performance.now();
-	console.log("Sorting took " + (t1 - t0) + " milliseconds.");
+	//var t1 = performance.now();
+	//console.log("Sorting took " + (t1 - t0) + " milliseconds.");
 
 	populateCrafting(sortingCraftingName, customCraftingLevel);
 }
 
 
 function populateCrafting(craftName, sortingLevel) {
-	var t0 = performance.now();
+	//var t0 = performance.now();
 	var i = 1;
 	var docTmp = document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0];
 	docTmp.innerHTML = "";
@@ -109,8 +109,8 @@ function populateCrafting(craftName, sortingLevel) {
 		// }
 	}
 
-	var t1 = performance.now();
-	console.log("Populating took " + (t1 - t0) + " milliseconds.");
+	//var t1 = performance.now();
+	//console.log("Populating took " + (t1 - t0) + " milliseconds.");
 }
 
 function findCraftName(value) {

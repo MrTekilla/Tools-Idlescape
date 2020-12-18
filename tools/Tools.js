@@ -10,7 +10,11 @@ function millionFormate(value) {
 
 
 function startAutoRefresh() {
-	setInterval(function () { callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(); }, 300000);
+	setInterval(function () { callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(true); }, 300000);
+}
+
+function manualRefresh() {
+	callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(true); callFetchHeatCalculator(true);
 }
 
 function generateComposHtml(compos, quantt = 1) {
