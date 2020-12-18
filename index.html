@@ -1,120 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Idlescape tools</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/main.css">
-	<script src="lib/jquery-1.12.2.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="tools/Crafting.js"></script>
-	<script src="tools/Scrollcrafting.js"></script>
-	<script src="tools/Farming.js"></script>
-	<script src="tools/Tools.js"></script>
-	<script src="tools/CalculateLevelUp.js"></script>
-	<script src="tools/ExperienceTable.js"></script>
-	<script src="tools/HeatCalculator.js"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
 
-	  gtag('config', 'G-SSCX3DC7CR');
-	</script>
+<head>
+  <title>Idlescape tools</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="lib/jquery-1.12.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="tools/Crafting.js"></script>
+  <script src="tools/Scrollcrafting.js"></script>
+  <script src="tools/Farming.js"></script>
+  <script src="tools/Tools.js"></script>
+  <script src="tools/CalculateLevelUp.js"></script>
+  <script src="tools/ExperienceTable.js"></script>
+  <script src="tools/HeatCalculator.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSCX3DC7CR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-SSCX3DC7CR');
+  </script>
 
 </head>
-<body  onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); callFetchHeatCalculator(); startAutoRefresh();">
 
-<div class="container">
-	<h1><a href="https://idlescape.com/" target="_blank">Idlescape</a> tools <a href="https://risibank.fr/stickers/211268-risitas-geode-idlescape-priere-saint" target="_blank"><img src="img/risitas.png" alt="stp" width="100" height="72"/></a></h1>
-  
-  <h5>
-    <i>
-      Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary" onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(); callFetchHeatCalculator(true);"><span class="glyphicon glyphicon-refresh "></span></button>
-    </i>
-  </h5>
+<body
+  onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); callFetchHeatCalculator(); startAutoRefresh();">
 
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#Exp">Crafting</a></li>
-    <li><a data-toggle="pill" href="#Scrolls">Scrollcrafting</a></li>
-    <li><a data-toggle="pill" href="#Seeds">Farming</a></li>
-    <li><a data-toggle="pill" href="#HeatCalculator">Heat</a></li>
-    <li><a data-toggle="pill" href="#More">More</a></li>
-    <li></li>
-  </ul>
+  <div class="container">
+    <h1><a href="https://idlescape.com/" target="_blank">Idlescape</a> tools <a
+        href="https://risibank.fr/stickers/211268-risitas-geode-idlescape-priere-saint" target="_blank"><img
+          src="img/risitas.png" alt="stp" width="100" height="72" /></a></h1>
 
-  <div class="tab-content">
-    <div id="Exp" class="tab-pane fade in active">
-      <h3>Crafting</h3>
-      <h5>
-        <i>
-          Calculate which recipe is the best to level up Craft at a lower cost.<br/>
-          - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
-          - <b>Price per XP</b> : How much gold cost 1 xp.<br/>
-          - <b><i>Benefits include the 5% fees</i></b>
-        </i>
-	  </h5>
-	  
-	<a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseCraftingOpions" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>
-		Options
-	</a>
+    <h5>
+      <i>
+        Fetchning data from <a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a> <b>auto-refreshes
+          every 5 minutes</b>. You can manually refresh by clicking on <button class="btn btn-primary"
+          onclick="callFetchCrafting(true); callFetchScrolls(true); callFetchFarming(true); callFetchHeatCalculator(true);"><span
+            class="glyphicon glyphicon-refresh "></span></button>
+      </i>
+    </h5>
 
-	
-	<div class="collapse" id="collapseCraftingOpions">
-		<div class="container">
-			<div class="row">
-			  <div class="col-md-3">
-				<div class="form-group">
-          <label style="display : block; text-align : center;">Filter your search</label>
-          <label for="craftingLevel">Crafting level</label>
-					<small class="form-text text-muted">(0 to show everything)</small>
-					<small class="form-text text-muted"><br/>Enter your crafting level to show your available recipes.</small>
-					<input type="number" min=0 max=99 class="form-control" id="craftingLevel" placeholder="0" oninput="findCraftByLevel(this.value);" onpaste="findCraftByLevel(this.value);">
-				  </div>
+    <ul class="nav nav-pills">
+      <li class="active"><a data-toggle="pill" href="#Exp"><img src="https://idlescape.com/images/ui/crafting_icon.png"
+            width=32>Crafting</a></li>
+      <li><a data-toggle="pill" href="#Scrolls"><img src="https://idlescape.com/images/enchanting/enchanted_scroll.png"
+            width=32>Scrollcrafting</a></li>
+      <li><a data-toggle="pill" href="#Seeds"><img src="https://idlescape.com/images/farming/farming_icon.png"
+            width=32>Farming</a></li>
+      <li><a data-toggle="pill" href="#HeatCalculator"><img src="https://idlescape.com/images/heat_icon.png"
+            width=32>Heat</a></li>
+      <li><a data-toggle="pill" href="#More">More</a></li>
+      <li></li>
+    </ul>
 
-				  <div class="form-group">
-					<label for="craftName">Craft name</label>
-					<small  class="form-text text-muted">(Find a craft by name)</small>
-					<input type="search" class="form-control" id="craftName" placeholder="Name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);">
-				  </div>
-			  </div>
+    <div class="tab-content">
+      <div id="Exp" class="tab-pane fade in active">
+        <h3>Crafting</h3>
+        <h5>
+          <i>
+            Calculate which recipe is the best to level up Craft at a lower cost.<br />
+            - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br />
+            - <b>Price per XP</b> : How much gold cost 1 xp.<br />
+            - <b><i>Benefits include the 5% fees</i></b>
+          </i>
+        </h5>
 
-			  <div class="col-md-9">
-          <div class="form-group">
-            <label style="display : block; text-align : center;">Calculate the price to level up</label>
-            <label for="actualcraftingLevel">Your crafting level :</label>
-            <input type="number" min=1 max=99 class="form-control" id="actualcraftingLevel" placeholder="1">
+        <a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseCraftingOpions"
+          role="button" aria-expanded="false" aria-controls="collapseCraftingOpions">
+          <i class="glyphicon glyphicon-plus">&nbsp;</i>
+          Options
+        </a>
+
+
+        <div class="collapse" id="collapseCraftingOpions">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label style="display : block; text-align : center;">Filter your search</label>
+                  <label for="craftingLevel">Crafting level</label>
+                  <small class="form-text text-muted">(0 to show everything)</small>
+                  <small class="form-text text-muted"><br />Enter your crafting level to show your available
+                    recipes.</small>
+                  <input type="number" min=0 max=99 class="form-control" id="craftingLevel" placeholder="0"
+                    oninput="findCraftByLevel(this.value);" onpaste="findCraftByLevel(this.value);">
+                </div>
+
+                <div class="form-group">
+                  <label for="craftName">Craft name</label>
+                  <small class="form-text text-muted">(Find a craft by name)</small>
+                  <input type="search" class="form-control" id="craftName" placeholder="Name"
+                    oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);">
+                </div>
+              </div>
+
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label style="display : block; text-align : center;">Calculate the price to level up</label>
+                  <label for="actualcraftingLevel">Your crafting level :</label>
+                  <input type="number" min=1 max=99 class="form-control" id="actualcraftingLevel" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <label for="desiredcraftingLevel">Desired crafting level :</label>
+                  <input type="number" min=1 max=99 class="form-control" id="desiredcraftingLevel" placeholder="2">
+                </div>
+
+                <div class="form-group">
+                  <label for="selectedCraftRecipe">Craft recipe to level up :</label>
+                  <select class="form-control" id="selectedCraftRecipe">
+                  </select>
+                </div>
+
+                <div class="form-group text-center">
+                  <button type="button" class="btn btn-primary"
+                    onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);">Calculate</button>
+                  <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsCraft');">Clean
+                    results</button>
+                </div>
+
+                <div id="resultatsCraft">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label for="desiredcraftingLevel">Desired crafting level :</label>
-          <input type="number" min=1 max=99 class="form-control" id="desiredcraftingLevel" placeholder="2">
-        </div>
-
-        <div class="form-group">
-          <label for="selectedCraftRecipe">Craft recipe to level up :</label>
-          <select class="form-control" id="selectedCraftRecipe">
-          </select>
-        </div>
-
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-primary" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);">Calculate</button>
-          <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsCraft');">Clean results</button>
-        </div>
-
-        <div id="resultatsCraft">
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-	</div>
-<!--
+        <!--
 	<div class="container" style="margin-bottom:5px;margin-top:5px;">
   <div class="row">
 
@@ -127,177 +145,184 @@
 </div>
 -->
 
-      <div id="craftingTable" class="content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('level')">Level</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('CraftingPrice')">Crating Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('MarketPrice')">Market Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('Benefits')">Benefits</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('exp')">Exp</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('ppxBenef')">Benefits per XP</th>
-              <th class ="clickable" scope="col" onclick="sortByValueCrafting('prix_1xp')">Price per XP</th>
-              <!-- <th scope="col">Price Per XP</th> -->
-            </tr>
-          </thead>
-          <tbody>
-				
-		</tbody>
-        </table>
-      </div>
-    </div>
-    <div id="Scrolls" class="tab-pane fade">
-      <h3>Scrollcrafting</h3>
-      <h5>
-        <i>
-          Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.<br/>
-          - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br/>
-          - <b>Price per XP</b> : How much gold cost 1 xp.<br/>
-          - <b><i>Benefits include the 5% fees</i></b>
-        </i>
-	  </h5>
-	  
-	  <a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseScrollingOpions" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions">
-		<i class="glyphicon glyphicon-plus">&nbsp;</i>
-		Options
-	</a>
-	
-	<div class="collapse" id="collapseScrollingOpions">
-		<div class="container">
-			<div class="row">
-			  <div class="col-md-3">
-				<div class="form-group">
-          <label style="display : block; text-align : center;">Filter your search</label>
-					<label for="ScrollcraftingLevel">Enchanting level</label>
-					<small class="form-text text-muted">(0 to show everything)</small>
-					<small class="form-text text-muted"><br/>Enter your Enchanting level to show your available Scrollcrafting recipes.</small>
-					<input type="number" min=0 max=99 class="form-control" id="ScrollcraftingLevel" placeholder="0" oninput="findScrollByLevel(this.value);" onpaste="findScrollByLevel(this.value);">
-				  </div>
+        <div id="craftingTable" class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('level')">Level</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('CraftingPrice')">Crating Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('MarketPrice')">Market Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('Benefits')">Benefits</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('exp')">Exp</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('ppxBenef')">Benefits per XP</th>
+                <th class="clickable" scope="col" onclick="sortByValueCrafting('prix_1xp')">Price per XP</th>
+                <!-- <th scope="col">Price Per XP</th> -->
+              </tr>
+            </thead>
+            <tbody>
 
-				  <div class="form-group">
-					<label for="ScrollcraftingName">Craft name</label>
-					<small  class="form-text text-muted">(Find a craft by name)</small>
-					<input type="search" class="form-control" id="ScrollcraftingName" placeholder="Name" oninput="findScrollName(this.value);" onpaste="findScrollName(this.value);">
-				  </div>
-			  </div>
-
-			  <div class="col-md-9">
-          <div class="form-group">
-            <label style="display : block; text-align : center;">Calculate the price to level up</label>
-            <label for="actualScrollLevel">Your enchanting level</label>
-            <input type="number" min=1 max=99 class="form-control" id="actualScrollLevel" placeholder="1">
-        </div>
-
-        <div class="form-group">
-          <label for="desiredScrollLevel">Desired enchanting level</label>
-          <input type="number" min=1 max=99 class="form-control" id="desiredScrollLevel" placeholder="2">
-        </div>
-
-        <div class="form-group">
-          <label for="selectedScrollRecipe">Scroll recipe to level up</label>
-          <select class="form-control" id="selectedScrollRecipe">
-          </select>
-        </div>
-
-        <div class="form-group text-center">
-          <button type="button" class="btn btn-primary" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);">Calculate</button>
-          <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsScroll');">Clean results</button>
-        </div>
-
-        <div id="resultatsScroll">
-
+            </tbody>
+          </table>
         </div>
       </div>
+      <div id="Scrolls" class="tab-pane fade">
+        <h3>Scrollcrafting</h3>
+        <h5>
+          <i>
+            Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.<br />
+            - <b>Benefits per XP</b> : How much gold you are going to earn/lose per xp. <br />
+            - <b>Price per XP</b> : How much gold cost 1 xp.<br />
+            - <b><i>Benefits include the 5% fees</i></b>
+          </i>
+        </h5>
 
-			</div>
-		</div>
-	</div>
+        <a style="margin-bottom:10px;" class="btn btn-primary" data-toggle="collapse" href="#collapseScrollingOpions"
+          role="button" aria-expanded="false" aria-controls="collapseScrollingOpions">
+          <i class="glyphicon glyphicon-plus">&nbsp;</i>
+          Options
+        </a>
 
-      <div id="scrollingTable" class="content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('level')">Level</th>
-              <th scope="col">Mind Rune</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice')">Crafting Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice')">Market Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('Benefits')">Benefits</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('exp')">Exp</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef')">Benefits per XP</th>
-              <th class ="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp')">Price per XP</th>
-              <!-- <th scope="col">Price Per XP</th> -->
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
+        <div class="collapse" id="collapseScrollingOpions">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label style="display : block; text-align : center;">Filter your search</label>
+                  <label for="ScrollcraftingLevel">Enchanting level</label>
+                  <small class="form-text text-muted">(0 to show everything)</small>
+                  <small class="form-text text-muted"><br />Enter your Enchanting level to show your available
+                    Scrollcrafting recipes.</small>
+                  <input type="number" min=0 max=99 class="form-control" id="ScrollcraftingLevel" placeholder="0"
+                    oninput="findScrollByLevel(this.value);" onpaste="findScrollByLevel(this.value);">
+                </div>
+
+                <div class="form-group">
+                  <label for="ScrollcraftingName">Craft name</label>
+                  <small class="form-text text-muted">(Find a craft by name)</small>
+                  <input type="search" class="form-control" id="ScrollcraftingName" placeholder="Name"
+                    oninput="findScrollName(this.value);" onpaste="findScrollName(this.value);">
+                </div>
+              </div>
+
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label style="display : block; text-align : center;">Calculate the price to level up</label>
+                  <label for="actualScrollLevel">Your enchanting level</label>
+                  <input type="number" min=1 max=99 class="form-control" id="actualScrollLevel" placeholder="1">
+                </div>
+
+                <div class="form-group">
+                  <label for="desiredScrollLevel">Desired enchanting level</label>
+                  <input type="number" min=1 max=99 class="form-control" id="desiredScrollLevel" placeholder="2">
+                </div>
+
+                <div class="form-group">
+                  <label for="selectedScrollRecipe">Scroll recipe to level up</label>
+                  <select class="form-control" id="selectedScrollRecipe">
+                  </select>
+                </div>
+
+                <div class="form-group text-center">
+                  <button type="button" class="btn btn-primary"
+                    onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);">Calculate</button>
+                  <button type="button" class="btn btn-primary" onclick="cleanCraftResult('resultatsScroll');">Clean
+                    results</button>
+                </div>
+
+                <div id="resultatsScroll">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div id="scrollingTable" class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('level')">Level</th>
+                <th scope="col">Mind Rune</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice')">Crafting Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice')">Market Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('Benefits')">Benefits</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('exp')">Exp</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef')">Benefits per XP</th>
+                <th class="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp')">Price per XP</th>
+                <!-- <th scope="col">Price Per XP</th> -->
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
 
-    <div id="Seeds" class="tab-pane fade">
-      <h3>Farming</h3>
-      <h5>
-        Calculate which seed is the best to level up Farming at a lower cost. (You can sort by "Price per xp" and "Xp per bloc per minute by clicking" on them).<br/>
-      </h5>
-      <div class="content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Market Price</th>
-              <th scope="col">Exp</th>
-              <th scope="col">Duration (minutes)</th>
-              <th scope="col">Width x Height</th>
-              <th class ="clickable" scope="col" onclick="sortByXpMinuteSeeds()">Xp per bloc per minute</th>
-              <th class ="clickable" scope="col" onclick="sortByPriceXPSeeds()">Price per xp</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
+      <div id="Seeds" class="tab-pane fade">
+        <h3>Farming</h3>
+        <h5>
+          Calculate which seed is the best to level up Farming at a lower cost.<br />
+        </h5>
+        <div class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('prix')">Market Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('exp')">Exp</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('minutes')">Duration (minutes)</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('width')">Width x Height</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('xpMinute')">Xp per bloc per minute</th>
+                <th class="clickable" scope="col" onclick="sortByValueSeeds('prix_1xp')">Price per xp</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div id="HeatCalculator" class="tab-pane fade">
-      <h3>Heat</h3>
-      <h5>
-        Calculate which item is the best to give heat at a lower cost.<br/>
-      </h5>
-      <div class="content">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('MarketPrice')">Market Price</th>
-              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('heat')">Heat</th>
-              <th class ="clickable" scope="col" onclick="sortByValueHeatCalculator('prix_1heat')">Price per heat</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
+      <div id="HeatCalculator" class="tab-pane fade">
+        <h3>Heat</h3>
+        <h5>
+          Calculate which item is the best to give heat at a lower cost.<br />
+        </h5>
+        <div class="content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th class="clickable" scope="col" onclick="sortByValueHeatCalculator('MarketPrice')">Market Price</th>
+                <th class="clickable" scope="col" onclick="sortByValueHeatCalculator('heat')">Heat</th>
+                <th class="clickable" scope="col" onclick="sortByValueHeatCalculator('prix_1heat')">Price per heat</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <div id="More" class="tab-pane fade">
-      <h5>
-        <i>Coming soon !</i><br/>
-      </h5>
-    </div>
+      <div id="More" class="tab-pane fade">
+        <h5>
+          <i>Coming soon !</i><br />
+        </h5>
+      </div>
 
+    </div>
   </div>
-</div>
 
 </body>
+
 </html>
