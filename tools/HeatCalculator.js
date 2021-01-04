@@ -34,7 +34,7 @@ function populateHeatCalculator() {
 	document.getElementById("HeatCalculator").getElementsByClassName("table")[0].tBodies[0].innerHTML = "";
 	finalResultsHeatMaterial.forEach(e => {
 		document.getElementById("HeatCalculator").getElementsByClassName("table")[0].tBodies[0].innerHTML +=
-			"<tr><th scope=\"row\"><img src=\"" + (websiteURL + e.img) + "\" class=\"widthSet\">" +
+			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + e.img) + "\" class=\"widthSet\">" +
 			"</th><td>" + e.name +
 			"</td><td>" + millionFormate(e.MarketPrice) +
 			"</td><td>" + millionFormate(e.heat) +

@@ -75,7 +75,7 @@ function populateSeeds() {
 	finalResultsSeeds.forEach(e => {
 		//console.log(e.compos);
 		tmpDoc.innerHTML +=
-			"<tr><th scope=\"row\"><img src=\"" + (websiteURL + e.img) + "\" class=\"widthSet\">" +
+			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + e.img) + "\" class=\"widthSet\">" +
 			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseSeeds" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseSeeds" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
 			"<div class=\"collapse\" id=\"collapseSeeds" + i + "\"><div class=\"card card-body\">" + resultSeeds(e.compos) + "</div></div>" +
 			"</td><td>" + e.prix +
@@ -97,7 +97,7 @@ function resultSeeds(compos) {
 	var i;
 
 	for (i = 0; i < compos.length; i++) {
-		composHtml += "<tr><th scope=\"row\">" + (i + 1) +
+		composHtml += "<tr><th scope=\"row\" class=\"thImg\">" + (i + 1) +
 			"</th><td>" + compos[i].name +
 			"</td><td>" + millionFormate(compos[i].price) +
 			"</td><td>" + millionFormate(compos[i].chance) + "%" +

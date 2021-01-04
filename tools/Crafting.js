@@ -89,7 +89,7 @@ function populateCrafting(craftName, sortingLevel) {
 			continue;
 		}
 		docTmp.innerHTML +=
-			"<tr><th scope=\"row\"><img src=\"" + (websiteURL + finalResultsExp[i].img) + "\" class=\"widthSet\">" +
+			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + finalResultsExp[i].img) + "\" class=\"widthSet\">" +
 			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + finalResultsExp[i].name + "</a>" +
 			"<div class=\"collapse\" id=\"collapseExp" + i + "\"><div class=\"card card-body\">" + generateComposHtml(finalResultsExp[i].compos) + "</div></div>" +
 			/*"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + e.compoArray + "</div></div>" +*/
