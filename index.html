@@ -59,7 +59,7 @@
                   <ul class="nav navbar-nav flex-column nav-pills" id="accordionSidebar">
                       <li class="nav-item active"><a class="nav-link active text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Exp" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/ui/crafting_icon.png">&nbsp;Crafting</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Scrolls" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/enchanting/enchanted_scroll.png">&nbsp;Scrollcrafting</a></li>
-                      <!-- <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Smithing" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/smithing/smithing_icon.png">&nbsp;Smithing</a></li> -->
+                      <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Smithing" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/smithing/smithing_icon.png">&nbsp;Smithing</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#SeedsTab" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/farming/farming_icon.png">&nbsp;Farming</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#HeatCalculatorTab" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/heat_icon.png">&nbsp;Heat</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#More" data-toggle="pill">&nbsp;More</a></li>
@@ -88,6 +88,8 @@
           <div class="d-flex flex-column" id="content-wrapper" style="background: rgb(26,32,53);">
               <div id="content" style="background: rgb(248,249,252);">
                   <div class="tab-content">
+
+                      <!-- ############# CRAFTING ############# -->
                       <div id="Exp" class="tab-pane fade show active">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">
@@ -202,6 +204,8 @@
                               </div>
                           </div>
                       </div>
+
+                      <!-- ############# SCROLLS ############# -->
                       <div id="Scrolls" class="tab-pane fade">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">
@@ -305,6 +309,179 @@
                               </div>
                           </div>
                       </div>
+
+                      <!-- ############# SMITHING ############# -->
+                      <div id="Smithing" class="tab-pane fade">
+                        <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
+                            <div class="container-fluid">
+                                <h3 style="color: rgb(255,255,255);margin-left: 5px;"><img class="widthSet" src="https://idlescape.com/images/smithing/smithing_icon.png">&nbsp;Smithing</h3>
+                                <h6 style="color:#fff;"><i>Fetchning&nbsp;data&nbsp;from&nbsp;<a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a>&nbsp;<b>auto-refreshes&nbsp;every&nbsp;5&nbsp;minutes</b></i></h6>
+                              </div>
+                        </nav>
+                        <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
+                          <br><em>Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.</em>
+                          <br><em> - </em><strong><em>Benefits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
+                          <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp.</em>
+                          <br><em> - </em><strong><em>Benefits include the 5% fees</em></strong>
+                          <br><br>
+                        </h6>
+                        <div class="col">
+                          <div class="container-fluid">
+                              <div class="row">
+                                  <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-BronzeBar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/bronze_bar.png"></div>
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Bronze bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="col-md-6 col-xl-3 mb-4">
+                                      <div class="card shadow border-left-IronBar py-2">
+                                          <div class="card-body">
+                                              <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/iron_bar.png"></div>
+
+                                                  <div class="col mr-2">
+                                                      <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Iron bar</span></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-GoldBar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/gold_bar.png"></div>
+
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Gold bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-MithrilBar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/mithril_bar.png"></div>
+
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Mithril bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-AdamantiteBar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/adamantite_bar.png"></div>
+
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Adamantite bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-RuniteBar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/runite_bar.png"></div>
+
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Runite bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mb-4">
+                                    <div class="card shadow border-left-Stygianbar py-2">
+                                        <div class="card-body">
+                                            <div class="row align-items-center no-gutters">
+                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/stygian_bar.png"></div>
+
+                                                <div class="col mr-2">
+                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Stygian bar</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <a class="btn btn-primary" href="#collapseScrollingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
+                        <div class="row collapse" id="collapseScrollingOpions" style="margin-left: 5px;">
+                            <div class="col">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group"><label for="actualScrollLevel">Your&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualScrollLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel enchanting level."></div>
+                                                    <div class="form-group"><label for="desiredScrollLevel">Desired&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredScrollLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired enchanting level."></div>
+                                                    <div class="form-group"><label for="selectedScrollRecipe">Scroll&nbsp;recipe&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedScrollRecipe" class="form-control" title="Select the recipe you want to use to level up.">
+                                                            <optgroup label="Choose a recipe">
+                                                            </optgroup>
+                                                        </select></div>
+                                                    <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanCraftResult('resultatsScroll');">Clean results</button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-md-7">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header d-flex justify-content-between align-items-center">
+                                                    <h6 class="text-primary font-weight-bold m-0">Results</h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive" id ="resultatsScroll">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="smithingTable" class="content" style="margin-left: 13px;margin-right: 13px;">
+                            <div class="table-responsive table-hover">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('level');">Level</th>
+                                            <th scope="col">Mind Rune</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice');">Crafting Price</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice');">Market Price</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('Benefits');">Benefits</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('exp');">Exp</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef');">Benefits per XP</th>
+                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp');">Price per XP</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                      <!-- ############# FARMING ############# -->
                       <div id="SeedsTab" class="tab-pane fade">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">
@@ -340,6 +517,8 @@
                               </div>
                           </div>
                       </div>
+
+                      <!-- ############# HEAT ############# -->
                       <div id="HeatCalculatorTab" class="tab-pane fade">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">
@@ -368,6 +547,8 @@
                               </div>
                           </div>
                       </div>
+
+                      <!-- ############# MORE ############# -->
                       <div id="More" class="tab-pane fade">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">

@@ -1,1 +1,63 @@
-.widthSet{max-width:32px}.navbar.navbar-dark.border-dark.shadow-lg.align-items-start.sidebar.sidebar-dark.accordion.bg-gradient-primary.p-0 li:hover{background-color:rgba(200,200,200,.1);color:#fff;box-shadow:none;transition:.3s;opacity:1;visibility:visible;top:100%;transform:rotateX(0);border-radius:.32rem}.nav-pills .nav-link.active,.nav-pills .show>.nav-link{color:#fff;background-color:#1a2035;pointer-events:none;border-radius:0}.nav-pills .nav-link{border-radius:.32rem}.border-left-craftLevel{border-left:.25rem solid #4e73df!important}.border-left-craftname{border-left:.25rem solid #df4e4e!important}.border-left-scrollcraft{border-left:.25rem solid #a8df4e!important}th{background-color:#202940;color:#fff}
+.navbar.navbar-dark.border-dark.shadow-lg.align-items-start.sidebar.sidebar-dark.accordion.bg-gradient-primary.p-0 li:hover {
+    background-color: rgba(200, 200, 200, .1);
+    color: #fff;
+    box-shadow: none;
+    transition: .3s;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    transform: rotateX(0);
+    border-radius: .32rem
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #1a2035;
+    pointer-events: none;
+    border-radius: 0
+}
+
+.nav-pills .nav-link {
+    border-radius: .32rem
+}
+
+
+.border-left-craftLevel {
+    border-left: .25rem solid #4e73df!important
+}
+.border-left-craftname {
+    border-left: .25rem solid #df4e4e!important
+}
+
+
+.border-left-BronzeBar {
+    border-left: .25rem solid #786057!important
+}
+.border-left-IronBar {
+    border-left: .25rem solid #616770!important
+}
+.border-left-GoldBar {
+    border-left: .25rem solid #F0C980!important
+}
+.border-left-MithrilBar {
+    border-left: .25rem solid #556CA0!important
+}
+.border-left-AdamantiteBar {
+    border-left: .25rem solid #369382!important
+}
+.border-left-RuniteBar {
+    border-left: .25rem solid #58B1F6!important
+}
+.border-left-Stygianbar {
+    border-left: .25rem solid #7241B4!important
+}
+
+
+.border-left-scrollcraft {
+    border-left: .25rem solid #a8df4e!important
+}
+
+th {
+    background-color: #202940;
+    color: #fff
+}

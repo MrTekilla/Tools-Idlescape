@@ -40,6 +40,11 @@
   max-width: 32px;
 }
 
+.widthSetDouble {
+  max-width: 64px;
+}
+
+
 .heightSet {
   max-height: 50px;
 }

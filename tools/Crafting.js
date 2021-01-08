@@ -92,7 +92,6 @@ function populateCrafting(craftName, sortingLevel) {
 			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + finalResultsExp[i].img) + "\" class=\"widthSet\">" +
 			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + finalResultsExp[i].name + "</a>" +
 			"<div class=\"collapse\" id=\"collapseExp" + i + "\"><div class=\"card card-body\">" + generateComposHtml(finalResultsExp[i].compos) + "</div></div>" +
-			/*"<div class=\"collapse\" id=\"collapseExp"+i+"\"><div class=\"card card-body\">" + e.compoArray + "</div></div>" +*/
 			"</td><td>" + finalResultsExp[i].level +
 			"</td><td>" + millionFormate(finalResultsExp[i].CraftingPrice) +
 			"</td><td>" + millionFormate(finalResultsExp[i].MarketPrice) +
@@ -103,10 +102,6 @@ function populateCrafting(craftName, sortingLevel) {
 			"</td></tr>";
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		//console.log("i : " + i + finalResultsExp[i].name);
-		// if (i > 15) {
-		// 	console.log("I > 15 : " + i);
-		// 	return;
-		// }
 	}
 
 	//var t1 = performance.now();
