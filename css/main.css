@@ -40,6 +40,15 @@
   max-width: 32px;
 }
 
+.widthSetCircle {
+  max-width: 32px;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+  background-color:rgb(248, 249, 252);
+}
+
 .widthSetDouble {
   max-width: 64px;
 }
@@ -52,4 +61,9 @@
 .thImg {
   max-width: 64px;
   background-color: rgb(248, 249, 252);
+}
+
+.spanSmelting {
+  margin-left: 15px;
+  margin-bottom: 15px;
 }

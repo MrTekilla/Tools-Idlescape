@@ -2,7 +2,7 @@ function callFetchCrafting(refresh = false) {
 	document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/crafting')
 		.then(response => response.json())
-		.then(json => traitementDataCrafting(json, refresh));
+		.then(json => initDataCrafting(json, refresh));
 }
 
 //-------------------------------------------
@@ -12,25 +12,40 @@ var actualSortExp = "prix_1xp";
 var sortOrderExp = false;
 var sortingCraftingName = null;
 var customCraftingLevel = 0;
-function traitementDataCrafting(json, refresh) {
+var jsonCrafting;
+
+
+function initDataCrafting(json,refresh){
+	jsonCrafting = json;
+	traitementDataCrafting(refresh);
+}
+
+function traitementDataCrafting(refresh) {
+	var buffScrollcrafting = parseInt(document.getElementById("ScrollCraftingBuffCraft").value);
 	finalResultsExp = [];
-	json.crafts.forEach(e => {
+	jsonCrafting.crafts.forEach(e => {
 		var totalPrice = 0;
 		var nameCompos = "";
 		var i, j;
 		for (i = 0; i < e.resources.length; i++) {
 			var compos = [];
 			for (j = 0; j < e.resources[i].length; j++) {
-				totalPrice += e.resources[i][j].price * e.resources[i][j].quantity;
+				//console.log("buffScrollcrafting : " + buffScrollcrafting + " | type : " + typeof buffScrollcrafting);
+				//console.log("calcul : " + (buffScrollcrafting == 0 ? 0 : Math.floor((e.resources[i][j].quantity*buffScrollcrafting/100))));
+				var realQuantity = e.resources[i][j].quantity - (buffScrollcrafting == 0 ? 0 : Math.floor((e.resources[i][j].quantity*buffScrollcrafting/100)));
+				//console.log("realQuantity : " + realQuantity);
+				totalPrice += e.resources[i][j].price * realQuantity;
 				nameCompos += e.resources[i][j].name + (j == (e.resources[i].length - 1) ? "" : " + ");
-				compos.push({ "name": e.resources[i][j].name, "price": e.resources[i][j].price, "quantity": e.resources[i][j].quantity, "img": e.resources[i][j].image });
+				compos.push({ "name": e.resources[i][j].name, "price": e.resources[i][j].price, "quantity": realQuantity, "img": e.resources[i][j].image });
 			}
+			var prixStore = findItemFromjs(e.name);
 			var tmpBenef = e.price - totalPrice;
-			var benef = tmpBenef - Math.abs((e.price * 0.05))
+			var benefStore = prixStore - totalPrice;
+			var benef = (tmpBenef - Math.abs((e.price * 0.05)));
 			var tmpResult = {
 				"id": finalResultsExp.length,
 				"img": e.image,
-				"name": e.name + (e.resources.length > 1 ? " (Recipe : " + nameCompos + ")" : ""),
+				"name": e.name + (e.resources.length > 1 ? " (" + nameCompos + ")" : ""),
 				"level": e.level,
 				"CraftingPrice": totalPrice,
 				"MarketPrice": e.price,
@@ -39,6 +54,10 @@ function traitementDataCrafting(json, refresh) {
 				"prix_1xp": (totalPrice / e.exp).toFixed(2),
 				"ppxBenef": (benef / e.exp).toFixed(2),
 				"compos": compos,
+				"StorePrice" : prixStore,
+				"StorePriceBenef" : benefStore,
+				"StorePriceBenefppx" : (benefStore / e.exp).toFixed(2),
+				"ScrollcraftBuff" : buffScrollcrafting
 				/*"compoArray" : generateComposHtml(compos)*/
 			}
 
@@ -51,6 +70,10 @@ function traitementDataCrafting(json, refresh) {
 	sortByValueCrafting(actualSortExp, refresh);
 	sortByString(selectCraftRecipe);
 	populateSelectCraft(selectCraftRecipe);
+}
+
+function refreshScrollcraftingBuff(){
+	traitementDataCrafting(true);
 }
 
 function sortByValueCrafting(value, refresh) {
@@ -89,17 +112,29 @@ function populateCrafting(craftName, sortingLevel) {
 			continue;
 		}
 		docTmp.innerHTML +=
-			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + finalResultsExp[i].img) + "\" class=\"widthSet\">" +
-			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseExp" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExp" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + finalResultsExp[i].name + "</a>" +
-			"<div class=\"collapse\" id=\"collapseExp" + i + "\"><div class=\"card card-body\">" + generateComposHtml(finalResultsExp[i].compos) + "</div></div>" +
+			"<tr class=\"accordion-toggle\">"+
+			"<th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + finalResultsExp[i].img) + "\" class=\"widthSet\">" +
+			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapse" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapse" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + finalResultsExp[i].name + "</a>" +
+			//"<div class=\"collapse\" id=\"collapseExp" + i + "\"><div class=\"card card-body\">" + generateComposHtml(finalResultsExp[i].compos) + "</div></div>" +
 			"</td><td>" + finalResultsExp[i].level +
 			"</td><td>" + millionFormate(finalResultsExp[i].CraftingPrice) +
 			"</td><td>" + millionFormate(finalResultsExp[i].MarketPrice) +
 			"</td><td class=\"" + (finalResultsExp[i].Benefits > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].Benefits) + "</b>" +
-			"</td><td>" + millionFormate(finalResultsExp[i].exp) +
 			"</td><td class=\"" + (finalResultsExp[i].ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].ppxBenef) + "</b>" +
+			"</td><td>" + millionFormate(finalResultsExp[i].exp) +
+			"</td><td>" + millionFormate(finalResultsExp[i].StorePrice) +
+			"</td><td class=\"" + (finalResultsExp[i].StorePriceBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].StorePriceBenef) + "</b>" +
+			"</td><td class=\"" + (finalResultsExp[i].StorePriceBenefppx > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].StorePriceBenefppx) + "</b>" +
 			"</td><td>" + finalResultsExp[i].prix_1xp +
-			"</td></tr>";
+			"</td></tr>" +
+			"<tr style=\"pointer-events: none;\">" +
+			"<td></td>" +
+			"<td colspan=\"3\">" +
+				"<div id=\"collapse" + i + "\" class=\"collapse in\">" +
+					generateComposHtml(finalResultsExp[i].compos) +
+				"</div>" +
+			"</td>" +
+			"</tr>";
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		//console.log("i : " + i + finalResultsExp[i].name);
 	}

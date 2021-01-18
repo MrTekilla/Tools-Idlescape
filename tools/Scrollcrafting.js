@@ -91,16 +91,24 @@ function populateScrolls(craftName, sortingLevel) {
 		tmpDoc.innerHTML +=
 			"<tr><th scope=\"row\" class=\"thImg\"><img src=\"" + (websiteURL + e.img) + "\" class=\"widthSet\">" +
 			"</th><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseScrolls" + i + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseScrolls" + i + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + e.name + "</a>" +
-			"<div class=\"collapse\" id=\"collapseScrolls" + i + "\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
+			//"<div class=\"collapse\" id=\"collapseScrolls" + i + "\"><div class=\"card card-body\">" + generateComposHtml(e.compos) + "</div></div>" +
 			"</td><td>" + e.level +
 			"</td><td>" + e.mindRune +
 			"</td><td>" + millionFormate(e.CraftingPrice) +
 			"</td><td>" + millionFormate(e.MarketPrice) +
 			"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(e.Benefits) + "</b>" +
-			"</td><td>" + millionFormate(e.exp) +
 			"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(e.ppxBenef) + "</b>" +
+			"</td><td>" + millionFormate(e.exp) +
 			"</td><td>" + e.prix_1xp +
-			"</td></tr>";
+			"</td></tr>" +
+			"<tr style=\"pointer-events: none;\">" +
+			"<td></td>" +
+			"<td colspan=\"3\">" +
+				"<div id=\"collapseScrolls" + i + "\" class=\"collapse in\">" +
+					generateComposHtml(e.compos) +
+				"</div>" +
+			"</td>" +
+			"</tr>";
 		//console.log(e.name + " -> Prix craft: " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});

@@ -13,20 +13,21 @@
       <meta name="twitter:title" content="Idlescape Tools">
 
       <link rel="stylesheet" href="css/main.css">
-
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
       <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
 
+      <script src="tools/ObjectsData.js"></script>
+      <script src="tools/ExperienceTable.js"></script>
       <script src="tools/Crafting.js"></script>
       <script src="tools/Scrollcrafting.js"></script>
       <script src="tools/Farming.js"></script>
       <script src="tools/Tools.js"></script>
       <script src="tools/CalculateLevelUp.js"></script>
-      <script src="tools/ExperienceTable.js"></script>
       <script src="tools/HeatCalculator.js"></script>
+      <script src="tools/Smithing.js"></script>
 
       <link rel="icon" type="image/png" sizes="352x352" href="img/geode.png">
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css?h=ddd11e73e4c0ba794a375c73d4414fff">
@@ -46,7 +47,7 @@
       </script>
   </head>
 
-  <body id="page-top" style="background: rgb(26,32,53);" onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); callFetchHeatCalculator(); startAutoRefresh();"></body>
+  <body id="page-top" style="background: rgb(26,32,53);" onload="callFetchCrafting(); callFetchScrolls(); callFetchFarming(); callFetchHeatCalculator(); callFetchSmithing(); startAutoRefresh();"></body>
       <div id="wrapper" style="background: rgb(26,32,53);">
           <nav class="navbar navbar-dark border-dark shadow-lg align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(32,41,64);color: var(--white);box-shadow: 3px 0px var(--danger);">
               <div class="container-fluid d-flex flex-column p-0">
@@ -67,15 +68,15 @@
                           <hr>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center dropdown-toggle" data-toggle="dropdown" href="#"><img src="img/GitHub-Mark-Light-32px.png?h=51f31bed5c62b8290e6c0b64c066d712">&nbsp;Useful links
+                        <a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center dropdown-toggle" data-toggle="dropdown" href="#"><img class="widthSetCircle" src="img/link.png">&nbsp;Useful links
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu" style="background: rgb(26,32,53);">
                           <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://idlescape.com/game" target="_blank"><img src="https://idlescape.com/images/leagues/default_league_icon.png" class="widthSet">&nbsp;Idlescape</a></li>
                           <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://idlescape.xyz/market" target="_blank"><img src="img/xyz.png" class="widthSet">&nbsp;Idlescape.xyz</a></li>
                           <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://idlescape.wiki/p/Idlescape_Wiki/" target="_blank"><img src="https://idlescape.wiki/favicon.ico" class="widthSet">&nbsp;Idlescape Wiki</a></li>
                           <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://idlescape.wiki/p/Useful_Stuff/" target="_blank"><img src="https://idlescape.wiki/favicon.ico" class="widthSet">&nbsp;Useful stuff</a></li>
-                          <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://github.com/MrTekilla/MrTekilla.github.io/discussions" target="_blank"><img src="img/GitHub-Mark-Light-32px.png?h=51f31bed5c62b8290e6c0b64c066d712" class="widthSet">&nbsp;Need a new feature ?</a></li>
-                          <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://github.com/MrTekilla/MrTekilla.github.io/issues" target="_blank"><img src="img/GitHub-Mark-Light-32px.png?h=51f31bed5c62b8290e6c0b64c066d712" class="widthSet">&nbsp; Report a bug</a></li>
+                          <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://github.com/MrTekilla/MrTekilla.github.io/discussions" target="_blank"><img src="img/GitHub-Mark-Light-32px.png" class="widthSet">&nbsp;Need a new feature ?</a></li>
+                          <li class="nav-item"><a style="background: rgb(26,32,53);" class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="https://github.com/MrTekilla/MrTekilla.github.io/issues" target="_blank"><img src="img/GitHub-Mark-Light-32px.png" class="widthSet">&nbsp; Report a bug</a></li>
                         </ul>
                       </li>
                       <li class="nav-item" style="pointer-events:none;">
@@ -99,11 +100,14 @@
                           </nav>
                           <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                                 <br>Calculate&nbsp;which&nbsp;recipe&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;level&nbsp;up&nbsp;Craft&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
-                                <br>- <strong>Benefits&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;you&nbsp;are&nbsp;going&nbsp;to&nbsp;earn/lose&nbsp;per&nbsp;xp.
-                                <br>- <strong>Price&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;cost&nbsp;1&nbsp;xp.
-                                <br>- <strong><em>Benefits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees</em></strong>
+                                <br>- <strong>Profits&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;you&nbsp;are&nbsp;going&nbsp;to&nbsp;earn/lose&nbsp;per&nbsp;xp.
+                                <br>- <strong>Price&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;cost&nbsp;1&nbsp;xp&nbsp;(if&nbsp;you&nbsp;are&nbsp;not&nbsp;interested&nbsp;by&nbsp;profits).
+                                <br>- <strong><em>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
+                                <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
+                                <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">&nbsp;:&nbsp;Related to the prices from the game.</em></strong>
                                 <br><br>
                           </h6>
+                        <div><hr/></div>
                           <div class="col">
                               <div class="container-fluid">
                                   <div class="row">
@@ -131,22 +135,33 @@
                                               </div>
                                           </div>
                                       </div>
-                                      <!-- <div class="col-md-6 col-xl-3 mb-4">
+                                      <!-- --><div class="col-md-6 col-xl-3 mb-4">
                                           <div class="card shadow border-left-scrollcraft py-2">
                                               <div class="card-body">
                                                   <div class="row align-items-center no-gutters">
                                                       <div class="col-auto"><img class="widthSet" src="https://idlescape.com/images/enchanting/scroll_of_efficiency.png"></div>
                                                       <div class="col mr-2">
                                                           <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Scroll crafting</span></div>
-                                                          <div class="text-dark font-weight-bold h5 mb-0"><input class="shadow-sm form-control" type="number" data-toggle="tooltip" data-bs-tooltip="" style="display: table-cell;width: 100%;font-size: 16px;" min="0" placeholder="Value %" title="% of your Scroll of Crafting buff"></div>
+                                                          <div class="text-dark font-weight-bold h5 mb-0">
+                                                            <select onchange="refreshScrollcraftingBuff();" class="shadow-sm form-control" id="ScrollCraftingBuffCraft" type="number" data-toggle="tooltip" data-bs-tooltip="" style="display: table-cell;width: 100%;font-size: 16px;" placeholder="Value %" title="% of your Scroll of Crafting buff">
+                                                                <option value="0" selected>0%</option>
+                                                                <option value="2">2%</option>
+                                                                <option value="4">4%</option>
+                                                                <option value="6">6%</option>
+                                                                <option value="8">8%</option>
+                                                                <option value="10">10%</option>
+                                                                <option value="12">12%</option>
+                                                            </select>
+                                                            </div>
                                                       </div>
                                                   </div>
                                               </div>
                                           </div>
-                                      </div> -->
+                                      </div> <!-- -->
                                   </div>
                               </div>
                           </div>
+                        <div><hr/></div>
                           <a class="btn btn-primary" href="#collapseCraftingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
                           <div class="row collapse" id="collapseCraftingOpions" style="margin-left: 5px;">
                               <div class="col">
@@ -164,17 +179,17 @@
                                                               <optgroup label="Choose a recipe">
                                                               </optgroup>
                                                           </select></div>
-                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanCraftResult('resultatsCraft');">Clean results</button></div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsCraft');">Clean results</button></div>
                                                   </div>
                                               </div>
                                           </div>
-                                          <div class="col col-md-8">
+                                          <div class="col col-md-9">
                                               <div class="card shadow mb-4">
                                                   <div class="card-header d-flex justify-content-between align-items-center">
                                                       <h6 class="text-primary font-weight-bold m-0">Results</h6>
                                                   </div>
                                                   <div class="card-body">
-                                                      <div class="table-responsive" id ="resultatsCraft">
+                                                      <div id ="resultatsCraft">
                                                       </div>
                                                   </div>
                                               </div>
@@ -183,20 +198,24 @@
                                   </div>
                               </div>
                           </div>
+                        <div><hr/></div>
                           <div id="craftingTable" class="content" style="margin-left: 13px;margin-right: 13px;">
-                              <div class="table-responsive table-hover">
-                                  <table class="table">
+                              <div>
+                                  <table data-show-columns="true" class="table table-sm table-hover">
                                       <thead>
                                           <tr>
                                               <th>#</th>
                                               <th>Name</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('level');">Level</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('CraftingPrice');">Crafting Price</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('MarketPrice');">Market Price</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('Benefits');">Benefits</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('exp');">Exp</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('ppxBenef');">Benefits per XP</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueCrafting('prix_1xp');">Price per XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The level you need to craft the item." scope="col" onclick="sortByValueCrafting('level');">Level</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the item." scope="col" onclick="sortByValueCrafting('CraftingPrice');">Crafting Price</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The actual price of the item on the market." scope="col" onclick="sortByValueCrafting('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item on the market." scope="col" onclick="sortByValueCrafting('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueCrafting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Experience" scope="col" onclick="sortByValueCrafting('exp');">Exp</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The price of the item if you sell it to the game." scope="col" onclick="sortByValueCrafting('StorePrice');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Price</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col" onclick="sortByValueCrafting('StorePriceBenef');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueCrafting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueCrafting('prix_1xp');">Price/XP</th>
                                           </tr>
                                       </thead>
                                       <tbody></tbody>
@@ -215,11 +234,13 @@
                           </nav>
                           <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                             <br><em>Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.</em>
-                            <br><em> - </em><strong><em>Benefits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
-                            <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp.</em>
-                            <br><em> - </em><strong><em>Benefits include the 5% fees</em></strong>
+                            <br><em> - </em><strong><em>Profits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
+                            <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp (if you are not instered by profits.).</em>
+                            <br><em> - </em><strong><em>Profits include the 5% fees from the marketplace.</em></strong>
+                            <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
                             <br><br>
                           </h6>
+                        <div><hr/></div>
                           <div class="col">
                             <div class="container-fluid">
                                 <div class="row">
@@ -250,6 +271,7 @@
                               </div>
                             </div>
                           </div>
+                        <div><hr/></div>
                           <a class="btn btn-primary" href="#collapseScrollingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
                           <div class="row collapse" id="collapseScrollingOpions" style="margin-left: 5px;">
                               <div class="col">
@@ -267,11 +289,11 @@
                                                               <optgroup label="Choose a recipe">
                                                               </optgroup>
                                                           </select></div>
-                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanCraftResult('resultatsScroll');">Clean results</button></div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsScroll');">Clean results</button></div>
                                                   </div>
                                               </div>
                                           </div>
-                                          <div class="col col-md-7">
+                                          <div class="col col-md-9">
                                               <div class="card shadow mb-4">
                                                   <div class="card-header d-flex justify-content-between align-items-center">
                                                       <h6 class="text-primary font-weight-bold m-0">Results</h6>
@@ -287,21 +309,22 @@
                                   </div>
                               </div>
                           </div>
+                        <div><hr/></div>
                           <div id="scrollingTable" class="content" style="margin-left: 13px;margin-right: 13px;">
-                              <div class="table-responsive table-hover">
-                                  <table class="table">
+                              <div>
+                                  <table class="table table-sm table-hover">
                                       <thead>
                                           <tr>
                                               <th>#</th>
                                               <th>Name</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('level');">Level</th>
-                                              <th scope="col">Mind Rune</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice');">Crafting Price</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice');">Market Price</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('Benefits');">Benefits</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('exp');">Exp</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef');">Benefits per XP</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp');">Price per XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The level you need to craft the scroll." scope="col" onclick="sortByValueScrolls('level');">Level</th>
+                                              <th data-toggle="tooltip" title="Does the scroll need Mind Rune to be crafted ?" scope="col">Mind Rune</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the scroll." scope="col" onclick="sortByValueScrolls('CraftingPrice');">Crafting Price</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Price of the scroll on the market." scope="col" onclick="sortByValueScrolls('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Market Price</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the scroll on the market." scope="col" onclick="sortByValueScrolls('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp. " scope="col" onclick="sortByValueScrolls('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Experience." scope="col" onclick="sortByValueScrolls('exp');">Exp</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueScrolls('prix_1xp');">Price/XP</th>
                                           </tr>
                                       </thead>
                                       <tbody></tbody>
@@ -319,137 +342,89 @@
                               </div>
                         </nav>
                         <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
-                          <br><em>Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.</em>
-                          <br><em> - </em><strong><em>Benefits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
-                          <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp.</em>
-                          <br><em> - </em><strong><em>Benefits include the 5% fees</em></strong>
+                          <br><em>Calculates some data related to smelting.</em>
+                          <br><em> - </em><strong><em>Profits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
+                          <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp (if you are not instered by profits.).</em>
+                          <br><em> - </em><strong><em>Profits include the 5% fees from the marketplace.</em></strong>
+                          <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
+                          <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">&nbsp;:&nbsp;Related to the prices from the game.</em></strong>
                           <br><br>
                         </h6>
+                        <div><hr/></div>
                         <div class="col">
-                          <div class="container-fluid">
-                              <div class="row">
-                                  <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-BronzeBar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/bronze_bar.png"></div>
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Bronze bar</span></div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-Wealth py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col-auto"><img class="widthSet" src="https://idlescape.com/images/enchanting/scroll_of_wealth.png"></div>
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Scroll Wealth</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0">
+                                                        <select onchange="refreshBuffValue();" class="shadow-sm form-control" id="WealthBuff" type="number" data-toggle="tooltip" data-bs-tooltip="" style="display: table-cell;width: 100%;font-size: 16px;" placeholder="Value %" title="% of your Scroll of Wealth buff">
+                                                            <option value="0" selected>0%</option>
+                                                            <option value="20">20%</option>
+                                                            <option value="40">40%</option>
+                                                            <option value="60">60%</option>
+                                                            <option value="80">80%</option>
+                                                            <option value="100">100%</option>
+                                                            <option value="120">120%</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                  <div class="col-md-6 col-xl-3 mb-4">
-                                      <div class="card shadow border-left-IronBar py-2">
-                                          <div class="card-body">
-                                              <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/iron_bar.png"></div>
-
-                                                  <div class="col mr-2">
-                                                      <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Iron bar</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-GoldBar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/gold_bar.png"></div>
-
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Gold bar</span></div>
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-Scholar py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col-auto"><img class="widthSet" src="https://idlescape.com/images/enchanting/scroll_of_the_scholar.png"></div>
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Scroll Scholar</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0">
+                                                        <select onchange="refreshBuffValue();" class="shadow-sm form-control" id="ScholarBuff" type="number" data-toggle="tooltip" data-bs-tooltip="" style="display: table-cell;width: 100%;font-size: 16px;" placeholder="Value %" title="% of your Scroll of Scholar buff">
+                                                            <option value="0" selected>0%</option>
+                                                            <option value="20">20%</option>
+                                                            <option value="40">40%</option>
+                                                            <option value="60">60%</option>
+                                                            <option value="80">80%</option>
+                                                            <option value="100">100%</option>
+                                                            <option value="120">120%</option>
+                                                        </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-MithrilBar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/mithril_bar.png"></div>
-
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Mithril bar</span></div>
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-Scholar py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col-auto"><img class="widthSet" src="https://idlescape.com/images/enchanting/scroll_of_pyromancy.png"></div>
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Scroll Pyromancy</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0">
+                                                            <input class="shadow-sm form-control" type="number" data-toggle="tooltip" data-bs-tooltip="" id="PyromancyBuff" style="display: table-cell;width: 100%;font-size: 16px;" min=0 placeholder="0" title="% of your Scroll of Pyromancy buff" oninput="refreshBuffValue();" onpaste="refreshBuffValue();">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-AdamantiteBar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/adamantite_bar.png"></div>
-
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Adamantite bar</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-RuniteBar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/runite_bar.png"></div>
-
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Runite bar</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-xl-3 mb-4">
-                                    <div class="card shadow border-left-Stygianbar py-2">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col-auto"><img class="widthSetDouble" src="https://idlescape.com/images/smithing/stygian_bar.png"></div>
-
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Stygian bar</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <a class="btn btn-primary" href="#collapseScrollingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
-                        <div class="row collapse" id="collapseScrollingOpions" style="margin-left: 5px;">
-                            <div class="col">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header d-flex justify-content-between align-items-center">
-                                                    <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="form-group"><label for="actualScrollLevel">Your&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualScrollLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel enchanting level."></div>
-                                                    <div class="form-group"><label for="desiredScrollLevel">Desired&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredScrollLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired enchanting level."></div>
-                                                    <div class="form-group"><label for="selectedScrollRecipe">Scroll&nbsp;recipe&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedScrollRecipe" class="form-control" title="Select the recipe you want to use to level up.">
-                                                            <optgroup label="Choose a recipe">
-                                                            </optgroup>
-                                                        </select></div>
-                                                    <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanCraftResult('resultatsScroll');">Clean results</button></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col col-md-7">
-                                            <div class="card shadow mb-4">
-                                                <div class="card-header d-flex justify-content-between align-items-center">
-                                                    <h6 class="text-primary font-weight-bold m-0">Results</h6>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="table-responsive" id ="resultatsScroll">
-
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-Intuition py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col-auto"><img class="widthSet" src="https://idlescape.com/images/magic/buffs/xp_increased.png"></div>
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Intuition</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0">
+                                                            <input class="shadow-sm form-control" type="number" data-toggle="tooltip" data-bs-tooltip="" id="IntuitionBuff" style="display: table-cell;width: 100%;font-size: 16px;" min=0 placeholder="0" title="% of your Intuition buff" oninput="refreshBuffValue();" onpaste="refreshBuffValue();">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -458,21 +433,61 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="smithingTable" class="content" style="margin-left: 13px;margin-right: 13px;">
-                            <div class="table-responsive table-hover">
-                                <table class="table">
+                        <div><hr/></div>
+                          <a class="btn btn-primary" href="#collapseSmeltingOptions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSmeltingOptions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
+                          <div class="row collapse" id="collapseSmeltingOptions" style="margin-left: 5px;">
+                              <div class="col">
+                                  <div class="container-fluid">
+                                      <div class="row">
+                                          <div class="col">
+                                              <div class="card shadow mb-4">
+                                                  <div class="card-header d-flex justify-content-between align-items-center">
+                                                      <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
+                                                  </div>
+                                                  <div class="card-body">
+                                                      <div class="form-group"><label for="actualsmithingLevel">Your&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualsmithingLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel smithing level."></div>
+                                                      <div class="form-group"><label for="desiredsmithingLevel">Desired&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredsmithingLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired smithing level."></div>
+                                                      <div class="form-group"><label for="selectedSmithingRecipe">Bar&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedSmithingRecipe" class="form-control" title="Select the bar you want to use to level up.">
+                                                              <optgroup label="Choose a Bar">
+                                                              </optgroup>
+                                                          </select></div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsSmelting','actualsmithingLevel','desiredsmithingLevel','selectedSmithingRecipe',selectSmithingRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsSmelting');">Clean results</button></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col col-md-9">
+                                              <div class="card shadow mb-4">
+                                                  <div class="card-header d-flex justify-content-between align-items-center">
+                                                      <h6 class="text-primary font-weight-bold m-0">Results</h6>
+                                                  </div>
+                                                  <div class="card-body">
+                                                      <div id ="resultatsSmelting">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                        <div><hr/></div>
+                        <div id="SmithingBarContent" class="content" style="margin-left: 13px;margin-right: 13px;">
+                            <div>
+                                <table class="table table-sm table-hover">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('level');">Level</th>
-                                            <th scope="col">Mind Rune</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('CraftingPrice');">Crafting Price</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('MarketPrice');">Market Price</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('Benefits');">Benefits</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('exp');">Exp</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('ppxBenef');">Benefits per XP</th>
-                                            <th role="button" class="clickable" scope="col" onclick="sortByValueScrolls('prix_1xp');">Price per XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The level you need to craft the item." scope="col" onclick="sortByValueSmelting('level');">Level</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="Experience" scope="col" onclick="sortByValueSmelting('exp');">Exp</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the item." scope="col" onclick="sortByValueSmelting('CraftingPrice');">Crafting Price</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The actual price of the item on the market." scope="col" onclick="sortByValueSmelting('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item on the market." scope="col" onclick="sortByValueSmelting('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueSmelting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The price of the item if you sell it to the game." scope="col" onclick="sortByValueSmelting('StorePrice');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Price</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col" onclick="sortByValueSmelting('StorePriceBenef');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueSmelting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits/XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueSmelting('prix_1xp');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price/XP</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -492,12 +507,13 @@
                           <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                               <br>Calculate which seed is the best to level up Farming at a lower cost.
                               <br> - <strong>Xp/plot/minute</strong> : How much XP you are going to earn per plot per minute.
-                              <br> - <strong>Price per XP</strong> : How much gold cost 1 xp.
+                              <br> - <strong>Price per XP</strong> : How much gold cost 1 xp (if you are not instered by profits.).
                               <br><br>
                           </h6>
+                        <div><hr/></div>
                           <div id="Seeds" class="content" style="margin-left: 13px;margin-right: 13px;">
-                              <div class="table-responsive table-hover">
-                                  <table class="table">
+                              <div>
+                                  <table class="table table-sm table-hover">
                                       <thead>
                                           <tr>
                                               <th>#</th>
@@ -506,8 +522,8 @@
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('exp');">Exp</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('minutes');">Minutes</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('width');">Size</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMin');">Benefits min</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMax');">Benefits max</th>
+                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMin');">Profits min</th>
+                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMax');">Profits max</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('xpMinute');">Xp/plot/minute</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('prix_1xp');">Price per xp</th>
                                           </tr>
@@ -530,9 +546,10 @@
                               <br>Calculate&nbsp;which&nbsp;item&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;give&nbsp;heat&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
                               <br><br>
                           </h6>
+                        <div><hr/></div>
                           <div id="HeatCalculator" class="content" style="margin-left: 13px;margin-right: 13px;">
-                              <div class="table-responsive table-hover">
-                                  <table class="table">
+                              <div>
+                                  <table class="table table-sm table-hover">
                                       <thead>
                                           <tr>
                                               <th>#</th>

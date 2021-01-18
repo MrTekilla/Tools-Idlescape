@@ -30,26 +30,48 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
     //console.log(totalXp);
     var tmpNumberCraft = totalXp / craftRecipeObject.exp;
     var numberCraft = (tmpNumberCraft % 1 != 0 ? parseInt(tmpNumberCraft) + 1 : tmpNumberCraft);
+    var extendID = new Date().getTime();
     //console.log(numberCraft % 1 != 0);
     composHtml +=
-        "<tr><td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTotalCraft" + resultID + craftRecipeObject.id + totalXp + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTotalCraft" + resultID + craftRecipeObject.id + totalXp + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + craftRecipeObject.name + " | " + actualLevel + " -> " + desiredLevel + "</a>" +
-        "<div class=\"collapse\" id=\"collapseTotalCraft" + resultID + craftRecipeObject.id + totalXp + "\"><div class=\"card card-body\">" + generateComposHtml(craftRecipeObject.compos, numberCraft) + "</div></div>" +
+        "<tr class=\"accordion-toggle\">"+
+        "<td><a class=\"btn btn-primary\" data-toggle=\"collapse\" href=\"#collapseTotalCraft" + extendID + craftRecipeObject.id + totalXp + "\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseTotalCraft" + resultID + craftRecipeObject.id + totalXp + "\"><i class=\"glyphicon glyphicon-triangle-right\"></i>\t " + craftRecipeObject.name + " | " + actualLevel + " -> " + desiredLevel + "</a>" +
+        //"<div class=\"collapse\" id=\"collapseTotalCraft" + extendID + craftRecipeObject.id + totalXp + "\"><div class=\"card card-body\">" + generateComposHtml(craftRecipeObject.compos, numberCraft) + "</div></div>" +
         "</td><td>" + millionFormate(numberCraft) +
         "</td><td>" + millionFormate(totalXp) +
         "</td><td>" + millionFormate(craftRecipeObject.CraftingPrice * numberCraft) +
         "</td><td class=\"" + (craftRecipeObject.Benefits * numberCraft > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(craftRecipeObject.Benefits * numberCraft) + "</b>" +
-        "</td></tr>";
+        "</td><td><b>" + millionFormate((craftRecipeObject.CraftingPrice * numberCraft) + (craftRecipeObject.Benefits * numberCraft)) + "</b>" +
+        "</td><td class=\"" + (craftRecipeObject.StorePriceBenef * numberCraft > 0 ? "positive" : "negative") + "\"><b>" + (isNaN(craftRecipeObject.StorePriceBenef) ? 0 : millionFormate(craftRecipeObject.StorePriceBenef * numberCraft)) + "</b>" +
+        "</td><td><b>" + (isNaN(craftRecipeObject.StorePriceBenef) ? 0 : millionFormate((craftRecipeObject.CraftingPrice * numberCraft) + (craftRecipeObject.StorePriceBenef * numberCraft))) + "</b>" +
+        "</td></tr>" +
+        "<tr style=\"pointer-events: none;\">" +
+        "<td colspan=\"3\">" +
+            "<div id=\"collapseTotalCraft" + extendID + craftRecipeObject.id + totalXp + "\" class=\"collapse in\">" +
+            ("ScrollcraftBuff" in craftRecipeObject ? "<span>Crafting buff : " +  craftRecipeObject.ScrollcraftBuff + "%</span></br>" : "") +
+            ("buffWealthSmithing" in craftRecipeObject ? "<span>Wealth buff : " +  craftRecipeObject.buffWealthSmithing + "%</span></br>" : "") +
+            ("buffScholarSmithing" in craftRecipeObject ? "<span>Scholar buff : " +  craftRecipeObject.buffScholarSmithing + "%</span></br>" : "") +
+            ("buffPyromancySmithing" in craftRecipeObject ? "<span>Pyromancy buff : " +  craftRecipeObject.buffPyromancySmithing + "%</span></br>" : "") +
+            ("buffIntuitionSmithing" in craftRecipeObject ? "<span>Intuition buff : " +  craftRecipeObject.buffIntuitionSmithing + "%</span></br>" : "") +
+                generateComposHtml(craftRecipeObject.compos, numberCraft) +
+            "</div>" +
+        "</td>" +
+        "</tr>";
+
+        //console.log("new Date().getTime() : " + new Date().getTime());
 
     //console.log("Number craft : " + numberCraft + " | totalXp : " + totalXp + "| crafting price : " + craftRecipeObject.CraftingPrice + " | cout : " + craftRecipeObject.CraftingPrice * numberCraft)
 
     //console.log(craftRecipeObject.CraftingPrice * numberCraft);
 
-    newHtml += "<table class=\"table\"><thead><tr>" +
+    newHtml += "<table class=\"table table-hover\"><thead><tr>" +
         "<th scope=\"col\">Name</th>" +
-        "<th scope=\"col\">Quantity</th>" +
-        "<th scope=\"col\">XP</th>" +
-        "<th scope=\"col\">Price</th>" +
-        "<th scope=\"col\">Benefits</th></tr></thead>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The quantity of item you need to craft.\">Quantity</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"Experience.\">XP</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The total price of crafting.\">Price</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The benefits you get by selling all the items to the market.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Benef.</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"Earning you get after selling all the items to the market.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Earning</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The benefits you get by selling all the items to the game.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/gold_coin.png\">Benef.</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"Earning you get after selling all the items to the game.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/gold_coin.png\">Earning</th></tr></thead>" +
         "<tbody>" +
         composHtml +
         "</tbody>" +
@@ -63,7 +85,7 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
 
 }
 
-function cleanCraftResult(resultID) {
+function cleanLevelUpResult(resultID) {
     document.getElementById(resultID).innerHTML = "";
 
 }
