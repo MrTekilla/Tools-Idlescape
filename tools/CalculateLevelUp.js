@@ -1,4 +1,4 @@
-function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLevelID, selectedCraftRecipeID, selectCraftRecipeList) {
+function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLevelID, selectedCraftRecipeID, levelTable ,selectCraftRecipeList) {
     var newHtml = "";
     var composHtml = "";
     var actualLevel = parseInt(document.getElementById(actualcraftingLevelID).value)
@@ -25,7 +25,7 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
     var totalXp = 0;
     for (i = actualLevel; i < desiredLevel; i++) {
         //console.log("expTable :" + expTable[i].level + " " + expTable[i].xp + " " + expTable[i].difference);
-        totalXp += expTable[i].difference;
+        totalXp += levelTable.xp[i].difference;
     }
     //console.log(totalXp);
     var tmpNumberCraft = totalXp / craftRecipeObject.exp;
@@ -47,6 +47,7 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
         "<tr style=\"pointer-events: none;\">" +
         "<td colspan=\"3\">" +
             "<div id=\"collapseTotalCraft" + extendID + craftRecipeObject.id + totalXp + "\" class=\"collapse in\">" +
+            "<span>Level up : " + levelTable.name + "</span></br>" +
             ("ScrollcraftBuff" in craftRecipeObject ? "<span>Crafting buff : " +  craftRecipeObject.ScrollcraftBuff + "%</span></br>" : "") +
             ("buffWealthSmithing" in craftRecipeObject ? "<span>Wealth buff : " +  craftRecipeObject.buffWealthSmithing + "%</span></br>" : "") +
             ("buffScholarSmithing" in craftRecipeObject ? "<span>Scholar buff : " +  craftRecipeObject.buffScholarSmithing + "%</span></br>" : "") +

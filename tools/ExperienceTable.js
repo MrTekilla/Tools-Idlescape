@@ -1,4 +1,6 @@
-var expTable = [
+var expTable = {
+  name : "Level",
+  xp : [
   { level: 1, xp: 0, difference: 0 },
   { level: 2, xp: 83, difference: 83 },
   { level: 3, xp: 174, difference: 91 },
@@ -98,9 +100,11 @@ var expTable = [
   { level: 97, xp: 10692629, difference: 1008052 },
   { level: 98, xp: 11805606, difference: 1112977 },
   { level: 99, xp: 13034431, difference: 1228825 },
-];
+]};
 
-var masteryTable = [
+var masteryTable = {
+  name : "Mastery",
+  xp : [
   { level: 1, xp: 14391160, difference: 1356729 },
   { level: 2, xp: 15889109, difference: 1497949 },
   { level: 3, xp: 17542976, difference: 1653867 },
@@ -201,4 +205,4 @@ var masteryTable = [
   { level: 98, xp: 213549449297, difference: 20132659249 },
   { level: 99, xp: 235777707252, difference: 22228257955 },
   { level: 100, xp: 260319693761, difference: 24541986509 },
-];
+]};

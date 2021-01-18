@@ -31,12 +31,13 @@ function traitementDataSmithing(refresh) {
 		for (i = 0; i < e.resources.length; i++) {
 			var compos = [];
 			for (j = 0; j < e.resources[i].length; j++) {
-				totalPrice += e.resources[i][j].price * e.resources[i][j].quantity;
+                var quantityAfterBuff = ((e.resources[i][j].name) == "Heat" ? (e.resources[i][j].quantity - (e.resources[i][j].quantity * buffPyromancySmithing / 100)) : e.resources[i][j].quantity);
+				totalPrice += e.resources[i][j].price * quantityAfterBuff;
 				nameCompos += e.resources[i][j].name + (j == (e.resources[i].length - 1) ? "" : " + ");
                 compos.push({
                     "name": e.resources[i][j].name,
                     "price": e.resources[i][j].price,
-                    "quantity": ((e.resources[i][j].name) == "Heat" ? (e.resources[i][j].quantity - (e.resources[i][j].quantity * buffPyromancySmithing / 100)) : e.resources[i][j].quantity),
+                    "quantity": quantityAfterBuff,
                     "img": e.resources[i][j].image
                 });
             }
@@ -139,6 +140,7 @@ function sortByValueSmelting(value, refresh) {
 }
 
 function populateSelectSmithing(list) {
+    document.getElementById("selectedSmithingRecipe").innerHTML = "";
 	list.forEach(e => {
 		document.getElementById("selectedSmithingRecipe").innerHTML +=
 			"<option>" + e.name + "</option>";

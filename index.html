@@ -162,7 +162,7 @@
                               </div>
                           </div>
                         <div><hr/></div>
-                          <a class="btn btn-primary" href="#collapseCraftingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
+                          <a class="btn btn-primary" href="#collapseCraftingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseCraftingOpions"><i class="fa fa-plus"></i>&nbsp; Level up</a>
                           <div class="row collapse" id="collapseCraftingOpions" style="margin-left: 5px;">
                               <div class="col">
                                   <div class="container-fluid">
@@ -173,13 +173,19 @@
                                                       <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
                                                   </div>
                                                   <div class="card-body">
+                                                    <div class="form-group"><label for="actualLevelListCrafting">Level&nbsp;or&nbsp;Mastery&nbsp;?<br></label>
+                                                        <select  data-toggle="tooltip" data-bs-tooltip="" id="actualLevelListCrafting" class="form-control" title="Do you want to level up your Level or your Mastery ?">
+                                                            <option value="Level" selected>Level</option>
+                                                            <option value="Mastery">Mastery</option>
+                                                          </select>
+                                                    </div>
                                                       <div class="form-group"><label for="actualcraftingLevel">Your&nbsp;crafting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualcraftingLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel crafting level."></div>
                                                       <div class="form-group"><label for="craftingLevel">Desired&nbsp;crafting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredcraftingLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired crafting level."></div>
                                                       <div class="form-group"><label for="selectedCraftRecipe">Craft&nbsp;recipe&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedCraftRecipe" class="form-control" title="Select the recipe you want to use to level up.">
                                                               <optgroup label="Choose a recipe">
                                                               </optgroup>
                                                           </select></div>
-                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',selectCraftRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsCraft');">Clean results</button></div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsCraft','actualcraftingLevel','desiredcraftingLevel','selectedCraftRecipe',((document.getElementById('actualLevelListCrafting').value == 'Level') ? expTable : masteryTable),selectCraftRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsCraft');">Clean results</button></div>
                                                   </div>
                                               </div>
                                           </div>
@@ -272,7 +278,7 @@
                             </div>
                           </div>
                         <div><hr/></div>
-                          <a class="btn btn-primary" href="#collapseScrollingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
+                          <a class="btn btn-primary" href="#collapseScrollingOpions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseScrollingOpions"><i class="fa fa-plus"></i>&nbsp; Level up</a>
                           <div class="row collapse" id="collapseScrollingOpions" style="margin-left: 5px;">
                               <div class="col">
                                   <div class="container-fluid">
@@ -283,13 +289,19 @@
                                                       <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
                                                   </div>
                                                   <div class="card-body">
+                                                    <div class="form-group"><label for="actualLevelListScrollcrafting">Level&nbsp;or&nbsp;Mastery&nbsp;?<br></label>
+                                                        <select  data-toggle="tooltip" data-bs-tooltip="" id="actualLevelListScrollcrafting" class="form-control" title="Do you want to level up your Level or your Mastery ?">
+                                                            <option value="Level" selected>Level</option>
+                                                            <option value="Mastery">Mastery</option>
+                                                          </select>
+                                                    </div>
                                                       <div class="form-group"><label for="actualScrollLevel">Your&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualScrollLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel enchanting level."></div>
                                                       <div class="form-group"><label for="desiredScrollLevel">Desired&nbsp;enchanting&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredScrollLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired enchanting level."></div>
                                                       <div class="form-group"><label for="selectedScrollRecipe">Scroll&nbsp;recipe&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedScrollRecipe" class="form-control" title="Select the recipe you want to use to level up.">
                                                               <optgroup label="Choose a recipe">
                                                               </optgroup>
                                                           </select></div>
-                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsScroll');">Clean results</button></div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsScroll','actualScrollLevel','desiredScrollLevel','selectedScrollRecipe',((document.getElementById('actualLevelListScrollcrafting').value == 'Level') ? expTable : masteryTable),selectScrollRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsScroll');">Clean results</button></div>
                                                   </div>
                                               </div>
                                           </div>
@@ -434,7 +446,7 @@
                             </div>
                         </div>
                         <div><hr/></div>
-                          <a class="btn btn-primary" href="#collapseSmeltingOptions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSmeltingOptions"><i class="fa fa-plus"></i>&nbsp; Tools</a>
+                        <a class="btn btn-primary" href="#collapseSmeltingOptions" style="margin-bottom: 10px;margin-left: 40px;" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseSmeltingOptions"><i class="fa fa-plus"></i>&nbsp;Level up</a>
                           <div class="row collapse" id="collapseSmeltingOptions" style="margin-left: 5px;">
                               <div class="col">
                                   <div class="container-fluid">
@@ -445,13 +457,21 @@
                                                       <h6 class="text-primary font-weight-bold m-0">Calculate&nbsp;the&nbsp;price&nbsp;to&nbsp;level&nbsp;up<br></h6>
                                                   </div>
                                                   <div class="card-body">
-                                                      <div class="form-group"><label for="actualsmithingLevel">Your&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualsmithingLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel smithing level."></div>
-                                                      <div class="form-group"><label for="desiredsmithingLevel">Desired&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredsmithingLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired smithing level."></div>
-                                                      <div class="form-group"><label for="selectedSmithingRecipe">Bar&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label><select data-toggle="tooltip" data-bs-tooltip="" id="selectedSmithingRecipe" class="form-control" title="Select the bar you want to use to level up.">
-                                                              <optgroup label="Choose a Bar">
-                                                              </optgroup>
-                                                          </select></div>
-                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsSmelting','actualsmithingLevel','desiredsmithingLevel','selectedSmithingRecipe',selectSmithingRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsSmelting');">Clean results</button></div>
+                                                    <div class="form-group"><label for="actualLevelListSmithing">Level&nbsp;or&nbsp;Mastery&nbsp;?<br></label>
+                                                        <select  data-toggle="tooltip" data-bs-tooltip="" id="actualLevelListSmithing" class="form-control" title="Do you want to level up your Level or your Mastery ?">
+                                                            <option value="Level" selected>Level</option>
+                                                            <option value="Mastery">Mastery</option>
+                                                          </select>
+                                                    </div>
+                                                    <div class="form-group"><label for="actualsmithingLevel">Your&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="actualsmithingLevel" class="form-control" min="1" max="99" placeholder="1" title="Enter your actuel smithing level."></div>
+                                                    <div class="form-group"><label for="desiredsmithingLevel">Desired&nbsp;smithing&nbsp;level&nbsp;:<br></label><input type="number" data-toggle="tooltip" data-bs-tooltip="" id="desiredsmithingLevel" class="form-control" min="1" max="99" placeholder="2" title="Enter your desired smithing level."></div>
+                                                    <div class="form-group"><label for="selectedSmithingRecipe">Bar&nbsp;to&nbsp;level&nbsp;up&nbsp;:<br></label>
+                                                        <select data-toggle="tooltip" data-bs-tooltip="" id="selectedSmithingRecipe" class="form-control" title="Select the bar you want to use to level up.">
+                                                            <optgroup label="Choose a Bar">
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                      <div class="form-group text-center"><button class="btn btn-primary btn btn-primary" type="button" onclick="getCraftXpFromXtoY('resultatsSmelting','actualsmithingLevel','desiredsmithingLevel','selectedSmithingRecipe',((document.getElementById('actualLevelListSmithing').value == 'Level') ? expTable : masteryTable),selectSmithingRecipe);" style="margin-right: 29px;">Calculate</button><button class="btn btn-primary btn btn-primary" type="button" onclick="cleanLevelUpResult('resultatsSmelting');">Clean results</button></div>
                                                   </div>
                                               </div>
                                           </div>
@@ -518,12 +538,12 @@
                                           <tr>
                                               <th>#</th>
                                               <th>Name</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('prix');">Market Price</th>
+                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('prix');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Market Price</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('exp');">Exp</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('minutes');">Minutes</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('width');">Size</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMin');">Profits min</th>
-                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMax');">Profits max</th>
+                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMin');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits min</th>
+                                              <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('benefMax');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits max</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('xpMinute');">Xp/plot/minute</th>
                                               <th role="button" class="clickable" scope="col" onclick="sortByValueSeeds('prix_1xp');">Price per xp</th>
                                           </tr>

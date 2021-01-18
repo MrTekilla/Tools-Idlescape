@@ -133,6 +133,7 @@ function findScrollByLevel(value) {
 }
 
 function populateSelectScroll(list) {
+	document.getElementById("selectedScrollRecipe").innerHTML = "";
 	list.forEach(e => {
 		document.getElementById("selectedScrollRecipe").innerHTML +=
 			"<option>" + e.name + "</option>";

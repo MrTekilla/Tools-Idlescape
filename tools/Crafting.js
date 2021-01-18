@@ -162,6 +162,7 @@ function findCraftByLevel(value) {
 }
 
 function populateSelectCraft(list) {
+	document.getElementById("selectedCraftRecipe").innerHTML = "";
 	list.forEach(e => {
 		document.getElementById("selectedCraftRecipe").innerHTML +=
 			"<option>" + e.name + "</option>";
