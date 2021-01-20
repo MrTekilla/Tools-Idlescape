@@ -19,16 +19,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
       <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
 
-      <script src="tools/ObjectsData.js"></script>
-      <script src="tools/ExperienceTable.js"></script>
-      <script src="tools/Crafting.js"></script>
-      <script src="tools/Scrollcrafting.js"></script>
-      <script src="tools/Farming.js"></script>
-      <script src="tools/Tools.js"></script>
-      <script src="tools/CalculateLevelUp.js"></script>
-      <script src="tools/HeatCalculator.js"></script>
-      <script src="tools/Smithing.js"></script>
-
       <link rel="icon" type="image/png" sizes="352x352" href="img/geode.png">
       <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css?h=ddd11e73e4c0ba794a375c73d4414fff">
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -100,7 +90,7 @@
                           </nav>
                           <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                                 <br>Calculate&nbsp;which&nbsp;recipe&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;level&nbsp;up&nbsp;Craft&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
-                                <br>- <strong>Profits&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;you&nbsp;are&nbsp;going&nbsp;to&nbsp;earn/lose&nbsp;per&nbsp;xp.
+                                <br>- <strong>Profits&nbsp;%&nbsp;</strong> :&nbsp;Represents&nbsp;the&nbsp;percentage&nbsp;of&nbsp;profits&nbsp;you&nbsp;make.
                                 <br>- <strong>Price&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;cost&nbsp;1&nbsp;xp&nbsp;(if&nbsp;you&nbsp;are&nbsp;not&nbsp;interested&nbsp;by&nbsp;profits).
                                 <br>- <strong><em>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
                                 <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
@@ -216,11 +206,11 @@
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the item." scope="col" onclick="sortByValueCrafting('CraftingPrice');">Crafting Price</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The actual price of the item on the market." scope="col" onclick="sortByValueCrafting('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item on the market." scope="col" onclick="sortByValueCrafting('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
-                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueCrafting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueCrafting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits %</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="Experience" scope="col" onclick="sortByValueCrafting('exp');">Exp</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The price of the item if you sell it to the game." scope="col" onclick="sortByValueCrafting('StorePrice');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Price</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col" onclick="sortByValueCrafting('StorePriceBenef');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
-                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueCrafting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueCrafting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits %</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueCrafting('prix_1xp');">Price/XP</th>
                                           </tr>
                                       </thead>
@@ -240,7 +230,7 @@
                           </nav>
                           <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                             <br><em>Calculate which recipe is the best to level up Enchanting by using Scrollcrafting at a lower cost.</em>
-                            <br><em> - </em><strong><em>Profits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
+                            <br><em> - </em><strong><em>Profits %</em></strong><em> : Represents the percentage of profits you make. </em>
                             <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp (if you are not instered by profits.).</em>
                             <br><em> - </em><strong><em>Profits include the 5% fees from the marketplace.</em></strong>
                             <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
@@ -334,7 +324,7 @@
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the scroll." scope="col" onclick="sortByValueScrolls('CraftingPrice');">Crafting Price</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="Price of the scroll on the market." scope="col" onclick="sortByValueScrolls('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Market Price</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the scroll on the market." scope="col" onclick="sortByValueScrolls('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
-                                              <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp. " scope="col" onclick="sortByValueScrolls('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                              <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueScrolls('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits %</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="Experience." scope="col" onclick="sortByValueScrolls('exp');">Exp</th>
                                               <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueScrolls('prix_1xp');">Price/XP</th>
                                           </tr>
@@ -355,7 +345,7 @@
                         </nav>
                         <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                           <br><em>Calculates some data related to smelting.</em>
-                          <br><em> - </em><strong><em>Profits per XP</em></strong><em> : How much gold you are going to earn/lose per xp. </em>
+                          <br><em> - </em><strong><em>Profits %</em></strong><em> : Represents the percentage of profits you make. </em>
                           <br><em> - </em><strong><em>Price per XP</em></strong><em> : How much gold cost 1 xp (if you are not instered by profits.).</em>
                           <br><em> - </em><strong><em>Profits include the 5% fees from the marketplace.</em></strong>
                           <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
@@ -503,10 +493,10 @@
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The cost to craft the item." scope="col" onclick="sortByValueSmelting('CraftingPrice');">Crafting Price</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The actual price of the item on the market." scope="col" onclick="sortByValueSmelting('MarketPrice');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item on the market." scope="col" onclick="sortByValueSmelting('Benefits');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
-                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueSmelting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits/XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueSmelting('ppxBenef');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits %</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The price of the item if you sell it to the game." scope="col" onclick="sortByValueSmelting('StorePrice');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Price</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col" onclick="sortByValueSmelting('StorePriceBenef');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
-                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold you are going to earn/lose per xp." scope="col" onclick="sortByValueSmelting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits/XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueSmelting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits %</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueSmelting('prix_1xp');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price/XP</th>
                                         </tr>
                                     </thead>
@@ -604,5 +594,14 @@
           </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
       </div>
     <script src="js/script.min.js"></script>
+    <script src="tools/ObjectsData.js"></script>
+    <script src="tools/ExperienceTable.js"></script>
+    <script src="tools/Crafting.js"></script>
+    <script src="tools/Scrollcrafting.js"></script>
+    <script src="tools/Farming.js"></script>
+    <script src="tools/Tools.js"></script>
+    <script src="tools/CalculateLevelUp.js"></script>
+    <script src="tools/HeatCalculator.js"></script>
+    <script src="tools/Smithing.js"></script>
   </body>
 </html>

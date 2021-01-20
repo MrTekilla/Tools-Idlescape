@@ -41,9 +41,10 @@ function traitementDataScrolls(json, refresh) {
 			"Benefits": benef,
 			"prix_1xp": (totalPrice / e.exp).toFixed(2),
 			"mindRune": mindRune ? "Yes" : "No",
-			"ppxBenef": (benef / e.exp).toFixed(2),
+			"ppxBenef": ((((e.price  - Math.abs((e.price * 0.05))) - totalPrice) * 100) / totalPrice).toFixed(2),
 			"compos": compos
 		}
+		//Percentage profits formula : ((v2 - v1)*100)/v1 -> V2 : Selling price (Including marketplace fees) | V1 : Crafting price
 
 		finalResultsScrolls.push(tmpResult);
 		compos = [];
@@ -97,7 +98,7 @@ function populateScrolls(craftName, sortingLevel) {
 			"</td><td>" + millionFormate(e.CraftingPrice) +
 			"</td><td>" + millionFormate(e.MarketPrice) +
 			"</td><td class=\"" + (e.Benefits > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(e.Benefits) + "</b>" +
-			"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(e.ppxBenef) + "</b>" +
+			"</td><td class=\"" + (e.ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + (e.ppxBenef > 0 ? "+" : "") + millionFormate(e.ppxBenef) + "%</b>" +
 			"</td><td>" + millionFormate(e.exp) +
 			"</td><td>" + e.prix_1xp +
 			"</td></tr>" +

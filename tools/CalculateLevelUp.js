@@ -47,13 +47,13 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
         "<tr style=\"pointer-events: none;\">" +
         "<td colspan=\"3\">" +
             "<div id=\"collapseTotalCraft" + extendID + craftRecipeObject.id + totalXp + "\" class=\"collapse in\">" +
-            "<span>Level up : " + levelTable.name + "</span></br>" +
-            ("ScrollcraftBuff" in craftRecipeObject ? "<span>Crafting buff : " +  craftRecipeObject.ScrollcraftBuff + "%</span></br>" : "") +
-            ("buffWealthSmithing" in craftRecipeObject ? "<span>Wealth buff : " +  craftRecipeObject.buffWealthSmithing + "%</span></br>" : "") +
-            ("buffScholarSmithing" in craftRecipeObject ? "<span>Scholar buff : " +  craftRecipeObject.buffScholarSmithing + "%</span></br>" : "") +
-            ("buffPyromancySmithing" in craftRecipeObject ? "<span>Pyromancy buff : " +  craftRecipeObject.buffPyromancySmithing + "%</span></br>" : "") +
-            ("buffIntuitionSmithing" in craftRecipeObject ? "<span>Intuition buff : " +  craftRecipeObject.buffIntuitionSmithing + "%</span></br>" : "") +
-                generateComposHtml(craftRecipeObject.compos, numberCraft) +
+            "<span>Level up : <b>" + levelTable.name + "</b></span><br>" +
+            ("ScrollcraftBuff" in craftRecipeObject ? "<span>Crafting buff : <b>" +  craftRecipeObject.ScrollcraftBuff + "%</b></span> | " : "") +
+            ("buffWealthSmithing" in craftRecipeObject ? "<span>Wealth buff : <b>" +  craftRecipeObject.buffWealthSmithing + "%</b></span> | " : "") +
+            ("buffScholarSmithing" in craftRecipeObject ? "<span>Scholar buff : <b>" +  craftRecipeObject.buffScholarSmithing + "%</b></span> | " : "") +
+            ("buffPyromancySmithing" in craftRecipeObject ? "<span>Pyromancy buff : <b>" +  craftRecipeObject.buffPyromancySmithing + "%</b></span> | " : "") +
+            ("buffIntuitionSmithing" in craftRecipeObject ? "<span>Intuition buff : <b>" +  craftRecipeObject.buffIntuitionSmithing + "%</b></span> | " : "") +
+                ((resultID == "resultatsCraft") ? generateComposHtml(craftRecipeObject.compos, numberCraft, parseInt(document.getElementById("ScrollCraftingBuffCraft").value)) : generateComposHtml(craftRecipeObject.compos, numberCraft)) +
             "</div>" +
         "</td>" +
         "</tr>";
@@ -66,9 +66,9 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
 
     newHtml += "<table class=\"table table-hover\"><thead><tr>" +
         "<th scope=\"col\">Name</th>" +
-        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The quantity of item you need to craft.\">Quantity</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The number of item you need to craft.\">Quant.</th>" +
         "<th scope=\"col\" data-toggle=\"tooltip\" title=\"Experience.\">XP</th>" +
-        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The total price of crafting.\">Price</th>" +
+        "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The total price of crafting.\">Crafting Price</th>" +
         "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The benefits you get by selling all the items to the market.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Benef.</th>" +
         "<th scope=\"col\" data-toggle=\"tooltip\" title=\"Earning you get after selling all the items to the market.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Earning</th>" +
         "<th scope=\"col\" data-toggle=\"tooltip\" title=\"The benefits you get by selling all the items to the game.\"><img class=\"widthSet\" src=\"https://idlescape.com/images/gold_coin.png\">Benef.</th>" +

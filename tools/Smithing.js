@@ -37,6 +37,7 @@ function traitementDataSmithing(refresh) {
                 compos.push({
                     "name": e.resources[i][j].name,
                     "price": e.resources[i][j].price,
+                    "originalQuantity": quantityAfterBuff,
                     "quantity": quantityAfterBuff,
                     "img": e.resources[i][j].image
                 });
@@ -59,17 +60,18 @@ function traitementDataSmithing(refresh) {
 				"Benefits": benef,
 				"exp": realXp,
 				"prix_1xp": (totalPrice / realXp).toFixed(2),
-				"ppxBenef": (benef / realXp).toFixed(2),
+				"ppxBenef": ((((e.price  - Math.abs((e.price * 0.05))) - totalPrice) * 100) / totalPrice).toFixed(2),
 				"compos": compos,
 				"StorePrice" : realStorePrice,
 				"StorePriceBenef" : benefStore,
-                "StorePriceBenefppx" : (benefStore / realXp).toFixed(2),
+                "StorePriceBenefppx" : (((realStorePrice - totalPrice) * 100) / totalPrice).toFixed(2),
                 "buffWealthSmithing" : buffWealthSmithing,
                 "buffScholarSmithing" : buffScholarSmithing,
                 "buffPyromancySmithing" : buffPyromancySmithing,
                 "buffIntuitionSmithing" : buffIntuitionSmithing
 				/*"compoArray" : generateComposHtml(compos)*/
 			}
+			//Percentage profits formula : ((v2 - v1)*100)/v1 -> V2 : Selling price (Including marketplace fees) | V1 : Crafting price
 
 			finalResultsSmithing.push(tmpResult);
 			nameCompos = "";
@@ -101,10 +103,10 @@ function populateSmithing() {
 			"</td><td>" + millionFormate(finalResultsSmithing[i].CraftingPrice) +
 			"</td><td>" + millionFormate(finalResultsSmithing[i].MarketPrice) +
 			"</td><td class=\"" + (finalResultsSmithing[i].Benefits > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsSmithing[i].Benefits) + "</b>" +
-			"</td><td class=\"" + (finalResultsSmithing[i].ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsSmithing[i].ppxBenef) + "</b>" +
+			"</td><td class=\"" + (finalResultsSmithing[i].ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + (finalResultsSmithing[i].ppxBenef > 0 ? "+" : "") + millionFormate(finalResultsSmithing[i].ppxBenef) + "%</b>" +
 			"</td><td>" + millionFormate(finalResultsSmithing[i].StorePrice) +
 			"</td><td class=\"" + (finalResultsSmithing[i].StorePriceBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsSmithing[i].StorePriceBenef) + "</b>" +
-			"</td><td class=\"" + (finalResultsSmithing[i].StorePriceBenefppx > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsSmithing[i].StorePriceBenefppx) + "</b>" +
+			"</td><td class=\"" + (finalResultsSmithing[i].StorePriceBenefppx > 0 ? "positive" : "negative") + "\"" + "><b>" + (finalResultsSmithing[i].StorePriceBenefppx > 0 ? "+" : "") + millionFormate(finalResultsSmithing[i].StorePriceBenefppx) + "%</b>" +
 			"</td><td>" + finalResultsSmithing[i].prix_1xp +
 			"</td></tr>" +
 			"<tr style=\"pointer-events: none;\">" +

@@ -36,7 +36,7 @@ function traitementDataCrafting(refresh) {
 				//console.log("realQuantity : " + realQuantity);
 				totalPrice += e.resources[i][j].price * realQuantity;
 				nameCompos += e.resources[i][j].name + (j == (e.resources[i].length - 1) ? "" : " + ");
-				compos.push({ "name": e.resources[i][j].name, "price": e.resources[i][j].price, "quantity": realQuantity, "img": e.resources[i][j].image });
+				compos.push({ "name": e.resources[i][j].name, "price": e.resources[i][j].price, "originalQuantity" : e.resources[i][j].quantity, "quantity": realQuantity, "img": e.resources[i][j].image });
 			}
 			var prixStore = findItemFromjs(e.name);
 			var tmpBenef = e.price - totalPrice;
@@ -52,14 +52,15 @@ function traitementDataCrafting(refresh) {
 				"Benefits": benef,
 				"exp": e.exp,
 				"prix_1xp": (totalPrice / e.exp).toFixed(2),
-				"ppxBenef": (benef / e.exp).toFixed(2),
+				"ppxBenef": ((((e.price  - Math.abs((e.price * 0.05))) - totalPrice) * 100) / totalPrice).toFixed(2),
 				"compos": compos,
 				"StorePrice" : prixStore,
 				"StorePriceBenef" : benefStore,
-				"StorePriceBenefppx" : (benefStore / e.exp).toFixed(2),
+				"StorePriceBenefppx" : (((prixStore - totalPrice) * 100) / totalPrice).toFixed(2),
 				"ScrollcraftBuff" : buffScrollcrafting
 				/*"compoArray" : generateComposHtml(compos)*/
 			}
+			//Percentage profits formula : ((v2 - v1)*100)/v1 -> V2 : Selling price (Including marketplace fees) | V1 : Crafting price
 
 			finalResultsExp.push(tmpResult);
 			nameCompos = "";
@@ -120,11 +121,11 @@ function populateCrafting(craftName, sortingLevel) {
 			"</td><td>" + millionFormate(finalResultsExp[i].CraftingPrice) +
 			"</td><td>" + millionFormate(finalResultsExp[i].MarketPrice) +
 			"</td><td class=\"" + (finalResultsExp[i].Benefits > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].Benefits) + "</b>" +
-			"</td><td class=\"" + (finalResultsExp[i].ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].ppxBenef) + "</b>" +
+			"</td><td class=\"" + (finalResultsExp[i].ppxBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + (finalResultsExp[i].ppxBenef > 0 ? "+" : "") + millionFormate(finalResultsExp[i].ppxBenef) + "%</b>" +
 			"</td><td>" + millionFormate(finalResultsExp[i].exp) +
 			"</td><td>" + millionFormate(finalResultsExp[i].StorePrice) +
 			"</td><td class=\"" + (finalResultsExp[i].StorePriceBenef > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].StorePriceBenef) + "</b>" +
-			"</td><td class=\"" + (finalResultsExp[i].StorePriceBenefppx > 0 ? "positive" : "negative") + "\"" + "><b>" + millionFormate(finalResultsExp[i].StorePriceBenefppx) + "</b>" +
+			"</td><td class=\"" + (finalResultsExp[i].StorePriceBenefppx > 0 ? "positive" : "negative") + "\"" + "><b>" + (finalResultsExp[i].StorePriceBenefppx > 0 ? "+" : "") + millionFormate(finalResultsExp[i].StorePriceBenefppx) + "%</b>" +
 			"</td><td>" + finalResultsExp[i].prix_1xp +
 			"</td></tr>" +
 			"<tr style=\"pointer-events: none;\">" +

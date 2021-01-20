@@ -25,12 +25,13 @@ function manualRefresh() {
   callFetchSmithing(true);
 }
 
-function generateComposHtml(compos, quantt = 1) {
+function generateComposHtml(compos, quantt = 1, buffCraft = 0) {
   var newHtml = "",
     composHtml = "";
   var i;
 
   for (i = 0; i < compos.length; i++) {
+    modifiedQuantity = compos[i].originalQuantity * quantt - Math.floor((compos[i].originalQuantity * quantt * buffCraft / 100));
     composHtml +=
       '<tr><th scope="row" class="thImg"><img src="' +
       (websiteURL + compos[i].img) +
@@ -38,11 +39,11 @@ function generateComposHtml(compos, quantt = 1) {
       "</th><td>" +
       compos[i].name +
       "</td><td>" +
-      millionFormate(compos[i].quantity * quantt) +
+      millionFormate(((buffCraft > 0) ? modifiedQuantity : (compos[i].quantity * quantt))) +
       "</td><td>" +
       millionFormate(compos[i].price) +
       "</td><td>" +
-      millionFormate(compos[i].price * compos[i].quantity * quantt) +
+      millionFormate(compos[i].price * ((buffCraft > 0) ? modifiedQuantity : (compos[i].quantity * quantt))) +
       "</td></tr>";
   }
   newHtml +=
