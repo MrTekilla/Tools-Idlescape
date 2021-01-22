@@ -220,7 +220,7 @@ var itemsList = [
     gamePrice: 10,
   },
   {
-    name: "Chili pepper",
+    name: "Chili Pepper",
     gamePrice: 10,
   },
   {
@@ -236,7 +236,7 @@ var itemsList = [
     gamePrice: 20,
   },
   {
-    name: "Cooper Ore",
+    name: "Copper Ore",
     gamePrice: 5,
   },
   {
@@ -688,6 +688,10 @@ var itemsList = [
     gamePrice: 68000,
   },
   {
+    name: "Obsidian Full Helm",
+    gamePrice: 89600,
+  },
+  {
     name: "Obsidian Greatsword",
     gamePrice: 140000,
   },
@@ -772,7 +776,7 @@ var itemsList = [
     gamePrice: 15,
   },
   {
-    name: "Raw beef",
+    name: "Raw Beef",
     gamePrice: 75,
   },
   {
@@ -908,6 +912,10 @@ var itemsList = [
     gamePrice: 1,
   },
   {
+    name: "Sapphire",
+    gamePrice: 1000,
+  },
+  {
     name: "Sapphire Log",
     gamePrice: 1000,
   },
@@ -956,7 +964,7 @@ var itemsList = [
     gamePrice: 75,
   },
   {
-    name: "Spider legs",
+    name: "Spider Legs",
     gamePrice: 100,
   },
   {
