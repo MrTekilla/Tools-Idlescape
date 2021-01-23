@@ -48,7 +48,8 @@
                   </a>
                   <hr class="sidebar-divider my-0">
                   <ul class="nav navbar-nav flex-column nav-pills" id="accordionSidebar">
-                      <li class="nav-item active"><a class="nav-link active text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Exp" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/ui/crafting_icon.png">&nbsp;Crafting</a></li>
+                      <li class="nav-item active"><a class="nav-link active text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Overview" data-toggle="pill"><img class="widthSetCircle" src="img/statistics.png">&nbsp;Overview</a></li>
+                      <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Exp" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/ui/crafting_icon.png">&nbsp;Crafting</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Scrolls" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/enchanting/enchanted_scroll.png">&nbsp;Scrollcrafting</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#Smithing" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/smithing/smithing_icon.png">&nbsp;Smithing</a></li>
                       <li class="nav-item"><a class="nav-link text-left d-xl-flex justify-content-xl-start align-items-xl-center" href="#SeedsTab" data-toggle="pill"><img class="widthSet" src="https://idlescape.com/images/farming/farming_icon.png">&nbsp;Farming</a></li>
@@ -79,9 +80,124 @@
           <div class="d-flex flex-column" id="content-wrapper" style="background: rgb(26,32,53);">
               <div id="content" style="background: rgb(248,249,252);">
                   <div class="tab-content">
+                    <!-- ############# OVERVIEW ############# -->
+                    <div id="Overview" class="tab-pane fade show active">
+                        <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
+                            <div class="container-fluid">
+                            <h3 style="color: rgb(255,255,255);margin-left: 5px;"><img class="widthSet" src="https://idlescape.com/images/ui/crafting_icon.png">&nbsp;Overview</h3>
+                            <h6 style="color:#fff;"><i>Fetchning&nbsp;data&nbsp;from&nbsp;<a href="https://idlescape.xyz" target="_blank">https://idlescape.xyz</a>&nbsp;<b>auto-refreshes&nbsp;every&nbsp;5&nbsp;minutes</b></i></h6>
+                        </div>
+                        </nav>
+                        <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
+                            <br>Calculate&nbsp;which&nbsp;recipe&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;level&nbsp;up&nbsp;Craft&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
+                            <br>- <strong>Profits&nbsp;%&nbsp;</strong> :&nbsp;Represents&nbsp;the&nbsp;percentage&nbsp;of&nbsp;profits&nbsp;you&nbsp;make.
+                            <br>- <strong>Price&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;cost&nbsp;1&nbsp;xp&nbsp;(if&nbsp;you&nbsp;are&nbsp;not&nbsp;interested&nbsp;by&nbsp;profits).
+                            <br>- <strong><em>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
+                            <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
+                            <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">&nbsp;:&nbsp;Related to the prices from the game.</em></strong>
+                            <br><br>
+                        </h6>
+                    <div><hr/></div>
+                        <div class="col">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-craftname py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Smithing</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-craftname py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Farming</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-craftname py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Heat</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row">
+
+                                    <div class="col col-md-6">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">Crafting</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id ="resultatsCraftOverview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-6">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">ScrollCrafting</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id ="resultatsScrollcraftingOverview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-6">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">Items</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="itemTableOverview" class="content" style="margin-left: 13px;margin-right: 13px;">
+                                                    <div>
+                                                        <table data-show-columns="true" class="table table-sm table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Name</th>
+                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Price of the item when you sell it to the game." scope="col" onclick=""><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Store price</th>
+                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Actual price from the marketplace." scope="col" onclick=""><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Market price</th>
+                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Profits once selling the item to the game" scope="col" onclick="">Profits</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div><hr/></div>
+                    </div>
 
                       <!-- ############# CRAFTING ############# -->
-                      <div id="Exp" class="tab-pane fade show active">
+                      <div id="Exp" class="tab-pane fade">
                           <nav class="navbar navbar-light navbar-expand d-xl-flex mb-4 topbar static-top" style="background: rgb(26,32,53);opacity: 1;">
                               <div class="container-fluid">
                                 <h3 style="color: rgb(255,255,255);margin-left: 5px;"><img class="widthSet" src="https://idlescape.com/images/ui/crafting_icon.png">&nbsp;Crafting</h3>
