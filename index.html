@@ -90,11 +90,10 @@
                         </nav>
                         <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
                             <br>Calculate&nbsp;which&nbsp;recipe&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;level&nbsp;up&nbsp;Craft&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
-                            <br>- <strong>Profits&nbsp;%&nbsp;</strong> :&nbsp;Represents&nbsp;the&nbsp;percentage&nbsp;of&nbsp;profits&nbsp;you&nbsp;make.
-                            <br>- <strong>Price&nbsp;per&nbsp;XP</strong> :&nbsp;How&nbsp;much&nbsp;gold&nbsp;cost&nbsp;1&nbsp;xp&nbsp;(if&nbsp;you&nbsp;are&nbsp;not&nbsp;interested&nbsp;by&nbsp;profits).
+                            <br>- <strong>Top 5 Crafting recipes : </strong> .
+                            <br>- <strong>Top 5 Scrollcrafting recipes : </strong> .
+                            <br>- <strong>Low price items : </strong> .
                             <br>- <strong><em>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
-                            <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">&nbsp;:&nbsp;Related to the prices from the marketplace.</em></strong>
-                            <br>- <strong><em><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">&nbsp;:&nbsp;Related to the prices from the game.</em></strong>
                             <br><br>
                         </h6>
                     <div><hr/></div>
@@ -125,6 +124,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 col-xl-3 mb-4">
                                         <div class="card shadow border-left-craftname py-2">
                                             <div class="card-body">
@@ -138,37 +138,25 @@
                                         </div>
                                     </div>
                                     
+                                    <div class="col-md-6 col-xl-3 mb-4">
+                                        <div class="card shadow border-left-craftname py-2">
+                                            <div class="card-body">
+                                                <div class="row align-items-center no-gutters">
+                                                    <div class="col mr-2">
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Openable items</span></div>
+                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
 
                                     <div class="col col-md-6">
                                         <div class="card shadow mb-4">
                                             <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">Crafting</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id ="resultatsCraftOverview">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col col-md-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">ScrollCrafting</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id ="resultatsScrollcraftingOverview">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col col-md-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">Items</h6>
+                                                <h6 class="text-primary font-weight-bold m-0">Low price items</h6>
                                             </div>
                                             <div class="card-body">
                                                 <div id="itemTableOverview" class="content" style="margin-left: 13px;margin-right: 13px;">
@@ -190,6 +178,31 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col col-md-6">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">Top 5 Crafting recipes</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id ="resultatsCraftOverview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col col-md-6">
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">Top 5 ScrollCrafting recipes</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id ="resultatsScrollcraftingOverview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
