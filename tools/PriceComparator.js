@@ -120,25 +120,25 @@ function fillOpenableItems(){
     var innerHtml = "";
     for(var i = 0 ; i < openable.length - 1 ; i+=2){
         if (typeof (openable[i]) != "undefined") {
-            innerHtml += "<tr><td><img src=\"" + (websiteURL + openable[i].image) + "\" class=\"widthSet\"> <b>Price : <a class=\"positive\">" + millionFormate(openable[i].price) + "</b></a></td>";
-            innerHtml += "<td><img src=\"" + (websiteURL + openable[i+1].image) + "\" class=\"widthSet\"> <b>Price : <a class=\"positive\">" + millionFormate(openable[i+1].price) + "</b></a></td></tr>";
+            innerHtml += "<tr><td><img src=\"" + (websiteURL + openable[i].image) + "\" class=\"widthSet\"> <b>" + openable[i].name + " : <a class=\"positive\">" + millionFormate(openable[i].price) + "</b></a></td>";
+            innerHtml += "<td><img src=\"" + (websiteURL + openable[i+1].image) + "\" class=\"widthSet\"> <b>" + openable[i+1].name + " : <a class=\"positive\">" + millionFormate(openable[i+1].price) + "</b></a></td></tr>";
         }
     }
-    document.getElementById("openableItems").innerHTML = "<table width=\"99%\" class=\"table-hover\"><tbody>" + innerHtml + "</tbody></table>";
+    document.getElementById("openableItems").innerHTML = "<table width=\"99%\"><tbody>" + innerHtml + "</tbody></table>";
 }
 
 function fillheatOverview(heatListOverview){
     var innerHtml = "";
     for(var i = 0 ; i < heatListOverview.length ; i++){
-        innerHtml += "<img src=\"" + (websiteURL + heatListOverview[i].img) + "\" class=\"widthSet\"> <b> " + heatListOverview[i].name + " : <a class=\"positive\">" + millionFormate(heatListOverview[i].prix_1heat) + "</a></b></br>";
+        innerHtml += "<tr><td><img src=\"" + (websiteURL + heatListOverview[i].img) + "\" class=\"widthSet\"></td><td><b>" + heatListOverview[i].name + "</td><td></b><a class=\"positive\"><b>" + millionFormate(heatListOverview[i].prix_1heat) + "</b></a></td></tr>";
     }
-    document.getElementById("heatOverview").innerHTML = innerHtml;
+    document.getElementById("heatOverview").innerHTML = "<table width=\"99%\" class=\"table-hover\"><tbody>" + innerHtml + "</tbody></table>";
 }
 
 function fillSmeltOverview(SmeltListOverview){
     var innerHtml = "";
     for(var i = 0 ; i < maxSmeltingOverview ; i++){
-        innerHtml += "<tr><td><img src=\"" + (websiteURL + SmeltListOverview[i].img) + "\" class=\"widthSet\"></td> <td><b> " + SmeltListOverview[i].name + "</td> <td><a class=\"" + (SmeltListOverview[i].Benefits > 0 ? "positive" : "negative") + "\">" + millionFormate(Math.floor(SmeltListOverview[i].Benefits)) + "</a></td><td><a class=\"" + (SmeltListOverview[i].StorePriceBenef > 0 ? "positive" : "negative") + "\">" + millionFormate(Math.floor(SmeltListOverview[i].StorePriceBenef)) + "</a></td></tr>";
+        innerHtml += "<tr><td><img src=\"" + (websiteURL + SmeltListOverview[i].img) + "\" class=\"widthSet\"></td> <td><b> " + SmeltListOverview[i].name.replace("Bar", "") + "</b></td> <td><a class=\"" + (SmeltListOverview[i].Benefits > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(Math.floor(SmeltListOverview[i].Benefits)) + "</b></a></td><td><a class=\"" + (SmeltListOverview[i].StorePriceBenef > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(Math.floor(SmeltListOverview[i].StorePriceBenef)) + "</b></a></td></tr>";
     }
     document.getElementById("smeltOverview").innerHTML =  "<table width=\"99%\" class=\"table-hover\"><thead><tr><th></th><th></th><th><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Profits</th><th><img class=\"widthSet\" src=\"https://idlescape.com/images/gold_coin.png\">Profits</th></tr></thead><tbody>" + innerHtml + "</tbody></table>";
 }
@@ -146,7 +146,7 @@ function fillSmeltOverview(SmeltListOverview){
 function fillSeedsOverview(SeedListOverview){
     var innerHtml = "";
     for(var i = 0 ; i < maxSeedsOverview ; i++){
-        innerHtml += "<tr><td><img src=\"" + (websiteURL + SeedListOverview[i].img) + "\" class=\"widthSet\"></td> <td><b> " + SeedListOverview[i].name.replace("Seed", "") + "</td> <td><a class=\"" + (SeedListOverview[i].benefMin > 0 ? "positive" : "negative") + "\">" + millionFormate(Math.floor(SeedListOverview[i].benefMin)) + "</a></td><td><a class=\"" + (SeedListOverview[i].benefMax > 0 ? "positive" : "negative") + "\">" + millionFormate(Math.floor(SeedListOverview[i].benefMax)) + "</a></td></tr>";
+        innerHtml += "<tr><td><img src=\"" + (websiteURL + SeedListOverview[i].img) + "\" class=\"widthSet\"></td> <td><b> " + SeedListOverview[i].name.replace("Seed", "") + "</b></td> <td><a class=\"" + (SeedListOverview[i].benefMin > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(Math.floor(SeedListOverview[i].benefMin)) + "</b></a></td><td><a class=\"" + (SeedListOverview[i].benefMax > 0 ? "positive" : "negative") + "\"><b>" + millionFormate(Math.floor(SeedListOverview[i].benefMax)) + "</b></a></td></tr>";
     }
     document.getElementById("seedOverview").innerHTML =  "<table width=\"99%\" class=\"table-hover\"><thead><tr><th></th><th></th><th><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Min</th><th><img class=\"widthSet\" src=\"https://idlescape.com/images/ui/marketplace_icon.png\">Max</th></tr></thead><tbody>" + innerHtml + "</tbody></table>";
 }

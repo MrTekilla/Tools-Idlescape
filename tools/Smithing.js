@@ -13,6 +13,8 @@ var buffWealthSmithing = 0, buffScholarSmithing = 0, buffPyromancySmithing = 0, 
 var actualSortSmithing = "prix_1xp";
 var sortOrderSmithing = false;
 
+var defaultTimesSmelting = [6,12,20,30,44,90,106];
+
 function initSmithingData(json, refresh){
     jsonSmithing = json;
     traitementDataSmithing(refresh);
@@ -152,12 +154,30 @@ function sortByValueSmelting(value, refresh) {
 }
 
 function populateSelectSmithing(list) {
-    document.getElementById("selectedSmithingRecipe").innerHTML = "";
+	document.getElementById("selectedSmithingRecipe").innerHTML = "";
+	document.getElementById("SmeltingRecipe").innerHTML = "";
+	list.sort(function (a, b) {
+		return parseFloat(a["level"]) - parseFloat(b["level"]);
+	});
 	list.forEach(e => {
 		document.getElementById("selectedSmithingRecipe").innerHTML +=
-			"<option>" + e.name + "</option>";
+			"<option value=\"" + e.id + "\">" + e.name + "</option>";
+		document.getElementById("SmeltingRecipe").innerHTML +=
+			"<option value=\"" + e.id + "\">" + e.name + "</option>";
 	});
 
 }
 
+function calculateSmeltingTime(effectiveLevel, ore, quantity){
+	var haste = document.getElementById("HastesmithingLevel").value;
+	var inferno = document.getElementById("InfernosmithingLevel").value;
+	var efficiency = document.getElementById("EfficiencysmithingLevel").value;
+	var scholar = document.getElementById("ScholarsmithingLevel").value;
+	var wealth = document.getElementById("WealthsmithingLevel").value;
+	var pyromancy = document.getElementById("PyromancysmithingLevel").value;
+	var intuition = document.getElementById("IntuitionsmithingLevel").value;
 
+	//defaultTimesSmelting
+
+
+}

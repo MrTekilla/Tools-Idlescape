@@ -61,7 +61,7 @@ function getCraftXpFromXtoY(resultID, actualcraftingLevelID, desiredcraftingLeve
         //console.log("new Date().getTime() : " + new Date().getTime());
 
     //console.log("Number craft : " + numberCraft + " | totalXp : " + totalXp + "| crafting price : " + craftRecipeObject.CraftingPrice + " | cout : " + craftRecipeObject.CraftingPrice * numberCraft)
-
+    //console.log("Name : " + craftRecipeObject.name + " | xp : "+ craftRecipeObject.exp + " | lvl : " + craftRecipeObject.level);
     //console.log(craftRecipeObject.CraftingPrice * numberCraft);
 
     newHtml += "<table class=\"table table-hover\"><thead><tr>" +
