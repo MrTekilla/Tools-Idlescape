@@ -52,6 +52,19 @@
     border-left: .25rem solid #7241B4!important
 }
 
+.border-left-smeltingOverview {
+    border-left: .25rem solid #FEF368!important
+}
+.border-left-seedsOverview {
+    border-left: .25rem solid #03552C!important
+}
+.border-left-heatOverview {
+    border-left: .25rem solid #9A2111!important
+}
+.border-left-OpenableOverview {
+    border-left: .25rem solid #216272!important
+}
+
 
 .border-left-scrollcraft {
     border-left: .25rem solid #6e2570!important

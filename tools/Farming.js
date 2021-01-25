@@ -10,7 +10,7 @@ function callFetchFarming(refresh = false) {
 //Calculs
 var actualSortSeeds = "prix_1xp";
 var sortOrderSeeds = false;
-var finalResultsSeeds = [];
+var finalResultsSeeds = [], seedsListOverview = [];
 function traitementDataSeeds(json, refresh) {
 	finalResultsSeeds = [];
 	json.seeds.forEach(e => {
@@ -40,9 +40,17 @@ function traitementDataSeeds(json, refresh) {
 		//compos = [];
 
 	});
-
+	seedsListOverview = finalResultsSeeds;
+	fillSeedsListOverview();
 	sortByValueSeeds(actualSortSeeds, refresh);
 
+}
+
+function fillSeedsListOverview(){
+	seedsListOverview.sort(function (a, b) {
+		return parseFloat(b["benefMax"]) - parseFloat(a["benefMax"]);
+	});
+	fillSeedsOverview(seedsListOverview);
 }
 
 function sortByValueSeeds(value, refresh) {

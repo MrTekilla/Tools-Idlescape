@@ -89,11 +89,13 @@
                         </div>
                         </nav>
                         <h6 style="margin: 0px;margin-left: 10px;color: var(--dark);padding: 0;margin-top: -29px;">
-                            <br>Calculate&nbsp;which&nbsp;recipe&nbsp;is&nbsp;the&nbsp;best&nbsp;to&nbsp;level&nbsp;up&nbsp;Craft&nbsp;at&nbsp;a&nbsp;lower&nbsp;cost.
-                            <br>- <strong>Top 5 Crafting recipes : </strong> .
-                            <br>- <strong>Top 5 Scrollcrafting recipes : </strong> .
-                            <br>- <strong>Low price items : </strong> .
-                            <br>- <strong><em>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
+                            <br>- <strong>Top 5 Crafting recipes : </strong><em>Top 5 of Crafting recipes sorted by price/xp.</em>
+                            <br>- <strong>Top 5 Scrollcrafting recipes : </strong><em>Top 5 of Scrollcrafting recipes sorted by price/xp.</em>
+                            <br>- <strong>Low price items : </strong><em>Items sold to marketplace below store's prices. Buy them and sell them to the store to make profits.</em>
+                            <br>- <strong><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits : </strong><em>Profits you get by selling to the marketplace.</em>
+                            <br>- <strong><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits : </strong><em>Profits you get by selling to the store.</em>
+                            <br>- <strong>Price/XP : </strong><em>How much gold cost 1 xp (if you are not instered by profits.).</em>
+                            <br>- <strong>Profits&nbsp;include&nbsp;the&nbsp;5%&nbsp;fees&nbsp;from&nbsp;the&nbsp;marketplace.</em></strong>
                             <br><br>
                         </h6>
                     <div><hr/></div>
@@ -101,50 +103,62 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-craftname py-2">
+                                        <div class="card shadow border-left-smeltingOverview py-2">
                                             <div class="card-body">
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
-                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Smithing</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Top 3 smelting to make profits</span></div>
+                                                        <hr/>
+                                                        <div id="smeltOverview">
+                                                            <p>Fetchning data from <a href="https://idlescape.xyz">https://idlescape.xyz</a></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-craftname py-2">
+                                        <div class="card shadow border-left-seedsOverview py-2">
                                             <div class="card-body">
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
-                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Farming</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Top 3 seeds (Minimum and Maximum Profits)</span></div>
+                                                        <hr/>
+                                                        <div id="seedOverview">
+                                                            <p>Fetchning data from <a href="https://idlescape.xyz">https://idlescape.xyz</a></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-craftname py-2">
+                                    <div class="col-md-5 col-xl-2 mb-3">
+                                        <div class="card shadow border-left-heatOverview py-2">
                                             <div class="card-body">
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
-                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Heat</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Top 3 heat (Price/Heat)</span></div>
+                                                        <hr/>
+                                                        <div id="heatOverview">
+                                                            <p>Fetchning data from <a href="https://idlescape.xyz">https://idlescape.xyz</a></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-craftname py-2">
+                                    <div class="col-md-7 col-xl-4 mb-5">
+                                        <div class="card shadow border-left-OpenableOverview py-2">
                                             <div class="card-body">
                                                 <div class="row align-items-center no-gutters">
                                                     <div class="col mr-2">
                                                         <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span>Openable items</span></div>
-                                                        <div class="text-dark font-weight-bold h5 mb-0 form-group"><input type="search" data-toggle="tooltip" data-bs-tooltip="" id="craftName" class="form-control" placeholder="Name" title="Find a craft by name" oninput="findCraftName(this.value);" onpaste="findCraftName(this.value);"></div>
+                                                        <hr/>
+                                                        <div id="openableItems">
+                                                            <p>Fetchning data from <a href="https://idlescape.xyz">https://idlescape.xyz</a></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,12 +177,29 @@
                                                     <div>
                                                         <table data-show-columns="true" class="table table-sm table-hover">
                                                             <thead>
+                                                                
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                                <h6 class="text-primary font-weight-bold m-0">Top 5 ScrollCrafting recipes</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div id="scrollingTableOverview" class="content" style="margin-left: 13px;margin-right: 13px;">
+                                                    <div>
+                                                        <table class="table table-sm table-hover">
+                                                            <thead>
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>Name</th>
-                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Price of the item when you sell it to the game." scope="col" onclick=""><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Store price</th>
-                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Actual price from the marketplace." scope="col" onclick=""><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Market price</th>
-                                                                    <th role="button" class="clickable" data-toggle="tooltip" title="Profits once selling the item to the game" scope="col" onclick="">Profits</th>
+                                                                    <th data-toggle="tooltip" title="The cost to craft the scroll." scope="col">Crafting Price</th>
+                                                                    <th data-toggle="tooltip" title="The profits you get by selling the scroll on the market." scope="col"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
+                                                                    <th data-toggle="tooltip" title="How much gold cost 1 xp." scope="col">Price/XP</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody></tbody>
@@ -177,6 +208,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
 
                                     <div class="col col-md-6">
@@ -185,19 +217,21 @@
                                                 <h6 class="text-primary font-weight-bold m-0">Top 5 Crafting recipes</h6>
                                             </div>
                                             <div class="card-body">
-                                                <div id ="resultatsCraftOverview">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col col-md-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">Top 5 ScrollCrafting recipes</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div id ="resultatsScrollcraftingOverview">
+                                                <div id="craftingTableOverview" class="content" style="margin-left: 13px;margin-right: 13px;">
+                                                    <div>
+                                                        <table data-show-columns="true" class="table table-sm table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Name</th>
+                                                                    <th data-toggle="tooltip" title="The profits you get by selling the item on the market." scope="col"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Profits</th>
+                                                                    <th data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
+                                                                    <th data-toggle="tooltip" title="How much gold cost 1 xp." scope="col">Price/XP</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -626,7 +660,7 @@
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The price of the item if you sell it to the game." scope="col" onclick="sortByValueSmelting('StorePrice');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Price</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="The profits you get by selling the item to the game" scope="col" onclick="sortByValueSmelting('StorePriceBenef');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits</th>
                                             <th role="button" class="clickable" data-toggle="tooltip" title="Represents the percentage of profits you make." scope="col" onclick="sortByValueSmelting('StorePriceBenefppx');"><img class="widthSet" src="https://idlescape.com/images/gold_coin.png">Profits %</th>
-                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueSmelting('prix_1xp');"><img class="widthSet" src="https://idlescape.com/images/ui/marketplace_icon.png">Price/XP</th>
+                                            <th role="button" class="clickable" data-toggle="tooltip" title="How much gold cost 1 xp." scope="col" onclick="sortByValueSmelting('prix_1xp');">Price/XP</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>

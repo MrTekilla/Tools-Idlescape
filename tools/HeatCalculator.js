@@ -7,9 +7,10 @@ function callFetchHeatCalculator(refresh = false) {
 
 var actualSortHeat = "prix_1heat";
 var sortOrderHeat = false;
+var heatListOverview = [];
+var maxHeatoverview = 3;
 function getHeatMaterials(json, refresh) {
 	finalResultsHeatMaterial = [];
-
 	json.items.forEach(e => {
 		if (e.hasOwnProperty('heat')) {
 			var tmpResult = {
@@ -26,6 +27,7 @@ function getHeatMaterials(json, refresh) {
 	});
 	//console.log(finalResultsHeatMaterial);
 	sortByValueHeatCalculator(actualSortHeat, refresh);
+	fillHeatListOverview();
 	populateHeatCalculator();
 }
 
@@ -43,6 +45,14 @@ function populateHeatCalculator() {
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		i++;
 	});
+}
+
+function fillHeatListOverview(){
+	heatListOverview = [];
+	for(var i = 0 ; i < maxHeatoverview ; i++){
+		heatListOverview.push(finalResultsHeatMaterial[i]);
+	}
+	fillheatOverview(heatListOverview);
 }
 
 function sortByValueHeatCalculator(value, refresh) {

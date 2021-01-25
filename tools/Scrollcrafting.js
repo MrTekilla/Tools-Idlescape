@@ -7,7 +7,7 @@ function callFetchScrolls(refresh = false) {
 
 //-------------------------------------------
 //Calculs
-var finalResultsScrolls = [], selectScrollRecipe = [];
+var finalResultsScrolls = [], selectScrollRecipe = [], overviewScrollCrafting = [];
 var actualSortScrolls = "prix_1xp";
 var sortOrderScrolls = false;
 var sortingScrollName = null;
@@ -53,6 +53,7 @@ function traitementDataScrolls(json, refresh) {
 
 	selectScrollRecipe = finalResultsScrolls;
 	sortByValueScrolls(actualSortScrolls, refresh);
+	fillScrollcraftingOverview();
 	sortByString(selectScrollRecipe);
 	populateSelectScroll(selectScrollRecipe);
 }
@@ -121,6 +122,14 @@ function findScrollName(value) {
 	}
 	populateScrolls(value, customCraftingLevel);
 	sortingScrollName = value;
+}
+
+function fillScrollcraftingOverview(){
+	overviewScrollCrafting = [];
+	for(var i = 0 ; i < maxOverview ; i++){
+		overviewScrollCrafting.push(finalResultsScrolls[i]);
+	}
+	populateScrollsOverview();
 }
 
 function findScrollByLevel(value) {

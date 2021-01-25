@@ -14,6 +14,7 @@ function startAutoRefresh() {
     callFetchScrolls(true);
     callFetchFarming(true);
     callFetchSmithing(true);
+    callFetchComparator();
   }, 300000);
 }
 
@@ -23,6 +24,7 @@ function manualRefresh() {
   callFetchFarming(true);
   callFetchHeatCalculator(true);
   callFetchSmithing(true);
+  callFetchComparator();
 }
 
 function generateComposHtml(compos, quantt = 1, buffCraft = 0) {

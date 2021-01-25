@@ -7,7 +7,7 @@ function callFetchCrafting(refresh = false) {
 
 //-------------------------------------------
 //Calculs
-var finalResultsExp = [], selectCraftRecipe = [];
+var finalResultsExp = [], selectCraftRecipe = [], overviewCrafting=[];
 var actualSortExp = "prix_1xp";
 var sortOrderExp = false;
 var sortingCraftingName = null;
@@ -69,12 +69,21 @@ function traitementDataCrafting(refresh) {
 	});
 	selectCraftRecipe = finalResultsExp;
 	sortByValueCrafting(actualSortExp, refresh);
+	fillCraftingOverview();
 	sortByString(selectCraftRecipe);
 	populateSelectCraft(selectCraftRecipe);
 }
 
 function refreshScrollcraftingBuff(){
 	traitementDataCrafting(true);
+}
+
+function fillCraftingOverview(){
+	overviewCrafting = [];
+	for(var i = 0 ; i < maxOverview ; i++){
+		overviewCrafting.push(finalResultsExp[i]);
+	}
+	populateCraftingOverview();
 }
 
 function sortByValueCrafting(value, refresh) {
@@ -95,7 +104,6 @@ function sortByValueCrafting(value, refresh) {
 	});
 	//var t1 = performance.now();
 	//console.log("Sorting took " + (t1 - t0) + " milliseconds.");
-
 	populateCrafting(sortingCraftingName, customCraftingLevel);
 }
 
@@ -139,7 +147,6 @@ function populateCrafting(craftName, sortingLevel) {
 		//console.log(e.name + " -> Prix : " + e.prix + " | exp : " + e.exp + " | prix 1xp : " + e.prix_1xp);
 		//console.log("i : " + i + finalResultsExp[i].name);
 	}
-
 	//var t1 = performance.now();
 	//console.log("Populating took " + (t1 - t0) + " milliseconds.");
 }

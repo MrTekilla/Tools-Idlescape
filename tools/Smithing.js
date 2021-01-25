@@ -7,7 +7,7 @@ function callFetchSmithing(refresh = false) {
 
 //-------------------------------------------
 //Calculs
-var finalResultsSmithing = [], selectSmithingRecipe = [];
+var finalResultsSmithing = [], selectSmithingRecipe = [], smeltListOverview = [];
 var jsonSmithing;
 var buffWealthSmithing = 0, buffScholarSmithing = 0, buffPyromancySmithing = 0, buffIntuitionSmithing = 0;
 var actualSortSmithing = "prix_1xp";
@@ -80,9 +80,19 @@ function traitementDataSmithing(refresh) {
     });
     selectSmithingRecipe = finalResultsSmithing;
     sortByValueSmelting(actualSortSmithing, refresh);
-    sortByString(selectSmithingRecipe);
+	sortByString(selectSmithingRecipe);
+	fillSmeltListOverview();
 	populateSelectSmithing(selectSmithingRecipe);
 }
+
+function fillSmeltListOverview(){
+	smeltListOverview = finalResultsSmithing;
+	smeltListOverview.sort(function (a, b) {
+		return parseFloat(b["Benefits"]) - parseFloat(a["Benefits"]);
+	});
+	fillSmeltOverview(smeltListOverview);
+}
+
 
 function refreshBuffValue(){
     traitementDataSmithing(true);
