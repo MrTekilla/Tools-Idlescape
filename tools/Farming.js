@@ -1,5 +1,5 @@
 function callFetchFarming(refresh = false) {
-	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("Seeds").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetching data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/farming')
 		.then(response => response.json())
 		.then(json => traitementDataSeeds(json, refresh));
