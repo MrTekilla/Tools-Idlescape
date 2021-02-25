@@ -1,7 +1,7 @@
 function callFetchComparator() {
-    document.getElementById("itemTableOverview").innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
-	document.getElementById("craftingTableOverview").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
-	document.getElementById("scrollingTableOverview").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+    document.getElementById("itemTableOverview").innerHTML = "<p>Fetching data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("craftingTableOverview").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetching data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("scrollingTableOverview").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetching data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
     fetch('https://api.idlescape.xyz/prices')
         .then(response => response.json())
         .then(json => initComparator(json));
