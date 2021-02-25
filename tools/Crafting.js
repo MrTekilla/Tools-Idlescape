@@ -1,5 +1,5 @@
 function callFetchCrafting(refresh = false) {
-	document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetchning data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
+	document.getElementById("craftingTable").getElementsByClassName("table")[0].tBodies[0].innerHTML = "<p>Fetching data from <a href=\"https://idlescape.xyz\">https://idlescape.xyz</a></p>";
 	fetch('https://api.idlescape.xyz/crafting')
 		.then(response => response.json())
 		.then(json => initDataCrafting(json, refresh));
