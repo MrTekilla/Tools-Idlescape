@@ -1,4 +1,4 @@
-# Tools for Idlescape
+# Tools for Idlescape (Deprecated since idlescape.xyz doesn't work anymore)
 
 https://MrTekilla.github.io 
 
