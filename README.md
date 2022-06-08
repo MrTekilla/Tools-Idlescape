@@ -1,7 +1,5 @@
 # Tools for Idlescape (Deprecated since idlescape.xyz doesn't work anymore)
 
-https://MrTekilla.github.io 
-
 Using API from https://idlescape.xyz/ to fetch data from https://idlescape.com
 
 * Calculate which recipe is the best to level up Craft at a lower cost.<br/>
